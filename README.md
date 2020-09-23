@@ -3,7 +3,7 @@
 ![ci_on_commit](https://github.com/whodisio/simple-jwt-auth/workflows/ci_on_commit/badge.svg)
 ![deploy_on_tag](https://github.com/whodisio/simple-jwt-auth/workflows/deploy_on_tag/badge.svg)
 
-A simple, convenient, and safe interface for interacting with JSON Web Tokens (JWTs) for authentication and authorization
+A simple, convenient, and safe interface for interacting with JSON Web Tokens (JWTs) for authentication and authorization in nodejs and the browser
 
 Simple:
 

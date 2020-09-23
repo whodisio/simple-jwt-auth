@@ -1,7 +1,7 @@
 import axios from 'axios';
 import jwkToPem from 'jwk-to-pem';
 
-import { SimpleJwtAuthError } from '../errors';
+import { SimpleJwtAuthError } from '../SimpleJwtAuthError';
 import { getUnauthedClaims } from '../getUnauthedClaims';
 import { getUnauthedHeaderClaims } from '../getUnauthedHeaderClaims';
 import { getPublicKeyFromCache, cachePublicKey } from './publicKeyCache';

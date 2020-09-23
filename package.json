@@ -67,6 +67,7 @@
   "dependencies": {
     "aws-sdk": "^2.517.0",
     "axios": "^0.20.0",
+    "date-fns": "^2.16.1",
     "jwk-to-pem": "^2.0.4",
     "simple-in-memory-cache": "^0.1.0"
   }
