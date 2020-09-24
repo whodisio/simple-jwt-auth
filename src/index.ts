@@ -11,3 +11,7 @@ export { createSecureDistributedAuthToken } from './createSecureDistributedAuthT
 export { SimpleJwtAuthError } from './SimpleJwtAuthError';
 export { JwtVerificationError } from './verification/JwtVerificationError';
 export { DiscoverPublicKeyFromAuthServerMetadataError } from './discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata';
+
+// types
+export { MinimalTokenClaims } from './getUnauthedClaims';
+export { MinimalTokenHeaderClaims } from './getUnauthedHeaderClaims';
