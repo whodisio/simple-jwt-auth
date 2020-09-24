@@ -1,6 +1,7 @@
 // functions
-export { getAuthedClaims } from './getAuthedClaims';
 export { getTokenFromHeaders } from './getTokenFromHeaders';
+export { getAuthedClaims } from './getAuthedClaims';
+export { getSignedClaims } from './getSignedClaims';
 export { getUnauthedClaims } from './getUnauthedClaims';
 export { getUnauthedHeaderClaims } from './getUnauthedHeaderClaims';
 export { discoverPublicKeyFromAuthServerMetadata } from './discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata';
