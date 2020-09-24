@@ -1,5 +1,6 @@
 import { verifyTokenSignature } from './verifyTokenSignature';
 import { JwtAuthenticationError } from './JwtAuthenticationError';
+import { base64UrlEncode } from '../base64Url/base64UrlEncode';
 
 describe('verifyTokenSignature', () => {
   it('should find that it can verify an authentic tokens signature', async () => {
@@ -12,7 +13,7 @@ describe('verifyTokenSignature', () => {
     const tokenParts = token.split('.');
     const tokenClaims = JSON.parse(Buffer.from(tokenParts[1], 'base64').toString('utf-8')); // decode and parse the claims
     const deceitfulClaims = { ...tokenClaims, sub: 'muahaha-any-user-i-want' }; // be evil and change the userUuid of the token
-    const deceitfulClaimsPayload = Buffer.from(JSON.stringify(deceitfulClaims), 'utf-8').toString('base64').replace(/=/g, ''); // cast to base64Url (i.e., replace `=` to cast back)
+    const deceitfulClaimsPayload = base64UrlEncode(JSON.stringify(deceitfulClaims));
     const tokenOfDeceit = [tokenParts[0], deceitfulClaimsPayload, tokenParts[2]].join('.'); // rebuild the token
 
     // prove that the signature will not be verified

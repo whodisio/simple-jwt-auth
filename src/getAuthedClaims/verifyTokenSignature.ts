@@ -3,13 +3,7 @@ import crypto from 'crypto';
 import { discoverPublicKeyFromAuthServerMetadata } from '../discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata';
 import { getUnauthedHeaderClaims } from '../getUnauthedHeaderClaims';
 import { JwtAuthenticationError } from './JwtAuthenticationError';
-import { SimpleJwtAuthError } from '../SimpleJwtAuthError';
-
-const JWT_ALG_TO_CRYPTO_ALG_MAP: { [index: string]: string } = {
-  RS256: 'RSA-SHA256',
-  RS384: 'RSA-SHA384',
-  RS512: 'RSA-SHA512',
-};
+import { castJwtAlgToCryptoAlg } from '../signingAlgorithm/castJwtAlgToCryptoAlg';
 
 const castBase64UrlToBase64 = (base64Url: string) => base64Url.replace(/-/g, '+').replace(/_/g, '/');
 
@@ -19,8 +13,7 @@ export const verifyTokenSignature = async ({ token }: { token: string }) => {
 
   // convert the alg the token said it was signed by to an alg name that crypto understands
   const unauthedHeaderClaims = getUnauthedHeaderClaims({ token });
-  const cryptoAlg = JWT_ALG_TO_CRYPTO_ALG_MAP[unauthedHeaderClaims.alg];
-  if (!cryptoAlg) throw new SimpleJwtAuthError(`unsupported jwt alg: ${unauthedHeaderClaims.alg}`);
+  const cryptoAlg = castJwtAlgToCryptoAlg(unauthedHeaderClaims.alg);
 
   // check that we can verify the signature
   const verificationInput = token.split('.').slice(0, 2).join('.'); // drop the signature

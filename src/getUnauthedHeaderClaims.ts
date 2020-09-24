@@ -1,3 +1,6 @@
+import { base64UrlDecode } from './base64Url/base64UrlDecode';
+import { AsymmetricSigningAlgorithm } from './signingAlgorithm/isAsymmetricSigningAlgorithm';
+
 /**
  * Decode the header of the token and return the header claims, without checking anything.
  *
@@ -5,13 +8,13 @@
  *
  * This returns the jwt _header_ claims, not the jwt _body_ claims.
  */
-interface MinimalTokenHeaderClaims {
-  alg: string;
-  typ: string;
+export interface MinimalTokenHeaderClaims {
+  alg: AsymmetricSigningAlgorithm;
+  typ: 'JWT';
   kid?: string;
 }
 export const getUnauthedHeaderClaims = <C extends MinimalTokenHeaderClaims>({ token }: { token: string }): C => {
   const parts = token.split('.');
-  const payload = JSON.parse(Buffer.from(parts[0], 'base64').toString('utf-8'));
+  const payload = JSON.parse(base64UrlDecode(parts[0]));
   return payload;
 };

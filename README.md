@@ -3,7 +3,7 @@
 ![ci_on_commit](https://github.com/whodisio/simple-jwt-auth/workflows/ci_on_commit/badge.svg)
 ![deploy_on_tag](https://github.com/whodisio/simple-jwt-auth/workflows/deploy_on_tag/badge.svg)
 
-A simple, convenient, and safe interface for interacting with JSON Web Tokens (JWTs) for authentication and authorization in nodejs and the browser
+A simple, convenient, and safe interface for interacting with JSON Web Tokens (JWTs) for authentication and authorization
 
 Simple:
 
@@ -72,6 +72,24 @@ This simply decodes the body of the token and returns the claims, without checki
 import { getUnauthedClaims } from 'simple-jwt-auth';
 const claims = getUnauthedClaims({
   token: 'eyJhbGciOiJSUzI1NiIsInR...', // a jwt
+});
+```
+
+### Create a secure distributed auth token
+
+This method creates a JWT after checking that requirements for secure distributed authentication with the would be token are met.
+
+```ts
+import { createSecureDistributedAuthToken } from 'simple-jwt-auth';
+const token = createSecureDistributedAuthToken({
+  headerClaims: { alg: 'RS256', kid: '4.some_directory', typ: 'JWT' },
+  claims: {
+    iss: 'https://auth.whodis.io/...',
+    aud: 'f7326c71-cf5a-4637-9580-8e83c2692e96',
+    sub: 'e41ea57c-f630-45ba-88fc-8888b06c588e',
+    exp: 2516239022,
+  },
+  privateKey, // rsa pem format private key string
 });
 ```
 

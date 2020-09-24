@@ -7,10 +7,6 @@ import { verifyTokenSignature } from './verifyTokenSignature';
 
 /**
  * Authenticates the claims made by the JWT, conforming to highest security standards, before returning claims.
- *
- * This method is primarily used in server side / backend applications, where we must trust the data we are working with.
- *
- * In client side / frontend applications, there is no reason to authenticate claims as no data on frontend should be trusted anyway: use `getUnauthedClaims` instead.
  */
 export const getAuthedClaims = async <C extends MinimalTokenClaims>({
   token,

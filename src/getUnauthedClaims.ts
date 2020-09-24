@@ -1,3 +1,5 @@
+import { base64UrlDecode } from './base64Url/base64UrlDecode';
+
 export interface MinimalTokenClaims {
   iss: string;
   aud: string;
@@ -8,13 +10,9 @@ export interface MinimalTokenClaims {
 
 /**
  * Decode the body of the token and return the claims, without checking authenticity of claims.
- *
- * This method is primarily used in client side applications, where no data should be trusted either way.
- *
- * In server side / backend applications, make sure to check the authenticity of the token's claims before trusting them first: use `getAuthedClaims` instead.
  */
 export const getUnauthedClaims = <C extends MinimalTokenClaims>({ token }: { token: string }): C => {
   const parts = token.split('.');
-  const payload = JSON.parse(Buffer.from(parts[1], 'base64').toString('utf-8'));
+  const payload = JSON.parse(base64UrlDecode(parts[1]));
   return payload;
 };
