@@ -1,6 +1,6 @@
 import { discoverPublicKeyFromAuthServerMetadata } from './discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata';
 import { createSecureDistributedAuthToken } from './createSecureDistributedAuthToken';
-import { getAuthedClaims } from './getAuthedClaims/getAuthedClaims';
+import { getAuthedClaims } from './getAuthedClaims';
 
 const exampleKeys = {
   publicKey: `

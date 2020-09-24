@@ -15,7 +15,7 @@ Simple:
 Safe:
 
 - enforces best practices of JWT authentication
-- eliminates accidentally using JWTs unsafely, by only exposing methods that allow safe usage
+- eliminates accidentally using JWTs unsafely, by constraining exposed methods to secure and declarative use cases
 
 ---
 

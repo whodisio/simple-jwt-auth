@@ -1,5 +1,5 @@
 // functions
-export { getAuthedClaims } from './getAuthedClaims/getAuthedClaims';
+export { getAuthedClaims } from './getAuthedClaims';
 export { getTokenFromHeaders } from './getTokenFromHeaders';
 export { getUnauthedClaims } from './getUnauthedClaims';
 export { getUnauthedHeaderClaims } from './getUnauthedHeaderClaims';
@@ -8,5 +8,5 @@ export { createSecureDistributedAuthToken } from './createSecureDistributedAuthT
 
 // errors
 export { SimpleJwtAuthError } from './SimpleJwtAuthError';
-export { JwtAuthenticationError } from './getAuthedClaims/JwtAuthenticationError';
+export { JwtVerificationError } from './verification/JwtVerificationError';
 export { DiscoverPublicKeyFromAuthServerMetadataError } from './discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata';

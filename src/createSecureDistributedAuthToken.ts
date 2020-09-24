@@ -1,12 +1,9 @@
-import crypto from 'crypto';
-
 import { base64UrlEncode } from './base64Url/base64UrlEncode';
-import { castBase64ToBase64Url } from './base64Url/castBase64ToBase64Url';
 import { MinimalTokenClaims } from './getUnauthedClaims';
 import { MinimalTokenHeaderClaims } from './getUnauthedHeaderClaims';
-import { castJwtAlgToCryptoAlg } from './signingAlgorithm/castJwtAlgToCryptoAlg';
 import { isAsymmetricSigningAlgorithm } from './signingAlgorithm/isAsymmetricSigningAlgorithm';
 import { SimpleJwtAuthError } from './SimpleJwtAuthError';
+import { createVerifiableSignature } from './signingAlgorithm/createVerifiableSignature';
 
 /**
  * Creates secure, authenticatable tokens for a distributed system - enforcing security standards
@@ -32,10 +29,8 @@ export const createSecureDistributedAuthToken = <C extends MinimalTokenClaims>({
   if (!claims.exp) throw new SimpleJwtAuthError('token.claims.exp must be defined when creating a secure token');
 
   // create a token
-  const cryptoAlg = castJwtAlgToCryptoAlg(headerClaims.alg);
   const payload = [base64UrlEncode(JSON.stringify(headerClaims)), base64UrlEncode(JSON.stringify(claims))].join('.');
-  const signatureBuffer = crypto.createSign(cryptoAlg).update(payload).sign(privateKey);
-  const signature = castBase64ToBase64Url(signatureBuffer.toString('base64'));
+  const signature = createVerifiableSignature({ alg: headerClaims.alg, payload, privateKey });
   const token = [...payload.split('.'), signature].join('.');
 
   // return the token

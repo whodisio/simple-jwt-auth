@@ -1,5 +1,5 @@
 import { getUnauthedClaims } from '../getUnauthedClaims';
-import { JwtAuthenticationError } from './JwtAuthenticationError';
+import { JwtVerificationError } from './JwtVerificationError';
 
 /**
  * it is critical to security to check the intent of a token, not just that its well formed.
@@ -25,7 +25,7 @@ export const verifyTokenIntent = ({
 }) => {
   const unauthedClaims = getUnauthedClaims({ token });
   if (unauthedClaims.iss !== intendedIssuer)
-    throw new JwtAuthenticationError({ reason: `token was issued by an unintended issuer: ${unauthedClaims.iss}` });
+    throw new JwtVerificationError({ reason: `token was issued by an unintended issuer: ${unauthedClaims.iss}` });
   if (!intendedAudiences.includes(unauthedClaims.aud))
-    throw new JwtAuthenticationError({ reason: `token was issued to be used for an unintended audience: ${unauthedClaims.aud}` });
+    throw new JwtVerificationError({ reason: `token was issued to be used for an unintended audience: ${unauthedClaims.aud}` });
 };

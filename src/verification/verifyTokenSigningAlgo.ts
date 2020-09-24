@@ -1,6 +1,6 @@
 import { getUnauthedHeaderClaims } from '../getUnauthedHeaderClaims';
 import { isAsymmetricSigningAlgorithm } from '../signingAlgorithm/isAsymmetricSigningAlgorithm';
-import { JwtAuthenticationError } from './JwtAuthenticationError';
+import { JwtVerificationError } from './JwtVerificationError';
 
 /**
  * only asymmetric signing algorithms can be securely used in a distributed authentication strategy.
@@ -12,7 +12,7 @@ import { JwtAuthenticationError } from './JwtAuthenticationError';
 export const verifyTokenSigningAlgo = ({ token }: { token: string }) => {
   const unauthedHeaderClaims = getUnauthedHeaderClaims({ token });
   if (!isAsymmetricSigningAlgorithm(unauthedHeaderClaims.alg))
-    throw new JwtAuthenticationError({
+    throw new JwtVerificationError({
       reason: `tokens must be signed with asymmetric signing algorithms for secure distributed jwt authentication. found \`token.header.alg = ${unauthedHeaderClaims.alg}\` instead.`,
     });
 };
