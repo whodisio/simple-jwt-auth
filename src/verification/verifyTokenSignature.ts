@@ -1,7 +1,7 @@
 import { isSignatureVerified } from '../signingAlgorithm/isSignatureVerified';
 import { JwtVerificationError } from './JwtVerificationError';
 
-export const verifyTokenSignature = async ({ token, publicKey }: { token: string; publicKey: string }) => {
+export const verifyTokenSignature = ({ token, publicKey }: { token: string; publicKey: string }) => {
   // determine if signature is verified
   const verified = isSignatureVerified({ token, publicKey });
 
