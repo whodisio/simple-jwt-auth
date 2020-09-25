@@ -62,7 +62,7 @@ import { getTokenFromHeaders } from 'simple-jwt-auth';
 const token = getTokenFromHeaders({ headers });
 ```
 
-Tokens are passed to apis through the `Authentication` header, according to the [OAuth 2.0 Authorization Standard](https://tools.ietf.org/html/rfc6750), so this exposes an easy way to grab the token from there.
+Tokens are passed to apis through the `Authorization` header, according to the [OAuth 2.0 Authorization Standard](https://tools.ietf.org/html/rfc6750), so this exposes an easy way to grab the token from there.
 
 ### Get claims from a JWT without checking their authenticity
 
