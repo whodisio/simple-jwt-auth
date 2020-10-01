@@ -16,6 +16,11 @@ describe('getTokenFromHeaders', () => {
     const token = getTokenFromHeaders({ headers });
     expect(token).toEqual('__header__.__body__.__sig__');
   });
+  it('should return the token, even if header was lowercase', () => {
+    const headers = { authorization: 'Bearer __header__.__body__.__sig__' };
+    const token = getTokenFromHeaders({ headers });
+    expect(token).toEqual('__header__.__body__.__sig__');
+  });
   it('should return the token, even if Bearer prefix was not used', () => {
     const headers = { Authorization: '__header__.__body__.__sig__' };
     const token = getTokenFromHeaders({ headers });
