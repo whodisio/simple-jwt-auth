@@ -1,6 +1,7 @@
 import { base64UrlDecode } from './base64Url/base64UrlDecode';
+import { isJSONWebToken } from './isJSONWebToken';
 import { AsymmetricSigningAlgorithm } from './signingAlgorithm/isAsymmetricSigningAlgorithm';
-import { verifyTokenShape } from './verification/verifyTokenShape';
+import { SimpleJwtAuthError } from './SimpleJwtAuthError';
 
 /**
  * Decode the header of the token and return the header claims, without checking anything.
@@ -15,7 +16,7 @@ export interface MinimalTokenHeaderClaims {
   kid?: string;
 }
 export const getUnauthedHeaderClaims = <C extends MinimalTokenHeaderClaims>({ token }: { token: string }): C => {
-  verifyTokenShape({ token }); // guard clause to catch malformed "token" inputs
+  if (!isJSONWebToken(token)) throw new SimpleJwtAuthError('token does not match shape of a JWT');
   const parts = token.split('.');
   const payload = JSON.parse(base64UrlDecode(parts[0]));
   return payload;

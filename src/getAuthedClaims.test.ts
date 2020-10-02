@@ -13,6 +13,19 @@ getSignedClaimsMock.mockReturnValue('__SIGNED_CLAIMS__');
 
 describe('getAuthedClaims', () => {
   beforeEach(() => jest.clearAllMocks());
+  describe('token shape', () => {
+    it('should check that the token has the correct shape', async () => {
+      const token = `__WEIRD_HACK_ATTEMPT_SHAPE__`;
+      try {
+        await getAuthedClaims({ token, issuer: '__ISSUER__', audience: '__AUDIENCE__' });
+        throw new Error('should not reach here');
+      } catch (error) {
+        expect(error).toBeInstanceOf(JwtVerificationError);
+        expect(error.message).toContain('this JWT can not be trusted!');
+        expect(error.message).toContain('token does not match shape of a JWT');
+      }
+    });
+  });
   describe('token intent', () => {
     it('should check the issuer of the token against the intended issuer', async () => {
       const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Il9fa2V5X2lkX18ifQ.eyJpc3MiOiJodHRwczovL2F1dGgud2hvZGlzLmlvLy4uLiIsInN1YiI6IjEyMzQ1Njc4OTAiLCJuYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE1MTYyMzkwMjJ9.AvXcwdU4amvp-eQwREHAQORKAbUe-crJuJoabABS_fE`;

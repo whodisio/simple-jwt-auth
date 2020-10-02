@@ -1,5 +1,4 @@
 import { getUnauthedClaims, MinimalTokenClaims } from './getUnauthedClaims';
-import { verifyTokenShape } from './verification/verifyTokenShape';
 import { verifyTokenSignature } from './verification/verifyTokenSignature';
 import { verifyTokenSigningAlgo } from './verification/verifyTokenSigningAlgo';
 
@@ -11,9 +10,6 @@ import { verifyTokenSigningAlgo } from './verification/verifyTokenSigningAlgo';
  * Use `getAuthedClaims` in settings where you must trust the claims of a token.
  */
 export const getSignedClaims = <C extends MinimalTokenClaims>({ token, publicKey }: { token: string; publicKey: string }): C => {
-  // check that the token has standard and expected shape
-  verifyTokenShape({ token });
-
   // check that the token was signed by an asymmetric algorithm - otherwise, this token can't be used securely in a distributed system. (i.e., there is no "publicKey" in a symmetric signing algo)
   verifyTokenSigningAlgo({ token });
 
