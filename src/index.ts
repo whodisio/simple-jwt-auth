@@ -6,6 +6,7 @@ export { getUnauthedClaims } from './getUnauthedClaims';
 export { getUnauthedHeaderClaims } from './getUnauthedHeaderClaims';
 export { discoverPublicKeyFromAuthServerMetadata } from './discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata';
 export { createSecureDistributedAuthToken } from './createSecureDistributedAuthToken';
+export { isJSONWebToken } from './isJSONWebToken';
 
 // errors
 export { SimpleJwtAuthError } from './SimpleJwtAuthError';

@@ -1,9 +1,10 @@
+import { discoverPublicKeyFromAuthServerMetadata } from './discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata';
+import { getSignedClaims } from './getSignedClaims';
 import { MinimalTokenClaims } from './getUnauthedClaims';
 import { SimpleJwtAuthError } from './SimpleJwtAuthError';
 import { verifyTokenIntent } from './verification/verifyTokenIntent';
+import { verifyTokenShape } from './verification/verifyTokenShape';
 import { verifyTokenTimestamps } from './verification/verifyTokenTimestamps';
-import { discoverPublicKeyFromAuthServerMetadata } from './discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata';
-import { getSignedClaims } from './getSignedClaims';
 
 /**
  * Authenticates the claims made by the JWT, conforming to highest security standards, before returning claims.
@@ -29,6 +30,9 @@ export const getAuthedClaims = async <C extends MinimalTokenClaims>({
   if (!audience) throw new SimpleJwtAuthError('expected audience must be defined for secure distributed jwt authentication');
   const audiences = Array.isArray(audience) ? audience : [audience]; // normalize it to a more generic form in the process
   if (!audiences.length) throw new SimpleJwtAuthError('at least one expected audience must be defined for secure distributed jwt authentication');
+
+  // check that the token has standard and expected shape
+  await verifyTokenShape({ token });
 
   // check whether the audience and issuer of the token match, before even looking at verifying signature; critical for security in distributed system
   await verifyTokenIntent({ token, intendedIssuer: issuer, intendedAudiences: audiences });
