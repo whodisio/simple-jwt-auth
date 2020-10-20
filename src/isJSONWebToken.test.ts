@@ -1,5 +1,6 @@
 import { castBase64UrlToBase64 } from './base64Url/castBase64UrlToBase64';
 import { isJSONWebToken } from './isJSONWebToken';
+import { redactSignature } from './redactSignature';
 
 const exampleValidTokenShape =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
@@ -20,5 +21,10 @@ describe('isJSONWebToken', () => {
       .join('.');
     const isJwt = isJSONWebToken(base64Token);
     expect(isJwt).toEqual(false);
+  });
+  it('should return true even if signature is redacted', () => {
+    const exampleTokenWithRedactedSignature = redactSignature({ token: exampleValidTokenShape });
+    const isJwt = isJSONWebToken(exampleTokenWithRedactedSignature);
+    expect(isJwt).toEqual(true);
   });
 });

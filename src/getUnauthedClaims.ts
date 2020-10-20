@@ -3,6 +3,7 @@ import { isJSONWebToken } from './isJSONWebToken';
 import { SimpleJwtAuthError } from './SimpleJwtAuthError';
 
 export interface MinimalTokenClaims {
+  jti?: string;
   iss: string;
   aud: string;
   sub: string;

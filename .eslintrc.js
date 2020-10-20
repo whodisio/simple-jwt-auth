@@ -24,7 +24,7 @@ module.exports = {
       },
     ],
     '@typescript-eslint/no-explicit-any': 'off', // sometimes this is a valid definition
-    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: '^_' }],
     'import/no-cycle': 'off',
     'lines-between-class-members': 'off',
   },
