@@ -15,7 +15,7 @@ export { isSameSite } from './domains/isSameSite';
 export { SimpleJwtAuthError } from './SimpleJwtAuthError';
 export { JwtVerificationError } from './verification/JwtVerificationError';
 export { DiscoverPublicKeyFromAuthServerMetadataError } from './discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata';
-export { PotentialCSRFAttemptError } from './getTokenFromHeaders/PotentialCSRFAttemptError';
+export { PotentialCSRFAttackError } from './getTokenFromHeaders/PotentialCSRFAttackError';
 export { PotentialCSRFVulnerabilityError } from './getTokenFromHeaders/PotentialCSRFVulnerabilityError';
 export { PotentialXSSVulnerabilityError } from './getTokenFromHeaders/PotentialXSSVulnerabilityError';
 

@@ -196,87 +196,60 @@ This function, `getTokenFromHeaders`, leverages a two layer defence from the rec
 2. [Synchronizer Token Based Mitigation](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html#token-based-mitigation)
    - "CSRF tokens prevent CSRF because without token, attacker cannot create a valid requests to the backend server."
 
-This library leverages the properties of JWTs in order to make the implementation of origin-verification and anti-csrf-tokens seamless from the eyes of the implementer.
+This library leverages the properties of JWTs in order to make the implementation of origin-verification and anti-csrf-tokens seamless from the eyes of the developer.
 
-**Verifying Origin with Standard Headers**
+The first layer, `Verify Origin with Standard Headers`, is composed of two parts:
 
-In order to prevent a CSRF attack, we must make sure that only the intended source origin is making requests on behalf of our user. A secure way of doing so is by checking the `origin` and `referrer` headers.
+1. figuring out the `target origin` and `source origin`
 
-[OWASP](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html#verifying-origin-with-standard-headers) explains the principle behind this approach well:
+   1. `sourceOrigin = header.origin ?? header.referrer`, as defined by the OWASP recommendations
+      1. these can be trusted because they are restricted headers, which can only be set by browsers
+      2. `if (!sourceOrigin) throw new PotentialCSRFAttackError` - dont allow requests without either `origin` or `referrer` defined
+   2. `targetOrigin = jwt.aud`, i.e. the audience claim of the token
+      1. the `aud` claim of a JWT should be the `uri` of the target origin that the token is intended to be consumed by
 
-> "Reliability on these headers comes from the fact that they cannot be altered programmatically (using JavaScript with an XSS vulnerability) as they fall under forbidden headers list, meaning that only the browser can set them"
+2. comparing the `target origin` and `source origin`
 
-There are two parts to origin verification:
+   1. `if (!isSameSite(sourceOrigin, targetOrigin) && !isLocalhost(sourceOrigin)) throw new PotentialCSRFAttackError`
+      1. check that `isSameSite(sourceOrigin, targetOrigin)`
+         1. `api.yoursite.com` and `www.yoursite.com` are the same domain, since they differ only by subdomain
+         2. `yoursite.github.io` and `mysite.github.io` are _not_ the same site, since domains like `github.io` and `cloudfront.net` are a [public domains](https://publicsuffix.org/)
+      2. check that `isLocalhost(sourceOrigin)`
+         1. there is no point in protecting a user from CSRF if they're making requests from a site hosted on their own machine.
+            1. they either know what they're doing or CSRF is the least of their concerns, so blocking them does not help anything.
+            2. if they know what they're doing, they're probably testing or developing, in which case blocking them would be a significant detriment.
 
-1. figuring out the target and source origins.
-2. comparing the target and source origins.
+The second layer, `Synchronizer Token Based Mitigation`, is composed of three parts:
 
-Here are the details
+1. a unique, secure, and random anti-csrf-token is returned by the auth server (so an attacker can't guess or deduce the token)
 
-1. figuring out the target and source origins
+   - the anti-csrf-token is expected to be a signature-redacted form of the auth-token
+     - signature-redacted meaning the signature of the JWT is replaced with `__REDACTED__`, ensuring that this JWT can not be used for authentication
+       - guarantees the anti-csrf-token is not a risk if stolen by XSS, safe to store in memory or local-storage
+       - otherwise, the anti-csrf-token would actually present a significant XSS vulnerability
+       - `getTokenFromHeaders` checks this with `if (antiCsrfTokenSignature !== '__REDACTED__') throw new PotentialXSSVulnerabilityError`
+     - signature-redacted meaning that the header and body claims of the anti-csrf-token are equivalent to the auth-token
+       - guarantees that the anti-csrf-token is synchronized to the auth-token of this specific session
+       - otherwise, the anti-csrf-token could not be verified on the serverside in a stateless, distributed way
+       - `getTokenFromHeaders` checks this with `if (authTokenBody !== antiCsrfTokenBody || authTokenHeader !== antiCsrfTokenBody) throw new PotentialCSRFAttackError`
+   - the auth-token must have a random, unique `jti` claim
+     - guarantees the anti-csrf-token is random and unique per session
+     - otherwise, the anti-csrf-token could be guessed or deduced, posing a CSRF vulnerability
+     - `getTokenFromHeaders` checks this with `if (!isUuidV4(jwt.jti)) throw new PotentialCSRFVulnerabilityError`
+   - the authorization cookie, storing the auth-token, must be `HTTPOnly` and `Secure` to protect against XSS and MITM attacks
+     - otherwise, not only could the anti-csrf-token be stolen, but worse the auth-token itself could be stolen - making CSRF the least of your concerns
 
-The `source origin` is easy to define and is explicitly defined in the OWASP recommendations. The `origin` and `referrer` headers are restricted headers, which mean that only browsers are allowed to set them. Therefore, we can trust that `sourceOrigin = header.origin ?? header.referrer`.
+2. the anti-csrf-token is sent on each request in the body or custom header (proving that the source of the request has programmatic access to the anti-csrf-token)
 
-The `target origin` is figured out by leveraging the fact that the `aud` claim of a JWT should be the `uri` of the target origin that the token is intended to be consumed by. (i.e., `jwt.aud` should be the uri of the server that its intended for). Therefore, we are able to define that `targetOrigin = jwt.aud`.
+   - `getTokenFromHeaders` expects that the anti-csrf-token is sent in the [authorization header](#authorization-header) of the request
+     - sending the anti-csrf-token in the authorization header allows browser and native environments to have the same exact code path, simplifying cross platform development.
+     - sending the anti-csrf-token in the authorization header also proves that the requester has programmatic access to the anti-csrf-token, proving they were given it at some point
 
-2. comparing the target and source origins
+3. the server verifies the anti-csrf-token when processing each request (otherwise an attacker could pass in random values)
 
-In order to prevent a CSRF attack, we must verify that the source of the request is also the target of the request. In otherwords, we want to make sure that the source and target are the same site.
+   - the auth-token, jwt, must be found a cookie named `authorization` ([case sensitive](https://stackoverflow.com/a/11312272/3068233))
+   - the anti-csrf-token must be found in the authorization header, as mentioned in part 2
+   - `getTokenFromHeaders` verifies that the anti-csrf-token is synchronized, unique, random, and secure - by conducting the checks mentioned in part 1
+     - this verification ensures that this request could only have been made by the origin to which we gave the `jwt`
 
-Special attention must be paid when considering whether `isSameSite(sourceOrigin, targetOrigin)` to the fact that some domains are actually public domains. For example, many websites are hosted on public domains such as `github.io` (github pages), `cloudfront.net` (aws's cdn), and etc. Fortunately, a standard [public domain list]() exists that we can use to consider this factor. Therefore, this library is able to realize that `yoursite.github.io` and `mysite.github.io` are _not_ the same site, while still understanding that `api.yoursite.com` and `www.yoursite.com` are the same site.
-
-This library additionally takes the liberty of ignoring the `isSameSite` check cases where the `source origin` of a request is `localhost`. This is because there is no point in protecting a user from CSRF if they're making requests from a site hosted on their own machine. They either know what they're doing, or CSRF is the least of their concerns. (Note: this library _does_ still require the anti-csrf-token to be submitted for requests from `localhost`, however)
-
-**Synchronizer Token Based Mitigation**
-
-In order to prevent a CSRF attack, we must make sure that only the intended source origin is making requests on behalf of our user. An anti-csrf-token is the industry standard, best practice in doing so.
-
-[OWASP](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html#verifying-origin-with-standard-headers) explains the principle behind this approach well:
-
-> "CSRF tokens prevent CSRF because without token, attacker cannot create a valid requests to the backend server."
-
-In a nutshell, an synchronizer anti-csrf-token is a unique, random value given to the user that can not be guessed, it is sent on each request to the server in the body or custom header, and can be verified on the server side.
-
-There are several pieces that add up to make this a secure solution:
-
-1. the anti-csrf-token can not be guessed or deduced
-
-   - otherwise the attacker can guess or deduce this value as well
-
-2. it is sent on each request in the body or custom header
-
-   - meaning that the source of the request must have programmatic access to this `anti-csrf-token`
-
-3. it can be verified on the server side
-
-   - as if the server can't verify it, it wont know whether it is the correct token or a random value sent by an attacker
-
-These pieces add together to guarantee that only the origin that was given the `anti-csrf-token` can send requests that are allowed to use the token in the cookie.
-
-This library takes advantage of the unique properties of JWTs in order to make implementing an anti-csrf-token seamless. By using a `signature-redacted` version of the JWT that will be stored in the cookie as the anti-csrf-token, we are able to maintain a distributed, stateless approach to using a synchronizer anti-csrf-token.
-
-Definition: signature-redacted meaning, the claims and header are not modified, but the signature is replaced with `__REDACTED__` so that the token can not be used for authentication.
-
-Here is how this library addresses each part, specifically:
-
-1. the anti-csrf-token can not be guessed or deduced
-
-A JWT which has a unique, random `jti` claim on it can not be guessed or deduced. By requiring the endpoint that sets the JWT in the authorization cookie to also return a signature-redacted version of that JWT in the body of the response, we give the user an `anti-csrf-token` which can not be guessed or deduced.
-
-The website that receives this `anti-csrf-token` is then able to safely store this anti-csrf-token in a browsers local-storage to be added to the header in subsequent requests, since the `anti-csrf-token` is a signature-redacted version of the full JWT and can not be authenticated.
-
-Note: `getTokenFromHeaders` does check that the `anti-csrf-token`'s signature equals `__REDACTED__`, in order to guarantee that the `anti-csrf-token` could not possibly be used for authentication. It throws a `PotentialXSSVulnerabilityError` if this requirement is not met.
-
-Note: `getTokenFromHeaders` does check that the JWT has a uuid for the `jti`, in order to guarantee that the `anti-csrf-token` is a unique and random value. It throws a `PotentialCSRFVulnerabilityError` if this requirement is not met.
-
-2. it is sent on each request in the body or custom header
-
-This library expects that the `anti-csrf-token` will be sent on the `Authorization` header of the request, to be found along with the authorization cookie which will be sent automatically by the user's browser.
-
-Reusing the `authorization` header for the `anti-csrf-token` allows applications that store the jwt in a cookie and applications that store the jwt in directly in local storage to have the same exact code path, simplifying cross platform development.
-
-3. it can be verified on the server side
-
-When `getTokenFromHeaders` is called, it is able to verify that the `anti-csrf-token` is correct by checking that both the header and body of the tokens are the same.
-
-By verifying that the `anti-csrf-token` synchronizes with the `jwt` and knowing that the `anti-csrf-token` is unique, random, and unguessable - we know that this request could only be made by the origin to which we gave the `jwt`.
+Important Note: CSRF protection is only useful when the website is not under XSS attack. While storing the auth-token in a cookie prevents XSS attacks from stealing the token directly, it does not prevent an XSS attack from making requests from your site on the users browser. In otherwords, if your site has been attacked with a custom XSS attack, CSRF is the least of your concerns.

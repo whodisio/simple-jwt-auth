@@ -5,7 +5,7 @@ import { getUnauthedHeaderClaims } from '../getUnauthedHeaderClaims';
 import { getTokenFromAuthorizationCookie } from './getTokenFromAuthorizationCookie';
 import { getTokenFromAuthorizationHeader } from './getTokenFromAuthorizationHeader';
 import { isUuid } from './isUuid';
-import { PotentialCSRFAttemptError } from './PotentialCSRFAttemptError';
+import { PotentialCSRFAttackError } from './PotentialCSRFAttackError';
 import { PotentialCSRFVulnerabilityError } from './PotentialCSRFVulnerabilityError';
 import { PotentialXSSVulnerabilityError } from './PotentialXSSVulnerabilityError';
 
@@ -57,16 +57,16 @@ export const getTokenFromAuthorizationCookieWithCSRFProtection = ({ headers }: {
 
   // check for CSRF, checking that the "source origin" is either localhost or samesite as "target origin"
   const sourceOrigin: string = headers.origin ?? headers.Origin ?? headers.referrer ?? headers.Referrer;
-  if (!sourceOrigin) throw new PotentialCSRFAttemptError({ reason: 'source origin can not be detected from request. no origin or referrer.' });
+  if (!sourceOrigin) throw new PotentialCSRFAttackError({ reason: 'source origin can not be detected from request. no origin or referrer.' });
   const targetOrigin = getUnauthedClaims({ token }).aud;
   if (!isSameSite(sourceOrigin, targetOrigin) && !isLocalhost(sourceOrigin))
-    throw new PotentialCSRFAttemptError({
+    throw new PotentialCSRFAttackError({
       reason: `source origin is not same site as target origin! (target='${targetOrigin}', source='${sourceOrigin}')`,
     });
 
   // now check for CSRF, expecting a synchronized anti-csrf token in the auth header
   const antiCsrfToken = getTokenFromAuthorizationHeader({ headers });
-  if (!antiCsrfToken) throw new PotentialCSRFAttemptError({ reason: 'no anti-csrf-token was passed in the request!' }); // check that anti-csrf-token was defined
+  if (!antiCsrfToken) throw new PotentialCSRFAttackError({ reason: 'no anti-csrf-token was passed in the request!' }); // check that anti-csrf-token was defined
   const antiCsrfTokenSignature = antiCsrfToken.split('.')[2];
   if (antiCsrfTokenSignature !== '__REDACTED__')
     throw new PotentialXSSVulnerabilityError({ reason: 'anti-csrf-token found without redacted signature!' }); // check that anti-csrf-token has redacted signature
@@ -75,9 +75,9 @@ export const getTokenFromAuthorizationCookieWithCSRFProtection = ({ headers }: {
   const tokenClaims = getUnauthedClaims({ token });
   const tokenHeaderClaims = getUnauthedHeaderClaims({ token });
   if (serialize(antiCsrfTokenClaims) !== serialize(tokenClaims))
-    throw new PotentialCSRFAttemptError({ reason: 'anti-csrf-token is not synchronized with token' }); // check that anti-csrf-token is correct
+    throw new PotentialCSRFAttackError({ reason: 'anti-csrf-token is not synchronized with token' }); // check that anti-csrf-token is correct
   if (serialize(antiCsrfTokenHeaderClaims) !== serialize(tokenHeaderClaims))
-    throw new PotentialCSRFAttemptError({ reason: 'anti-csrf-token is not synchronized with token' }); // check that anti-csrf-token is correct
+    throw new PotentialCSRFAttackError({ reason: 'anti-csrf-token is not synchronized with token' }); // check that anti-csrf-token is correct
   if (!tokenClaims.jti || !isUuid(tokenClaims.jti))
     throw new PotentialCSRFVulnerabilityError({ reason: 'token.jki is not a uuid - can not guarantee randomness of token' }); // check that token is random; this is probably overboard, but not a bad constraint to require conforming to
 

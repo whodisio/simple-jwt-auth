@@ -43,12 +43,12 @@ describe('getTokenFromAuthorizationCookie', () => {
     const token = getTokenFromAuthorizationCookie({ headers });
     expect(token).toEqual(exampleToken);
   });
-  it('should be able to find token in authorization cookie, even if the cookie name is capitalized the first cookie', () => {
+  it('should not be able to find token in authorization cookie, if the cookie name is capitalized the first cookie, since cookie names are case sensitive', () => {
     const headers = {
       cookie: `Authorization=${exampleToken}`,
     };
     const token = getTokenFromAuthorizationCookie({ headers });
-    expect(token).toEqual(exampleToken);
+    expect(token).toEqual(null);
   });
   it('should be able to find token in authorization cookie, even if the cookie header key is capitalized', () => {
     const headers = {

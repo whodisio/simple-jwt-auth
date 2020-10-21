@@ -1,6 +1,6 @@
 import { redactSignature } from '../redactSignature';
 import { getTokenFromAuthorizationCookieWithCSRFProtection } from './getTokenFromAuthorizationCookieWithCSRFProtection';
-import { PotentialCSRFAttemptError } from './PotentialCSRFAttemptError';
+import { PotentialCSRFAttackError } from './PotentialCSRFAttackError';
 import { PotentialCSRFVulnerabilityError } from './PotentialCSRFVulnerabilityError';
 import { PotentialXSSVulnerabilityError } from './PotentialXSSVulnerabilityError';
 
@@ -41,9 +41,9 @@ describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
       try {
         getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
       } catch (error) {
-        expect(error).toBeInstanceOf(PotentialCSRFAttemptError);
+        expect(error).toBeInstanceOf(PotentialCSRFAttackError);
         expect(error.message).toEqual(
-          `Potential cross-site-request-forgery attempt detected!!! source origin is not same site as target origin! (target='https://api.whodis.io', source='https://hakrsite.com')`,
+          `Potential cross-site-request-forgery attack detected!!! source origin is not same site as target origin! (target='https://api.whodis.io', source='https://hakrsite.com')`,
         );
       }
     });
@@ -74,9 +74,9 @@ describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
       try {
         getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
       } catch (error) {
-        expect(error).toBeInstanceOf(PotentialCSRFAttemptError);
+        expect(error).toBeInstanceOf(PotentialCSRFAttackError);
         expect(error.message).toEqual(
-          `Potential cross-site-request-forgery attempt detected!!! source origin is not same site as target origin! (target='https://api.whodis.io', source='https://hakrsite.com')`,
+          `Potential cross-site-request-forgery attack detected!!! source origin is not same site as target origin! (target='https://api.whodis.io', source='https://hakrsite.com')`,
         );
       }
     });
@@ -106,9 +106,9 @@ describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
       try {
         getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
       } catch (error) {
-        expect(error).toBeInstanceOf(PotentialCSRFAttemptError);
+        expect(error).toBeInstanceOf(PotentialCSRFAttackError);
         expect(error.message).toEqual(
-          `Potential cross-site-request-forgery attempt detected!!! source origin can not be detected from request. no origin or referrer.`,
+          `Potential cross-site-request-forgery attack detected!!! source origin can not be detected from request. no origin or referrer.`,
         );
       }
     });
@@ -122,8 +122,8 @@ describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
       try {
         getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
       } catch (error) {
-        expect(error).toBeInstanceOf(PotentialCSRFAttemptError);
-        expect(error.message).toContain(`Potential cross-site-request-forgery attempt detected!!!`);
+        expect(error).toBeInstanceOf(PotentialCSRFAttackError);
+        expect(error.message).toContain(`Potential cross-site-request-forgery attack detected!!!`);
         expect(error.message).toContain(`no anti-csrf-token was passed in the request!`);
       }
     });
@@ -151,8 +151,8 @@ describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
       try {
         getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
       } catch (error) {
-        expect(error).toBeInstanceOf(PotentialCSRFAttemptError);
-        expect(error.message).toContain(`Potential cross-site-request-forgery attempt detected!!!`);
+        expect(error).toBeInstanceOf(PotentialCSRFAttackError);
+        expect(error.message).toContain(`Potential cross-site-request-forgery attack detected!!!`);
         expect(error.message).toContain(`anti-csrf-token is not synchronized with token`);
       }
     });
@@ -167,8 +167,8 @@ describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
       try {
         getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
       } catch (error) {
-        expect(error).toBeInstanceOf(PotentialCSRFAttemptError);
-        expect(error.message).toContain(`Potential cross-site-request-forgery attempt detected!!!`);
+        expect(error).toBeInstanceOf(PotentialCSRFAttackError);
+        expect(error.message).toContain(`Potential cross-site-request-forgery attack detected!!!`);
         expect(error.message).toContain(`anti-csrf-token is not synchronized with token`);
       }
     });
