@@ -59,7 +59,7 @@ This grabs the token from the standard bearer token header for you. Useful whene
 
 ```ts
 import { getTokenFromHeaders } from 'simple-jwt-auth';
-const token = getTokenFromHeaders({ headers });
+const { token } = getTokenFromHeaders({ headers });
 ```
 
 Tokens are typically passed to apis through the `Authorization` header, according to the [OAuth 2.0 Authorization Standard](https://tools.ietf.org/html/rfc6750), so this exposes an easy way to grab the token from there.
