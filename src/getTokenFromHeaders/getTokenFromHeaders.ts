@@ -2,26 +2,18 @@ import { SimpleJwtAuthError } from '../SimpleJwtAuthError';
 import { getTokenFromAuthorizationCookieWithCSRFProtection } from './getTokenFromAuthorizationCookieWithCSRFProtection';
 import { getTokenFromAuthorizationHeader } from './getTokenFromAuthorizationHeader';
 
-export enum TokenFromHeadersSource {
-  AUTHORIZATION_COOKIE = 'AUTHORIZATION_COOKIE',
-  AUTHORIZATION_HEADER = 'AUTHORIZATION_HEADER',
-}
-export const getTokenFromHeaders = ({
-  headers,
-}: {
-  headers: Record<string, any>;
-}): { token: string | null; source: TokenFromHeadersSource | null } => {
+export const getTokenFromHeaders = ({ headers }: { headers: Record<string, any> }): string | null => {
   // sanity check that headers are actually defined; otherwise, developer probably is not using this function correctly - so fail fast
   if (!headers) throw new SimpleJwtAuthError('headers must be defined to getTokenFromHeaders');
 
   // try to grab the token from auth cookie (w/ CSRF protection)
   const tokenFromAuthCookie = getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
-  if (tokenFromAuthCookie) return { token: tokenFromAuthCookie, source: TokenFromHeadersSource.AUTHORIZATION_COOKIE };
+  if (tokenFromAuthCookie) return tokenFromAuthCookie;
 
   // try to grab the token from auth header
   const tokenFromAuthHeader = getTokenFromAuthorizationHeader({ headers });
-  if (tokenFromAuthHeader) return { token: tokenFromAuthHeader, source: TokenFromHeadersSource.AUTHORIZATION_HEADER };
+  if (tokenFromAuthHeader) return tokenFromAuthHeader;
 
   // if neither worked, return null
-  return { token: null, source: null };
+  return null;
 };

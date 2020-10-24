@@ -22,4 +22,3 @@ export { PotentialXSSVulnerabilityError } from './getTokenFromHeaders/PotentialX
 // types
 export { MinimalTokenClaims } from './getUnauthedClaims';
 export { MinimalTokenHeaderClaims } from './getUnauthedHeaderClaims';
-export { TokenFromHeadersSource } from './getTokenFromHeaders/getTokenFromHeaders';

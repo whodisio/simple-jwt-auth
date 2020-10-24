@@ -8,7 +8,7 @@ const exampleToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmNWY3N2JjM
 describe('getTokenFromHeaders', () => {
   it('should get the token from authorization headers', () => {
     const headers = { authorization: `Bearer ${exampleToken}` };
-    const { token } = getTokenFromHeaders({ headers });
+    const token = getTokenFromHeaders({ headers });
     expect(token).toEqual(exampleToken);
   });
   it('should get the token from cookie headers', () => {
@@ -17,7 +17,7 @@ describe('getTokenFromHeaders', () => {
       authorization: `Bearer ${redactSignature({ token: exampleToken })}`, // required for CSRF protection
       origin: getUnauthedClaims({ token: exampleToken }).aud, // required for CSRF protection
     };
-    const { token } = getTokenFromHeaders({ headers });
+    const token = getTokenFromHeaders({ headers });
     expect(token).toEqual(exampleToken);
   });
   it('should throw PotentialCSRFAttack errors if one of the CSRF conditions is not met', () => {
