@@ -1,5 +1,5 @@
 import { SimpleJwtAuthError } from '../SimpleJwtAuthError';
-import { getTokenFromAuthorizationCookie } from './getTokenFromAuthorizationCookie';
+import { getTokenFromAuthorizationCookieWithCSRFProtection } from './getTokenFromAuthorizationCookieWithCSRFProtection';
 import { getTokenFromAuthorizationHeader } from './getTokenFromAuthorizationHeader';
 
 export enum TokenFromHeadersSource {
@@ -15,7 +15,7 @@ export const getTokenFromHeaders = ({
   if (!headers) throw new SimpleJwtAuthError('headers must be defined to getTokenFromHeaders');
 
   // try to grab the token from auth cookie (w/ CSRF protection)
-  const tokenFromAuthCookie = getTokenFromAuthorizationCookie({ headers });
+  const tokenFromAuthCookie = getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
   if (tokenFromAuthCookie) return { token: tokenFromAuthCookie, source: TokenFromHeadersSource.AUTHORIZATION_COOKIE };
 
   // try to grab the token from auth header
