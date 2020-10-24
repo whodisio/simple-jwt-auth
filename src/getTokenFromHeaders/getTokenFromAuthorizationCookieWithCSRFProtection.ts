@@ -1,4 +1,3 @@
-import { isLocalhost } from '../domains/isLocalhost';
 import { isSameSite } from '../domains/isSameSite';
 import { getUnauthedClaims } from '../getUnauthedClaims';
 import { getUnauthedHeaderClaims } from '../getUnauthedHeaderClaims';
@@ -32,10 +31,6 @@ const serialize = (obj: object) => JSON.stringify(obj);
  *   - specifically, it assumes that the "target origin" is defined as the audience of the token, `jwt.aud`.
  *   - that means that to check `isSameSite("source origin", "target origin")`, we will check `isSameSite(req.origin ?? req.referrer, jwt.aud)`
  *     - details on implementation of `isSameSite` can be found in the JSDOC of that method, exported by this library.
- *   - NOTE: if the `source origin` is `localhost`, then we will treat the request as "same site".
- *      - the reasoning is:
- *        - there is no use in protecting a user against CSRF from a site that is served from their own machine, i.e., `localhost`; they either know what they're doing or CSRF is the least of their problems.
- *        - it is _really_ restricting for testing and development, when you do know what you're doing and dont need protection from CSRF.
  *
  * The implementation of Token Based Mitigation that this library supports is a form of Distributed, Per-Session, Synchronizer token.
  *   - specifically, this library expects and enforces that
@@ -55,11 +50,11 @@ export const getTokenFromAuthorizationCookieWithCSRFProtection = ({ headers }: {
   const token = getTokenFromAuthorizationCookie({ headers });
   if (!token) return null; // if no token in cookie, do nothing
 
-  // check for CSRF, checking that the "source origin" is either localhost or samesite as "target origin"
+  // check for CSRF, checking that the "source origin" is samesite as "target origin"
   const sourceOrigin: string = headers.origin ?? headers.Origin ?? headers.referrer ?? headers.Referrer;
   if (!sourceOrigin) throw new PotentialCSRFAttackError({ reason: 'source origin can not be detected from request. no origin or referrer.' });
   const targetOrigin = getUnauthedClaims({ token }).aud;
-  if (!isSameSite(sourceOrigin, targetOrigin) && !isLocalhost(sourceOrigin))
+  if (!isSameSite(sourceOrigin, targetOrigin))
     throw new PotentialCSRFAttackError({
       reason: `source origin is not same site as target origin! (target='${targetOrigin}', source='${sourceOrigin}')`,
     });

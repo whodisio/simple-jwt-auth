@@ -22,15 +22,6 @@ describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
     const token = getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
     expect(token).toEqual(exampleToken);
   });
-  it('should be able to get token from cookie, if it includes the anti-csrf-token in the request and is from localhost origin', () => {
-    const headers = {
-      cookie: `authorization=${exampleToken}`,
-      authorization: `Bearer ${exampleAntiCSRFToken}`,
-      origin: `localhost`, // although `https://api.whodis.io` is the audience, its ok if the origin is localhost - since there's no reason to protect a user from a site that is served from their own machine. They either know what they're doing or CSRF is the least of their problems
-    };
-    const token = getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
-    expect(token).toEqual(exampleToken);
-  });
   describe('Verifying Origin with Standard Headers', () => {
     it('should throw a CSRFAttemptError if the headers.origin is different from target origin', () => {
       const headers = {
@@ -56,15 +47,6 @@ describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
       const token = getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
       expect(token).toEqual(exampleToken);
     });
-    it('should be able to get token from cookie, if headers.origin is localhost', () => {
-      const headers = {
-        cookie: `authorization=${exampleToken}`,
-        authorization: `Bearer ${exampleAntiCSRFToken}`,
-        origin: `localhost`, // although `https://api.whodis.io` is the audience, its ok if the origin is localhost - since there's no reason to protect a user from a site that is served from their own machine. They either know what they're doing or CSRF is the least of their problems
-      };
-      const token = getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
-      expect(token).toEqual(exampleToken);
-    });
     it('should throw a CSRFAttemptError if the headers.origin not set, and headers.referrer is different from target origin', () => {
       const headers = {
         cookie: `authorization=${exampleToken}`,
@@ -85,15 +67,6 @@ describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
         cookie: `authorization=${exampleToken}`,
         authorization: `Bearer ${exampleAntiCSRFToken}`,
         referrer: `https://www.whodis.io`, // audience is `https://api.whodis.io`, so these are same site
-      };
-      const token = getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
-      expect(token).toEqual(exampleToken);
-    });
-    it('should be able to get token from cookie, if headers.origin not set but headers.referrer is localhost', () => {
-      const headers = {
-        cookie: `authorization=${exampleToken}`,
-        authorization: `Bearer ${exampleAntiCSRFToken}`,
-        referrer: `localhost`, // although `https://api.whodis.io` is the audience, its ok if the origin is localhost - since there's no reason to protect a user from a site that is served from their own machine. They either know what they're doing or CSRF is the least of their problems
       };
       const token = getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
       expect(token).toEqual(exampleToken);

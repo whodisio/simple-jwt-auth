@@ -8,7 +8,6 @@ export { createSecureDistributedAuthToken } from './createSecureDistributedAuthT
 export { isJSONWebToken } from './isJSONWebToken';
 export { getTokenFromHeaders } from './getTokenFromHeaders/getTokenFromHeaders';
 export { redactSignature } from './redactSignature';
-export { isLocalhost } from './domains/isLocalhost';
 export { isSameSite } from './domains/isSameSite';
 
 // errors

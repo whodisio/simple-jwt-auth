@@ -202,22 +202,18 @@ The first layer, `Verify Origin with Standard Headers`, is composed of two parts
 
 1. figuring out the `target origin` and `source origin`
 
-   1. `sourceOrigin = header.origin ?? header.referrer`, as defined by the OWASP recommendations
-      1. these can be trusted because they are restricted headers, which can only be set by browsers
-      2. `if (!sourceOrigin) throw new PotentialCSRFAttackError` - dont allow requests without either `origin` or `referrer` defined
-   2. `targetOrigin = jwt.aud`, i.e. the audience claim of the token
-      1. the `aud` claim of a JWT should be the `uri` of the target origin that the token is intended to be consumed by
+   - `sourceOrigin = header.origin ?? header.referrer`, as defined by the OWASP recommendations
+      - these can be trusted because they are restricted headers, which can only be set by browsers
+      - `if (!sourceOrigin) throw new PotentialCSRFAttackError` - dont allow requests without either `origin` or `referrer` defined
+   - `targetOrigin = jwt.aud`, i.e. the audience claim of the token
+      - the `aud` claim of a JWT should be the `uri` of the target origin that the token is intended to be consumed by
 
 2. comparing the `target origin` and `source origin`
 
-   1. `if (!isSameSite(sourceOrigin, targetOrigin) && !isLocalhost(sourceOrigin)) throw new PotentialCSRFAttackError`
-      1. check that `isSameSite(sourceOrigin, targetOrigin)`
-         1. `api.yoursite.com` and `www.yoursite.com` are the same domain, since they differ only by subdomain
-         2. `yoursite.github.io` and `mysite.github.io` are _not_ the same site, since domains like `github.io` and `cloudfront.net` are a [public domains](https://publicsuffix.org/)
-      2. check that `isLocalhost(sourceOrigin)`
-         1. there is no point in protecting a user from CSRF if they're making requests from a site hosted on their own machine.
-            1. they either know what they're doing or CSRF is the least of their concerns, so blocking them does not help anything.
-            2. if they know what they're doing, they're probably testing or developing, in which case blocking them would be a significant detriment.
+   - `if (!isSameSite(sourceOrigin, targetOrigin)) throw new PotentialCSRFAttackError`
+      - check that `isSameSite(sourceOrigin, targetOrigin)`
+         - `api.yoursite.com` and `www.yoursite.com` are the same site, since they differ only by subdomain
+         - `yoursite.github.io` and `mysite.github.io` are _not_ the same site, since domains like `github.io` and `cloudfront.net` are a [public domains](https://publicsuffix.org/)
 
 The second layer, `Synchronizer Token Based Mitigation`, is composed of three parts:
 
@@ -253,3 +249,7 @@ The second layer, `Synchronizer Token Based Mitigation`, is composed of three pa
      - this verification ensures that this request could only have been made by the origin to which we gave the `jwt`
 
 Important Note: CSRF protection is only useful when the website is not under XSS attack. While storing the auth-token in a cookie prevents XSS attacks from stealing the token directly, it does not prevent an XSS attack from making requests from your site on the users browser. In otherwords, if your site has been attacked with a custom XSS attack, CSRF is the least of your concerns.
+
+Important Note: CSRF protection is only useful when the cookie itself is maximally protected. Please ensure that the cookie storing the token is protected with the following flags:
+- `Secure`: to ensure that the cookie is only transmitted over HTTPS (protects against MITM)
+- `HTTPOnly`: to ensure that the cookie is inaccessible to Javascript (protects against XSS)
