@@ -7,6 +7,7 @@ import { isUuid } from './isUuid';
 import { PotentialCSRFAttackError } from './PotentialCSRFAttackError';
 import { PotentialCSRFVulnerabilityError } from './PotentialCSRFVulnerabilityError';
 import { PotentialXSSVulnerabilityError } from './PotentialXSSVulnerabilityError';
+import { redactSignature } from '../redactSignature';
 
 /**
  * simple utility used below, makes the code a little easier to read
@@ -62,8 +63,7 @@ export const getTokenFromAuthorizationCookieWithCSRFProtection = ({ headers }: {
   // now check for CSRF, expecting a synchronized anti-csrf token in the auth header
   const antiCsrfToken = getTokenFromAuthorizationHeader({ headers });
   if (!antiCsrfToken) throw new PotentialCSRFAttackError({ reason: 'no anti-csrf-token was passed in the request!' }); // check that anti-csrf-token was defined
-  const antiCsrfTokenSignature = antiCsrfToken.split('.')[2];
-  if (antiCsrfTokenSignature !== '__REDACTED__')
+  if (antiCsrfToken !== redactSignature({ token: antiCsrfToken }))
     throw new PotentialXSSVulnerabilityError({ reason: 'anti-csrf-token found without redacted signature!' }); // check that anti-csrf-token has redacted signature
   const antiCsrfTokenClaims = getUnauthedClaims({ token: antiCsrfToken });
   const antiCsrfTokenHeaderClaims = getUnauthedHeaderClaims({ token: antiCsrfToken });
