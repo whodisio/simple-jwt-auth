@@ -1,4 +1,6 @@
-import { fromUnixTime, isAfter, isBefore } from 'date-fns';
+import fromUnixTime from 'date-fns/fromUnixTime';
+import isAfter from 'date-fns/isAfter';
+import isBefore from 'date-fns/isBefore';
 
 import { getUnauthedClaims } from '../getUnauthedClaims';
 import { JwtVerificationError } from './JwtVerificationError';
