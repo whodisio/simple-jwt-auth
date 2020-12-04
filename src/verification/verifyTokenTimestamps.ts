@@ -1,9 +1,10 @@
-import fromUnixTime from 'date-fns/fromUnixTime';
-import isAfter from 'date-fns/isAfter';
-import isBefore from 'date-fns/isBefore';
-
 import { getUnauthedClaims } from '../getUnauthedClaims';
 import { JwtVerificationError } from './JwtVerificationError';
+
+// define basic date manipulation fns (dont import from a third party lib to decrease bundle size; this stuff is really basic too)
+const fromUnixTime = (seconds: number) => new Date(seconds * 1000);
+const isBefore = (referenceDate: Date, comparisonDate: Date) => referenceDate.getTime() < comparisonDate.getTime();
+const isAfter = (referenceDate: Date, comparisonDate: Date) => referenceDate.getTime() > comparisonDate.getTime();
 
 export const verifyTokenTimestamps = ({ token }: { token: string }) => {
   const unauthedClaims = getUnauthedClaims({ token });
