@@ -1,6 +1,6 @@
 {
   "name": "simple-jwt-auth",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "A simple, convenient, and safe interface for interacting with JSON Web Tokens (JWTs) for authentication and authorization",
   "author": "UladKasach @uladkasach",
   "license": "MIT",
