@@ -9,6 +9,7 @@ export { isJSONWebToken } from './isJSONWebToken';
 export { getTokenFromHeaders } from './getTokenFromHeaders/getTokenFromHeaders';
 export { redactSignature } from './redactSignature';
 export { isSameSite } from './domains/isSameSite';
+export { isRedactedSignatureToken } from './isRedactedSignatureToken';
 
 // errors
 export { SimpleJwtAuthError } from './SimpleJwtAuthError';
