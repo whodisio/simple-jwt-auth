@@ -1,11 +1,15 @@
-import { createSecureDistributedAuthToken } from './createSecureDistributedAuthToken';
 import { SimpleJwtAuthError } from './SimpleJwtAuthError';
+import { createSecureDistributedAuthToken } from './createSecureDistributedAuthToken';
 
 describe('createSecureDistributedAuthToken', () => {
   it('should require an asymmetric signing algorithm, since this is for distributed auth systems', async () => {
     try {
       createSecureDistributedAuthToken({
-        headerClaims: { alg: 'HS256' as any, kid: '4.some_directory', typ: 'JWT' },
+        headerClaims: {
+          alg: 'HS256' as any,
+          kid: '4.some_directory',
+          typ: 'JWT',
+        },
         claims: {
           iss: 'https://auth.whodis.io/...',
           aud: '__some_directory__',
@@ -16,13 +20,19 @@ describe('createSecureDistributedAuthToken', () => {
       });
     } catch (error) {
       expect(error).toBeInstanceOf(SimpleJwtAuthError);
-      expect(error.message).toContain('only asymmetric signing algorithms are allowed in distributed systems');
+      expect(error.message).toContain(
+        'only asymmetric signing algorithms are allowed in distributed systems',
+      );
     }
   });
   it('should require issuer to be defined', async () => {
     try {
       createSecureDistributedAuthToken({
-        headerClaims: { alg: 'RS256' as any, kid: '4.some_directory', typ: 'JWT' },
+        headerClaims: {
+          alg: 'RS256' as any,
+          kid: '4.some_directory',
+          typ: 'JWT',
+        },
         claims: {
           aud: '__some_directory__',
           sub: '__some_user__',
@@ -32,13 +42,19 @@ describe('createSecureDistributedAuthToken', () => {
       });
     } catch (error) {
       expect(error).toBeInstanceOf(SimpleJwtAuthError);
-      expect(error.message).toContain('token.claims.iss must be defined when creating a secure token');
+      expect(error.message).toContain(
+        'token.claims.iss must be defined when creating a secure token',
+      );
     }
   });
   it('should require audience to be defined', async () => {
     try {
       createSecureDistributedAuthToken({
-        headerClaims: { alg: 'RS256' as any, kid: '4.some_directory', typ: 'JWT' },
+        headerClaims: {
+          alg: 'RS256' as any,
+          kid: '4.some_directory',
+          typ: 'JWT',
+        },
         claims: {
           iss: 'https://auth.whodis.io/...',
           sub: '__some_user__',
@@ -48,13 +64,19 @@ describe('createSecureDistributedAuthToken', () => {
       });
     } catch (error) {
       expect(error).toBeInstanceOf(SimpleJwtAuthError);
-      expect(error.message).toContain('token.claims.aud must be defined when creating a secure token');
+      expect(error.message).toContain(
+        'token.claims.aud must be defined when creating a secure token',
+      );
     }
   });
   it('should require expiration to be defined', async () => {
     try {
       createSecureDistributedAuthToken({
-        headerClaims: { alg: 'RS256' as any, kid: '4.some_directory', typ: 'JWT' },
+        headerClaims: {
+          alg: 'RS256' as any,
+          kid: '4.some_directory',
+          typ: 'JWT',
+        },
         claims: {
           iss: 'https://auth.whodis.io/...',
           aud: '__some_directory__',
@@ -64,7 +86,9 @@ describe('createSecureDistributedAuthToken', () => {
       });
     } catch (error) {
       expect(error).toBeInstanceOf(SimpleJwtAuthError);
-      expect(error.message).toContain('token.claims.exp must be defined when creating a secure token');
+      expect(error.message).toContain(
+        'token.claims.exp must be defined when creating a secure token',
+      );
     }
   });
 });

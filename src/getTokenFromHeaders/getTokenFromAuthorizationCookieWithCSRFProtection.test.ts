@@ -1,8 +1,8 @@
 import { redactSignature } from '../redactSignature';
-import { getTokenFromAuthorizationCookieWithCSRFProtection } from './getTokenFromAuthorizationCookieWithCSRFProtection';
 import { PotentialCSRFAttackError } from './PotentialCSRFAttackError';
 import { PotentialCSRFVulnerabilityError } from './PotentialCSRFVulnerabilityError';
 import { PotentialXSSVulnerabilityError } from './PotentialXSSVulnerabilityError';
+import { getTokenFromAuthorizationCookieWithCSRFProtection } from './getTokenFromAuthorizationCookieWithCSRFProtection';
 
 const exampleToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmNWY3N2JjMC1iZTkwLTRmNGEtYmUyNS0wMThjYjUwZjBmMGEiLCJzdWIiOiIxMjM0NTY3ODkwIiwiYXVkIjoiaHR0cHM6Ly9hcGkud2hvZGlzLmlvIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.M_-_WjXeURe5M7JplujTq2Bl1V-MTm-Gxy9-DN4Qr8Q`;
 const exampleAntiCSRFToken = redactSignature({ token: exampleToken });
@@ -10,7 +10,9 @@ const exampleAntiCSRFToken = redactSignature({ token: exampleToken });
 describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
   it('should not get the token from the cookie, if cookie is not set', () => {
     const headers = {};
-    const token = getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
+    const token = getTokenFromAuthorizationCookieWithCSRFProtection({
+      headers,
+    });
     expect(token).toEqual(null);
   });
   it('should be able to get token from cookie, if it includes the anti-csrf-token in the request and is from same site origin', () => {
@@ -19,7 +21,9 @@ describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
       authorization: `Bearer ${exampleAntiCSRFToken}`,
       origin: `https://www.whodis.io`, // audience is `https://api.whodis.io`, so these are same sit
     };
-    const token = getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
+    const token = getTokenFromAuthorizationCookieWithCSRFProtection({
+      headers,
+    });
     expect(token).toEqual(exampleToken);
   });
   describe('Verifying Origin with Standard Headers', () => {
@@ -44,7 +48,9 @@ describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
         authorization: `Bearer ${exampleAntiCSRFToken}`,
         origin: `https://www.whodis.io`, // audience is `https://api.whodis.io`, so these are same site
       };
-      const token = getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
+      const token = getTokenFromAuthorizationCookieWithCSRFProtection({
+        headers,
+      });
       expect(token).toEqual(exampleToken);
     });
     it('should throw a CSRFAttemptError if the headers.origin not set, and headers.referrer is different from target origin', () => {
@@ -68,7 +74,9 @@ describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
         authorization: `Bearer ${exampleAntiCSRFToken}`,
         referrer: `https://www.whodis.io`, // audience is `https://api.whodis.io`, so these are same site
       };
-      const token = getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
+      const token = getTokenFromAuthorizationCookieWithCSRFProtection({
+        headers,
+      });
       expect(token).toEqual(exampleToken);
     });
     it('should throw a CSRFAttemptError if neither header.origins nor header.referrer is set', () => {
@@ -96,8 +104,12 @@ describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
         getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
       } catch (error) {
         expect(error).toBeInstanceOf(PotentialCSRFAttackError);
-        expect(error.message).toContain(`Potential cross-site-request-forgery attack detected!!!`);
-        expect(error.message).toContain(`no anti-csrf-token was passed in the request!`);
+        expect(error.message).toContain(
+          `Potential cross-site-request-forgery attack detected!!!`,
+        );
+        expect(error.message).toContain(
+          `no anti-csrf-token was passed in the request!`,
+        );
       }
     });
     it('should throw a XSSVulnerabilityError if the anti-csrf-token does not have a redacted signature', () => {
@@ -110,8 +122,12 @@ describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
         getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
       } catch (error) {
         expect(error).toBeInstanceOf(PotentialXSSVulnerabilityError); // XSS Vulnerability, since user's js should _never_ have the real token. that's the point of putting it into the cookie, to prevent the token from getting stolen with XSS
-        expect(error.message).toContain(`Potential cross-site-scripting vulnerability detected!`);
-        expect(error.message).toContain(`anti-csrf-token found without redacted signature!`);
+        expect(error.message).toContain(
+          `Potential cross-site-scripting vulnerability detected!`,
+        );
+        expect(error.message).toContain(
+          `anti-csrf-token found without redacted signature!`,
+        );
       }
     });
     it('should throw a CSRFAttemptError if the claims of the anti-csrf-token do not match the auth token, since not synchronized', () => {
@@ -125,8 +141,12 @@ describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
         getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
       } catch (error) {
         expect(error).toBeInstanceOf(PotentialCSRFAttackError);
-        expect(error.message).toContain(`Potential cross-site-request-forgery attack detected!!!`);
-        expect(error.message).toContain(`anti-csrf-token is not synchronized with token`);
+        expect(error.message).toContain(
+          `Potential cross-site-request-forgery attack detected!!!`,
+        );
+        expect(error.message).toContain(
+          `anti-csrf-token is not synchronized with token`,
+        );
       }
     });
     it('should throw a CSRFAttemptError if the header claims of the anti-csrf-token do not match the auth token, since not synchronized', () => {
@@ -141,8 +161,12 @@ describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
         getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
       } catch (error) {
         expect(error).toBeInstanceOf(PotentialCSRFAttackError);
-        expect(error.message).toContain(`Potential cross-site-request-forgery attack detected!!!`);
-        expect(error.message).toContain(`anti-csrf-token is not synchronized with token`);
+        expect(error.message).toContain(
+          `Potential cross-site-request-forgery attack detected!!!`,
+        );
+        expect(error.message).toContain(
+          `anti-csrf-token is not synchronized with token`,
+        );
       }
     });
     it('should throw a CSRFVulnerabilityError if the token does not have a jti', () => {
@@ -157,8 +181,12 @@ describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
         getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
       } catch (error) {
         expect(error).toBeInstanceOf(PotentialCSRFVulnerabilityError);
-        expect(error.message).toContain(`Potential cross-site-request-forgery vulnerability detected!`);
-        expect(error.message).toContain(`token.jki is not a uuid - can not guarantee randomness of token`);
+        expect(error.message).toContain(
+          `Potential cross-site-request-forgery vulnerability detected!`,
+        );
+        expect(error.message).toContain(
+          `token.jki is not a uuid - can not guarantee randomness of token`,
+        );
       }
     });
     it('should throw a CSRFVulnerabilityError if the token does not have a uuid for the jti', () => {
@@ -173,8 +201,12 @@ describe('getTokenFromAuthorizationCookieWithCSRFProtection', () => {
         getTokenFromAuthorizationCookieWithCSRFProtection({ headers });
       } catch (error) {
         expect(error).toBeInstanceOf(PotentialCSRFVulnerabilityError);
-        expect(error.message).toContain(`Potential cross-site-request-forgery vulnerability detected!`);
-        expect(error.message).toContain(`token.jki is not a uuid - can not guarantee randomness of token`);
+        expect(error.message).toContain(
+          `Potential cross-site-request-forgery vulnerability detected!`,
+        );
+        expect(error.message).toContain(
+          `token.jki is not a uuid - can not guarantee randomness of token`,
+        );
       }
     });
   });

@@ -1,6 +1,6 @@
-import { verifyTokenSignature } from './verification/verifyTokenSignature';
 import { getSignedClaims } from './getSignedClaims';
 import { JwtVerificationError } from './verification/JwtVerificationError';
+import { verifyTokenSignature } from './verification/verifyTokenSignature';
 
 jest.mock('./verification/verifyTokenSignature');
 const verifyTokenSignatureMock = verifyTokenSignature as jest.Mock;
@@ -15,7 +15,9 @@ describe('getSignedClaims', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(JwtVerificationError);
         expect(error.message).toContain('this JWT can not be trusted!');
-        expect(error.message).toContain('tokens must be signed with asymmetric signing algorithm');
+        expect(error.message).toContain(
+          'tokens must be signed with asymmetric signing algorithm',
+        );
       }
     });
   });

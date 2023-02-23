@@ -12,6 +12,15 @@ export const cachePublicKey = ({
   keyId: string;
   publicKey: string;
   ttlInSeconds?: number;
-}) => publicKeyCache.set(`${issuer}:${keyId}`, publicKey, { secondsUntilExpiration: ttlInSeconds });
+}) =>
+  publicKeyCache.set(`${issuer}:${keyId}`, publicKey, {
+    secondsUntilExpiration: ttlInSeconds,
+  });
 
-export const getPublicKeyFromCache = ({ issuer, keyId }: { issuer: string; keyId: string }) => publicKeyCache.get(`${issuer}:${keyId}`);
+export const getPublicKeyFromCache = ({
+  issuer,
+  keyId,
+}: {
+  issuer: string;
+  keyId: string;
+}) => publicKeyCache.get(`${issuer}:${keyId}`);

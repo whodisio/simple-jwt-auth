@@ -1,5 +1,5 @@
-import { discoverPublicKeyFromAuthServerMetadata } from './discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata';
 import { createSecureDistributedAuthToken } from './createSecureDistributedAuthToken';
+import { discoverPublicKeyFromAuthServerMetadata } from './discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata';
 import { getAuthedClaims } from './getAuthedClaims';
 
 const exampleKeys = {
@@ -76,9 +76,14 @@ mRT0FysAHcj299tOe3ttU0gFxsbloQ==
 };
 
 // mock that we discover the real public key each time
-jest.mock('./discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata');
-const discoverPublicKeyFromAuthServerMetadataMock = discoverPublicKeyFromAuthServerMetadata as jest.Mock;
-discoverPublicKeyFromAuthServerMetadataMock.mockReturnValue(exampleKeys.publicKey);
+jest.mock(
+  './discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata',
+);
+const discoverPublicKeyFromAuthServerMetadataMock =
+  discoverPublicKeyFromAuthServerMetadata as jest.Mock;
+discoverPublicKeyFromAuthServerMetadataMock.mockReturnValue(
+  exampleKeys.publicKey,
+);
 
 describe('createSecureToken', () => {
   it('should be able to create a token that we can later getAuthedClaims on', async () => {
@@ -96,7 +101,11 @@ describe('createSecureToken', () => {
     expect(typeof token).toEqual('string'); // sanity check
 
     // check that we can auth on it, if the publicKey is discoverable
-    const claims = await getAuthedClaims({ token, issuer: 'https://auth.whodis.io/...', audience: '__some_directory__' });
+    const claims = await getAuthedClaims({
+      token,
+      issuer: 'https://auth.whodis.io/...',
+      audience: '__some_directory__',
+    });
     expect(claims).toEqual({
       iss: 'https://auth.whodis.io/...',
       aud: '__some_directory__',

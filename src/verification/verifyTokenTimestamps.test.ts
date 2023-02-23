@@ -1,5 +1,5 @@
-import { verifyTokenTimestamps } from './verifyTokenTimestamps';
 import { JwtVerificationError } from './JwtVerificationError';
+import { verifyTokenTimestamps } from './verifyTokenTimestamps';
 
 describe('verifyTokenTimestamps', () => {
   it('should throw an error if no expiration is defined', async () => {
@@ -10,7 +10,9 @@ describe('verifyTokenTimestamps', () => {
     } catch (error) {
       expect(error).toBeInstanceOf(JwtVerificationError);
       expect(error.message).toContain('this JWT can not be trusted!');
-      expect(error.message).toContain('no expiration claim on the token. this is very unsafe');
+      expect(error.message).toContain(
+        'no expiration claim on the token. this is very unsafe',
+      );
     }
   });
   it('should throw an error if expiration has passed', async () => {

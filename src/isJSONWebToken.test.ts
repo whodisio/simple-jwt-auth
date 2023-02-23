@@ -23,7 +23,9 @@ describe('isJSONWebToken', () => {
     expect(isJwt).toEqual(false);
   });
   it('should return true even if signature is redacted', () => {
-    const exampleTokenWithRedactedSignature = redactSignature({ token: exampleValidTokenShape });
+    const exampleTokenWithRedactedSignature = redactSignature({
+      token: exampleValidTokenShape,
+    });
     const isJwt = isJSONWebToken(exampleTokenWithRedactedSignature);
     expect(isJwt).toEqual(true);
   });

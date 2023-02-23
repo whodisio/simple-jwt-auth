@@ -3,7 +3,7 @@
 ![ci_on_commit](https://github.com/whodisio/simple-jwt-auth/workflows/ci_on_commit/badge.svg)
 ![deploy_on_tag](https://github.com/whodisio/simple-jwt-auth/workflows/deploy_on_tag/badge.svg)
 
-A simple, convenient, and safe interface for interacting with JSON Web Tokens (JWTs) for authentication and authorization
+A simple, convenient, and safe interface for using JSON Web Tokens (JWTs) for authentication and authorization
 
 Simple:
 
@@ -17,16 +17,32 @@ Safe:
 - enforces best practices of JWT authentication
 - eliminates accidentally using JWTs unsafely, by constraining exposed methods to secure and declarative use cases
 
+In otherwords, it's built to provide [a pit of success](https://blog.codinghorror.com/falling-into-the-pit-of-success/)
+
 ---
 
-References:
+# Background
 
+JSON Web Token (JWT) authentication is a great way to implement authentication and authorization for user facing applications
+
+Using JWTs to sign requests enables distributed and stateless auth which eliminates latency and reduces costs, for snappy user experiences at scale.
+- the request-signature, the jwt, can be authenticated publicly, by anyone
+  - [distributed] no api calls to issuer-server required, client-public-key is published at wellknown url, cacheable, static
+  - [stateless] no state to manage, access, or upkeep for authenticating requests
+- the request-signature, the jwt, identifies the requester and scope
+  - [distributed] no api calls to issuer-server required, client identity is embedded and extractable from the request-signature
+  - [stateless] no state to manage, access, or upkeep for identifying the requester
+
+References:
 - [JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519)
 - [JSON Web Signature (JWS)](https://www.rfc-editor.org/rfc/rfc7515.html)
 - [OAuth 2.0 Authorization Server Metadata](https://tools.ietf.org/html/rfc8414)
 - [JSON Web Key (JWK)](https://tools.ietf.org/html/rfc7517)
 - [The OAuth 2.0 Authorization Framework: Bearer Token Usage](https://tools.ietf.org/html/rfc8414)
 - [JSON Web Token Best Current Practices](https://tools.ietf.org/html/draft-ietf-oauth-jwt-bcp-07)
+
+
+Note: if you're looking to implement authentication and authorization for SDK applications, [HMAC Key Auth](https://github.com/whodisio/simple-hmackey-auth) may be a better fit due to their [less vulnerable](https://softwareengineering.stackexchange.com/a/444092/146747) nature
 
 ---
 

@@ -1,13 +1,13 @@
 import { isSameSite } from '../domains/isSameSite';
 import { getUnauthedClaims } from '../getUnauthedClaims';
 import { getUnauthedHeaderClaims } from '../getUnauthedHeaderClaims';
-import { getTokenFromAuthorizationCookie } from './getTokenFromAuthorizationCookie';
-import { getTokenFromAuthorizationHeader } from './getTokenFromAuthorizationHeader';
-import { isUuid } from './isUuid';
+import { redactSignature } from '../redactSignature';
 import { PotentialCSRFAttackError } from './PotentialCSRFAttackError';
 import { PotentialCSRFVulnerabilityError } from './PotentialCSRFVulnerabilityError';
 import { PotentialXSSVulnerabilityError } from './PotentialXSSVulnerabilityError';
-import { redactSignature } from '../redactSignature';
+import { getTokenFromAuthorizationCookie } from './getTokenFromAuthorizationCookie';
+import { getTokenFromAuthorizationHeader } from './getTokenFromAuthorizationHeader';
+import { isUuid } from './isUuid';
 
 /**
  * simple utility used below, makes the code a little easier to read
@@ -46,14 +46,23 @@ const serialize = (obj: object) => JSON.stringify(obj);
  *
  * Warning: CSRF is only relevant to security when the auth cookie is protected with `Secure` and `HTTPOnly` settings. Otherwise, MITM and XSS will be able to steal the cookie and CSRF will be the least of our concerns.
  */
-export const getTokenFromAuthorizationCookieWithCSRFProtection = ({ headers }: { headers: Record<string, any> }): string | null => {
+export const getTokenFromAuthorizationCookieWithCSRFProtection = ({
+  headers,
+}: {
+  headers: Record<string, any>;
+}): string | null => {
   // attempt to grab the jwt from the auth cookie
   const token = getTokenFromAuthorizationCookie({ headers });
   if (!token) return null; // if no token in cookie, do nothing
 
   // check for CSRF, checking that the "source origin" is samesite as "target origin"
-  const sourceOrigin: string = headers.origin ?? headers.Origin ?? headers.referrer ?? headers.Referrer;
-  if (!sourceOrigin) throw new PotentialCSRFAttackError({ reason: 'source origin can not be detected from request. no origin or referrer.' });
+  const sourceOrigin: string =
+    headers.origin ?? headers.Origin ?? headers.referrer ?? headers.Referrer;
+  if (!sourceOrigin)
+    throw new PotentialCSRFAttackError({
+      reason:
+        'source origin can not be detected from request. no origin or referrer.',
+    });
   const targetOrigin = getUnauthedClaims({ token }).aud;
   if (!isSameSite(sourceOrigin, targetOrigin))
     throw new PotentialCSRFAttackError({
@@ -62,19 +71,32 @@ export const getTokenFromAuthorizationCookieWithCSRFProtection = ({ headers }: {
 
   // now check for CSRF, expecting a synchronized anti-csrf token in the auth header
   const antiCsrfToken = getTokenFromAuthorizationHeader({ headers });
-  if (!antiCsrfToken) throw new PotentialCSRFAttackError({ reason: 'no anti-csrf-token was passed in the request!' }); // check that anti-csrf-token was defined
+  if (!antiCsrfToken)
+    throw new PotentialCSRFAttackError({
+      reason: 'no anti-csrf-token was passed in the request!',
+    }); // check that anti-csrf-token was defined
   if (antiCsrfToken !== redactSignature({ token: antiCsrfToken }))
-    throw new PotentialXSSVulnerabilityError({ reason: 'anti-csrf-token found without redacted signature!' }); // check that anti-csrf-token has redacted signature
+    throw new PotentialXSSVulnerabilityError({
+      reason: 'anti-csrf-token found without redacted signature!',
+    }); // check that anti-csrf-token has redacted signature
   const antiCsrfTokenClaims = getUnauthedClaims({ token: antiCsrfToken });
-  const antiCsrfTokenHeaderClaims = getUnauthedHeaderClaims({ token: antiCsrfToken });
+  const antiCsrfTokenHeaderClaims = getUnauthedHeaderClaims({
+    token: antiCsrfToken,
+  });
   const tokenClaims = getUnauthedClaims({ token });
   const tokenHeaderClaims = getUnauthedHeaderClaims({ token });
   if (serialize(antiCsrfTokenClaims) !== serialize(tokenClaims))
-    throw new PotentialCSRFAttackError({ reason: 'anti-csrf-token is not synchronized with token' }); // check that anti-csrf-token is correct
+    throw new PotentialCSRFAttackError({
+      reason: 'anti-csrf-token is not synchronized with token',
+    }); // check that anti-csrf-token is correct
   if (serialize(antiCsrfTokenHeaderClaims) !== serialize(tokenHeaderClaims))
-    throw new PotentialCSRFAttackError({ reason: 'anti-csrf-token is not synchronized with token' }); // check that anti-csrf-token is correct
+    throw new PotentialCSRFAttackError({
+      reason: 'anti-csrf-token is not synchronized with token',
+    }); // check that anti-csrf-token is correct
   if (!tokenClaims.jti || !isUuid(tokenClaims.jti))
-    throw new PotentialCSRFVulnerabilityError({ reason: 'token.jki is not a uuid - can not guarantee randomness of token' }); // check that token is random; this is probably overboard, but not a bad constraint to require conforming to
+    throw new PotentialCSRFVulnerabilityError({
+      reason: 'token.jki is not a uuid - can not guarantee randomness of token',
+    }); // check that token is random; this is probably overboard, but not a bad constraint to require conforming to
 
   // if both CSRF checks passed, then return the token. Its not a CSRF attempt
   return token;

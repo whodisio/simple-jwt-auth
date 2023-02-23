@@ -6,7 +6,9 @@ const exampleValidTokenShape =
 
 describe('isRedactedSignatureToken', () => {
   it('should return true for a redacted signature token', () => {
-    const isRedacted = isRedactedSignatureToken(redactSignature({ token: exampleValidTokenShape }));
+    const isRedacted = isRedactedSignatureToken(
+      redactSignature({ token: exampleValidTokenShape }),
+    );
     expect(isRedacted).toEqual(true);
   });
   it('should return false for non-redacted signature token', () => {

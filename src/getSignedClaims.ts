@@ -9,7 +9,13 @@ import { verifyTokenSigningAlgo } from './verification/verifyTokenSigningAlgo';
  *
  * Use `getAuthedClaims` in settings where you must trust the claims of a token.
  */
-export const getSignedClaims = <C extends MinimalTokenClaims>({ token, publicKey }: { token: string; publicKey: string }): C => {
+export const getSignedClaims = <C extends MinimalTokenClaims>({
+  token,
+  publicKey,
+}: {
+  token: string;
+  publicKey: string;
+}): C => {
   // check that the token was signed by an asymmetric algorithm - otherwise, this token can't be used securely in a distributed system. (i.e., there is no "publicKey" in a symmetric signing algo)
   verifyTokenSigningAlgo({ token });
 

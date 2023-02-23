@@ -15,10 +15,18 @@ describe('getSignedClaims', () => {
 
     // maliciously modify the claims of a token
     const tokenParts = token.split('.');
-    const tokenClaims = JSON.parse(Buffer.from(tokenParts[1], 'base64').toString('utf-8')); // decode and parse the claims
+    const tokenClaims = JSON.parse(
+      Buffer.from(tokenParts[1]!, 'base64').toString('utf-8'),
+    ); // decode and parse the claims
     const deceitfulClaims = { ...tokenClaims, sub: 'muahaha-any-user-i-want' }; // be evil and change the userUuid of the token
-    const deceitfulClaimsPayload = base64UrlEncode(JSON.stringify(deceitfulClaims));
-    const tokenOfDeceit = [tokenParts[0], deceitfulClaimsPayload, tokenParts[2]].join('.'); // rebuild the token
+    const deceitfulClaimsPayload = base64UrlEncode(
+      JSON.stringify(deceitfulClaims),
+    );
+    const tokenOfDeceit = [
+      tokenParts[0],
+      deceitfulClaimsPayload,
+      tokenParts[2],
+    ].join('.'); // rebuild the token
 
     // prove that the signature will not be verified
     try {

@@ -25,7 +25,11 @@ export const verifyTokenIntent = ({
 }) => {
   const unauthedClaims = getUnauthedClaims({ token });
   if (unauthedClaims.iss !== intendedIssuer)
-    throw new JwtVerificationError({ reason: `token was issued by an unintended issuer: ${unauthedClaims.iss}` });
+    throw new JwtVerificationError({
+      reason: `token was issued by an unintended issuer: ${unauthedClaims.iss}`,
+    });
   if (!intendedAudiences.includes(unauthedClaims.aud))
-    throw new JwtVerificationError({ reason: `token was issued to be used for an unintended audience: ${unauthedClaims.aud}` });
+    throw new JwtVerificationError({
+      reason: `token was issued to be used for an unintended audience: ${unauthedClaims.aud}`,
+    });
 };

@@ -18,7 +18,13 @@ export const isSameSite = (uriA: string, uriB: string) => {
   if (domainsOfB.type !== ParseResultType.Listed) return false; // if the domain is not listed, we can't get enough info about it to confirm
 
   // check that the two domains, considering the public suffixes and excluding subdomains, are the same
-  const rootHostnameOfA = [domainsOfA.domain, ...domainsOfA.topLevelDomains].join('.');
-  const rootHostnameOfB = [domainsOfB.domain, ...domainsOfB.topLevelDomains].join('.');
+  const rootHostnameOfA = [
+    domainsOfA.domain,
+    ...domainsOfA.topLevelDomains,
+  ].join('.');
+  const rootHostnameOfB = [
+    domainsOfB.domain,
+    ...domainsOfB.topLevelDomains,
+  ].join('.');
   return rootHostnameOfA === rootHostnameOfB;
 };

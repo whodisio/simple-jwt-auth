@@ -55,7 +55,10 @@ export const discoverPublicKeyFromAuthServerMetadata = async ({
   // grab the keyId from the token
   const headerClaims = getUnauthedHeaderClaims({ token });
   const keyId = headerClaims.kid;
-  if (!keyId) throw new DiscoverPublicKeyFromAuthServerMetadataError({ reason: 'KeyId is not defined on the token (i.e., no `header.kid`)' });
+  if (!keyId)
+    throw new DiscoverPublicKeyFromAuthServerMetadataError({
+      reason: 'KeyId is not defined on the token (i.e., no `header.kid`)',
+    });
 
   // try to return the public key if we already have it in the cache
   const cachedKey = getPublicKeyFromCache({ issuer, keyId });
@@ -91,7 +94,8 @@ export const discoverPublicKeyFromAuthServerMetadata = async ({
   // try to find the jwk of this token
   if (!Array.isArray(jwks))
     throw new DiscoverPublicKeyFromAuthServerMetadataError({
-      reason: 'The JSON Web Key Set (JWKS) specified by the Auth Server Metadata is malformed. It is not an array.',
+      reason:
+        'The JSON Web Key Set (JWKS) specified by the Auth Server Metadata is malformed. It is not an array.',
     });
   const jwk = jwks.find((thisJwk) => thisJwk.kid === keyId);
   if (!jwk)
@@ -104,7 +108,12 @@ export const discoverPublicKeyFromAuthServerMetadata = async ({
   const publicKey = jwkToPemOrThrowStandardError(jwk);
 
   // cache the public key for future lookups (to save on the two HTTP calls)
-  cachePublicKey({ issuer, keyId, publicKey, ttlInSeconds: cache.ttlInSeconds });
+  cachePublicKey({
+    issuer,
+    keyId,
+    publicKey,
+    ttlInSeconds: cache.ttlInSeconds,
+  });
 
   // return the pem cert
   return publicKey; // this is the public key

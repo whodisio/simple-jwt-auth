@@ -1,7 +1,7 @@
-import { getTokenFromHeaders } from './getTokenFromHeaders';
-import { redactSignature } from '../redactSignature';
 import { getUnauthedClaims } from '../getUnauthedClaims';
+import { redactSignature } from '../redactSignature';
 import { PotentialCSRFAttackError } from './PotentialCSRFAttackError';
+import { getTokenFromHeaders } from './getTokenFromHeaders';
 
 const exampleToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmNWY3N2JjMC1iZTkwLTRmNGEtYmUyNS0wMThjYjUwZjBmMGEiLCJzdWIiOiIxMjM0NTY3ODkwIiwiYXVkIjoiaHR0cHM6Ly9hcGkud2hvZGlzLmlvIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.M_-_WjXeURe5M7JplujTq2Bl1V-MTm-Gxy9-DN4Qr8Q`;
 

@@ -1,20 +1,25 @@
 {
+  "extends": "@tsconfig/node-lts-strictest/tsconfig.json",
   "compilerOptions": {
-    "strict": true,
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "target": "es6",
-    "noImplicitAny": true,
-    "moduleResolution": "node",
-    "allowJs": true,
+    "importsNotUsedAsValues": "remove",
+    "noPropertyAccessFromIndexSignature": false,
+    "noUnusedLocals": false, // this is something a linter should warn on, not something a compiler should fail on
+    "noUnusedParameters": false, // this is something a linter should warn on, not something a compiler should fail on
+    "noImplicitOverride": false,
+    "resolveJsonModule": true,
+    "useUnknownInCatchVariables": false,
+    "exactOptionalPropertyTypes": false,
+    "declaration": true,
     "sourceMap": true,
     "outDir": "dist",
-    "strictPropertyInitialization": false,
-    "lib": ["es2017", "es7", "esnext.asynciterable"]
+    "target": "es6",
   },
-  "filesGlob": ["src/**/*.ts"],
-  "exclude": ["dist", "coverage", "node_modules"],
-  "atom": {
-    "rewriteTsconfig": false
-  }
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "dist",
+    "coverage",
+    "node_modules",
+  ]
 }
