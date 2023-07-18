@@ -1,0 +1,30 @@
+name: .publish-npm
+
+on:
+  workflow_call:
+    secrets:
+      npm-auth-token:
+        required: true
+        description: required credentials to authenticate with the aws account under which to publish
+
+jobs:
+  publish:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: set node version
+        uses: actions/setup-node@v3
+        with:
+          registry-url: 'https://registry.npmjs.org/'
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: install
+        run: npm ci
+
+      - name: publish
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.npm-auth-token }}

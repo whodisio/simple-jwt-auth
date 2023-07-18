@@ -1,0 +1,16 @@
+name: publish
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  test:
+    uses: ./.github/workflows/.test.yml
+
+  publish:
+    uses: ./.github/workflows/.publish-npm.yml
+    needs: [test]
+    secrets:
+      npm-auth-token: ${{ secrets.NPM_TOKEN }}
