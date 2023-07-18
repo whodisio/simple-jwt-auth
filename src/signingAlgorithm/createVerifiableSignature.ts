@@ -1,10 +1,8 @@
-import crypto from 'crypto';
-
 import { castBase64ToBase64Url } from '../base64Url/castBase64ToBase64Url';
-import { MinimalTokenClaims } from '../getUnauthedClaims';
 import { castJwtAlgToCryptoAlg } from './castJwtAlgToCryptoAlg';
+import { importCrypto } from './importCrypto';
 
-export const createVerifiableSignature = <C extends MinimalTokenClaims>({
+export const createVerifiableSignature = ({
   alg,
   payload,
   privateKey,
@@ -13,6 +11,7 @@ export const createVerifiableSignature = <C extends MinimalTokenClaims>({
   payload: string;
   privateKey: string;
 }) => {
+  const crypto = importCrypto();
   const cryptoAlg = castJwtAlgToCryptoAlg(alg);
   const signatureBuffer = crypto
     .createSign(cryptoAlg)

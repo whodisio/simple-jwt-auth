@@ -1,8 +1,7 @@
-import crypto from 'crypto';
-
 import { castBase64UrlToBase64 } from '../base64Url/castBase64UrlToBase64';
 import { getUnauthedHeaderClaims } from '../getUnauthedHeaderClaims';
 import { castJwtAlgToCryptoAlg } from './castJwtAlgToCryptoAlg';
+import { importCrypto } from './importCrypto';
 
 /**
  * determines whether token's signature is verified
@@ -18,6 +17,8 @@ export const isSignatureVerified = ({
   token: string;
   publicKey: string;
 }) => {
+  const crypto = importCrypto();
+
   // convert the alg the token said it was signed by to an alg name that crypto understands
   const unauthedHeaderClaims = getUnauthedHeaderClaims({ token });
   const cryptoAlg = castJwtAlgToCryptoAlg(unauthedHeaderClaims.alg);
