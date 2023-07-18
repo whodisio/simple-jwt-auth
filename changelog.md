@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.1](https://github.com/whodisio/simple-jwt-auth/compare/v0.9.0...v0.9.1) (2023-07-18)
+
+
+### Bug Fixes
+
+* **cicd:** resolve ghost package version ([d370c09](https://github.com/whodisio/simple-jwt-auth/commit/d370c09ef312960bb98546f027459f6b7dc6cf0a))
+
 ## [0.9.0](https://github.com/whodisio/simple-jwt-auth/compare/v0.8.0...v0.9.0) (2023-07-18)
 
 
