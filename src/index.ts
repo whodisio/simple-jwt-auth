@@ -7,6 +7,7 @@ export { discoverPublicKeyFromAuthServerMetadata } from './discoverPublicKeyFrom
 export { createSecureDistributedAuthToken } from './createSecureDistributedAuthToken';
 export { isJSONWebToken } from './isJSONWebToken';
 export { getTokenFromHeaders } from './getTokenFromHeaders/getTokenFromHeaders';
+export { getTokenFromAuthorizationCookie } from './getTokenFromHeaders/getTokenFromAuthorizationCookie';
 export { redactSignature } from './redactSignature';
 export { isSameSite } from './domains/isSameSite';
 export { isRedactedSignatureToken } from './isRedactedSignatureToken';
