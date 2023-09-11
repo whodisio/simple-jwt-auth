@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.4](https://github.com/whodisio/simple-jwt-auth/compare/v0.9.3...v0.9.4) (2023-09-11)
+
+
+### Bug Fixes
+
+* **tests:** update test token after whodis issuer change ([85e455c](https://github.com/whodisio/simple-jwt-auth/commit/85e455c602f382a06b113685432d2370aeaa37b0))
+
 ## [0.9.3](https://github.com/whodisio/simple-jwt-auth/compare/v0.9.2...v0.9.3) (2023-09-11)
 
 
