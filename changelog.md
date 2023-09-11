@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.3](https://github.com/whodisio/simple-jwt-auth/compare/v0.9.2...v0.9.3) (2023-09-11)
+
+
+### Bug Fixes
+
+* **contact:** expose getTokenFromAuthCookie method ([e7a0e4d](https://github.com/whodisio/simple-jwt-auth/commit/e7a0e4d6bf2c0ced131dc4fb2979833c8b9799d5))
+
 ## [0.9.2](https://github.com/whodisio/simple-jwt-auth/compare/v0.9.1...v0.9.2) (2023-07-18)
 
 
