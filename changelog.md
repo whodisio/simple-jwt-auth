@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.2](https://github.com/whodisio/simple-jwt-auth/compare/v0.9.1...v0.9.2) (2023-07-18)
+
+
+### Bug Fixes
+
+* **cicd:** remove old publish-on-tag workflow ([89b5dd0](https://github.com/whodisio/simple-jwt-auth/commit/89b5dd03f071c0adde4aaaac25582a5dae4a6d67))
+
 ## [0.9.1](https://github.com/whodisio/simple-jwt-auth/compare/v0.9.0...v0.9.1) (2023-07-18)
 
 
