@@ -6,6 +6,7 @@ export { getUnauthedHeaderClaims } from './getUnauthedHeaderClaims';
 export { discoverPublicKeyFromAuthServerMetadata } from './discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata';
 export { createSecureDistributedAuthToken } from './createSecureDistributedAuthToken';
 export { isJSONWebToken } from './isJSONWebToken';
+export { isExpiredToken } from './isExpiredToken';
 export { getTokenFromHeaders } from './getTokenFromHeaders/getTokenFromHeaders';
 export { getTokenFromAuthorizationCookie } from './getTokenFromHeaders/getTokenFromAuthorizationCookie';
 export { redactSignature } from './redactSignature';

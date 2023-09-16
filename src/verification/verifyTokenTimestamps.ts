@@ -1,12 +1,6 @@
 import { getUnauthedClaims } from '../getUnauthedClaims';
+import { fromUnixTime, isBefore, isExpiredToken } from '../isExpiredToken';
 import { JwtVerificationError } from './JwtVerificationError';
-
-// define basic date manipulation fns (dont import from a third party lib to decrease bundle size; this stuff is really basic too)
-const fromUnixTime = (seconds: number) => new Date(seconds * 1000);
-const isBefore = (referenceDate: Date, comparisonDate: Date) =>
-  referenceDate.getTime() < comparisonDate.getTime();
-const isAfter = (referenceDate: Date, comparisonDate: Date) =>
-  referenceDate.getTime() > comparisonDate.getTime();
 
 export const verifyTokenTimestamps = ({ token }: { token: string }) => {
   const unauthedClaims = getUnauthedClaims({ token });
@@ -17,7 +11,7 @@ export const verifyTokenTimestamps = ({ token }: { token: string }) => {
     throw new JwtVerificationError({
       reason: 'no expiration claim on the token. this is very unsafe',
     });
-  const hasExpired = isAfter(now, fromUnixTime(unauthedClaims.exp));
+  const hasExpired = isExpiredToken(token); // note: we moved "isExpiredToken" logic out since it is a common usecase by callers of the package
   if (hasExpired)
     throw new JwtVerificationError({
       reason: 'token has expired (see `token.claims.exp`)',
