@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.5](https://github.com/whodisio/simple-jwt-auth/compare/v0.9.4...v0.9.5) (2023-09-16)
+
+
+### Bug Fixes
+
+* **contracts:** expose isExpiredToken method ([f9ee055](https://github.com/whodisio/simple-jwt-auth/commit/f9ee055f61004051cd55fb2cce9994c08f568e3f))
+
 ## [0.9.4](https://github.com/whodisio/simple-jwt-auth/compare/v0.9.3...v0.9.4) (2023-09-11)
 
 
