@@ -1,7 +1,8 @@
 import axios from 'axios';
 import jwkToPem from 'jwk-to-pem';
 
-import { MinimalTokenClaims, SimpleJwtAuthError } from '..';
+import { SimpleJwtAuthError } from '../SimpleJwtAuthError';
+import { MinimalTokenClaims } from '../getUnauthedClaims';
 
 export class DiscoverJwksUriFromAuthServerMetadataError extends SimpleJwtAuthError {
   constructor({ reason }: { reason: string }) {
