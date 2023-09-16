@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.1](https://github.com/whodisio/simple-jwt-auth/compare/v0.10.0...v0.10.1) (2023-09-16)
+
+
+### Bug Fixes
+
+* **pkg:** resolve cyclical import silently breaking pkg ([e75d6d6](https://github.com/whodisio/simple-jwt-auth/commit/e75d6d62384d8a9231c19070a643fdcd41cbac14))
+
 ## [0.10.0](https://github.com/whodisio/simple-jwt-auth/compare/v0.9.5...v0.10.0) (2023-09-16)
 
 
