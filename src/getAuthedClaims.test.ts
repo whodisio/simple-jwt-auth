@@ -1,14 +1,11 @@
-import { discoverPublicKeyFromAuthServerMetadata } from './discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata';
 import { getAuthedClaims } from './getAuthedClaims';
+import { getPublicKey } from './getPublicKey/getPublicKey';
 import { getSignedClaims } from './getSignedClaims';
 import { JwtVerificationError } from './verification/JwtVerificationError';
 
-jest.mock(
-  './discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata',
-);
-const discoverPublicKeyFromAuthServerMetadataMock =
-  discoverPublicKeyFromAuthServerMetadata as jest.Mock;
-discoverPublicKeyFromAuthServerMetadataMock.mockReturnValue('__PUBLIC_KEY__');
+jest.mock('./getPublicKey/getPublicKey');
+const getPublicKeyMock = getPublicKey as jest.Mock;
+getPublicKeyMock.mockReturnValue('__PUBLIC_KEY__');
 
 jest.mock('./getSignedClaims');
 const getSignedClaimsMock = getSignedClaims as jest.Mock;
@@ -126,7 +123,7 @@ describe('getAuthedClaims', () => {
         issuer: 'https://auth.whodis.io/...',
         audience: 'e9130530-1072-4915-a8b9-974900dbee5d',
       });
-      expect(discoverPublicKeyFromAuthServerMetadata).toHaveBeenCalledTimes(1);
+      expect(getPublicKeyMock).toHaveBeenCalledTimes(1);
       expect(getSignedClaimsMock).toHaveBeenCalledTimes(1);
     });
   });

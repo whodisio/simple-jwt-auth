@@ -1,5 +1,5 @@
 import { SimpleJwtAuthError } from './SimpleJwtAuthError';
-import { discoverPublicKeyFromAuthServerMetadata } from './discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata';
+import { getPublicKey } from './getPublicKey/getPublicKey';
 import { getSignedClaims } from './getSignedClaims';
 import { MinimalTokenClaims } from './getUnauthedClaims';
 import { verifyTokenIntent } from './verification/verifyTokenIntent';
@@ -20,10 +20,20 @@ export const getAuthedClaims = async <C extends MinimalTokenClaims>({
   token,
   issuer,
   audience,
+  jwksUri,
 }: {
   token: string;
   issuer: string;
   audience: string | string[];
+
+  /**
+   * the jwks uri at which the public key for this token can be found
+   *
+   * note
+   * - for issuer's who support oauth2's discovery flow, this can be left blank, and the uri will be discovered (recommended)
+   * - for issuer's who unable to support oauth2's discovery flow, this will need to be explicitly defined
+   */
+  jwksUri?: string;
 }): Promise<C> => {
   // runtime validation: confirm and audiences were defined (everyone has types until they get punched in the runtime - mike tyson)
   if (!issuer)
@@ -54,7 +64,7 @@ export const getAuthedClaims = async <C extends MinimalTokenClaims>({
   await verifyTokenTimestamps({ token });
 
   // check that the token was signed correctly and safely; if so, grab claims
-  const publicKey = await discoverPublicKeyFromAuthServerMetadata({ token }); // grab the public key in a distributed fashion, w/ standard oauth discovery flow
+  const publicKey = await getPublicKey({ token, jwksUri });
   const signedClaims = await getSignedClaims<C>({ token, publicKey });
 
   // since the claims passed all of the checks above, they have now been authenticated

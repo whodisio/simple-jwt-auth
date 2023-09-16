@@ -1,6 +1,6 @@
 import { createSecureDistributedAuthToken } from './createSecureDistributedAuthToken';
-import { discoverPublicKeyFromAuthServerMetadata } from './discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata';
 import { getAuthedClaims } from './getAuthedClaims';
+import { getPublicKey } from './getPublicKey/getPublicKey';
 
 const exampleKeys = {
   publicKey: `
@@ -76,14 +76,9 @@ mRT0FysAHcj299tOe3ttU0gFxsbloQ==
 };
 
 // mock that we discover the real public key each time
-jest.mock(
-  './discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata',
-);
-const discoverPublicKeyFromAuthServerMetadataMock =
-  discoverPublicKeyFromAuthServerMetadata as jest.Mock;
-discoverPublicKeyFromAuthServerMetadataMock.mockReturnValue(
-  exampleKeys.publicKey,
-);
+jest.mock('./getPublicKey/getPublicKey');
+const getPublicKeyMock = getPublicKey as jest.Mock;
+getPublicKeyMock.mockReturnValue(exampleKeys.publicKey);
 
 describe('createSecureToken', () => {
   it('should be able to create a token that we can later getAuthedClaims on', async () => {

@@ -1,5 +1,5 @@
 import { base64UrlEncode } from './base64Url/base64UrlEncode';
-import { discoverPublicKeyFromAuthServerMetadata } from './discoverPublicKeyFromAuthServerMetadata/discoverPublicKeyFromAuthServerMetadata';
+import { getPublicKey } from './getPublicKey/getPublicKey';
 import { getSignedClaims } from './getSignedClaims';
 import { JwtVerificationError } from './verification/JwtVerificationError';
 
@@ -7,11 +7,11 @@ const token = `eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjRkLjMyYjhiNTU0LTEyZ
 
 describe('getSignedClaims', () => {
   it('should find that it can getSignedClaims for an authentic tokens signature', async () => {
-    const publicKey = await discoverPublicKeyFromAuthServerMetadata({ token });
+    const publicKey = await getPublicKey({ token });
     await getSignedClaims({ token, publicKey });
   });
   it('should find that it does not getSignedClaims for a token that has been manipulated', async () => {
-    const publicKey = await discoverPublicKeyFromAuthServerMetadata({ token });
+    const publicKey = await getPublicKey({ token });
 
     // maliciously modify the claims of a token
     const tokenParts = token.split('.');
