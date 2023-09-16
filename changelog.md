@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://github.com/whodisio/simple-jwt-auth/compare/v0.9.5...v0.10.0) (2023-09-16)
+
+
+### Features
+
+* **claims:** enable getting authed claims with explicit jwks uri ([ef422c7](https://github.com/whodisio/simple-jwt-auth/commit/ef422c7eaceebb06b37eb8c9cb274e8265737363))
+
 ## [0.9.5](https://github.com/whodisio/simple-jwt-auth/compare/v0.9.4...v0.9.5) (2023-09-16)
 
 
