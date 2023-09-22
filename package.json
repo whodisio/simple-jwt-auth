@@ -64,7 +64,7 @@
     "jwk-to-pem": "^2.0.4",
     "parse-domain": "^3.0.2",
     "simple-in-memory-cache": "^0.1.0",
-    "test-fns": "^1.0.1",
+    "test-fns": "^1.0.3",
     "uuid": "9.0.0"
   },
   "devDependencies": {
