@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.10.2](https://github.com/whodisio/simple-jwt-auth/compare/v0.10.1...v0.10.2) (2023-09-22)
+
+
+### Bug Fixes
+
+* **alg:** identify ES256, ES384, and ES512 as known asymetric algs ([56b863f](https://github.com/whodisio/simple-jwt-auth/commit/56b863f13a086c8a2f2035bf2805041773d9f88b))
+* **docs:** remove broken status badges from readme ([a869980](https://github.com/whodisio/simple-jwt-auth/commit/a86998036fd8866a30a583e9a96412eb44337614))
+* **test:** update integration test to handle change in time ([4d40770](https://github.com/whodisio/simple-jwt-auth/commit/4d40770d07bf8ec0ec7c9200e18c87b3f95c7c0f))
+
 ## [0.10.1](https://github.com/whodisio/simple-jwt-auth/compare/v0.10.0...v0.10.1) (2023-09-16)
 
 
