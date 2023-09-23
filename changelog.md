@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.0](https://github.com/whodisio/simple-jwt-auth/compare/v0.10.2...v0.11.0) (2023-09-23)
+
+
+### Features
+
+* **alg:** support elliptic curve cryptography algorithms ([04ec81e](https://github.com/whodisio/simple-jwt-auth/commit/04ec81e1ae2aee6ae8ed40e92978b33ad03891bc))
+
 ## [0.10.2](https://github.com/whodisio/simple-jwt-auth/compare/v0.10.1...v0.10.2) (2023-09-22)
 
 
