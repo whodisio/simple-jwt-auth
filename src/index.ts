@@ -12,6 +12,7 @@ export { getTokenFromAuthorizationCookie } from './getTokenFromHeaders/getTokenF
 export { redactSignature } from './redactSignature';
 export { isSameSite } from './domains/isSameSite';
 export { isRedactedSignatureToken } from './isRedactedSignatureToken';
+export { createSigningKeyPair } from './signingAlgorithm/createSigningKeyPair';
 
 // errors
 export { SimpleJwtAuthError } from './SimpleJwtAuthError';

@@ -4,7 +4,6 @@ const ASYMMETRIC_SIGNING_ALGORITHMS = [
   'RS512',
   'ES256',
   'ES384',
-  'ES512',
 ] as const;
 export type AsymmetricSigningAlgorithm =
   typeof ASYMMETRIC_SIGNING_ALGORITHMS[number];

@@ -1,3 +1,5 @@
+import type crypto from 'crypto';
+
 /**
  * a method that safely imports the crypto utility in all environments
  *
@@ -9,7 +11,7 @@
  * todo
  * - if there's a usecase for client side token creation or verification, use crypto-js or expo-crypto
  */
-export const importCrypto = () => {
+export const importCrypto = (): typeof crypto => {
   try {
     return require('crypto');
   } catch {

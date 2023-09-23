@@ -60,16 +60,15 @@
     "postversion": "git push origin HEAD --tags --no-verify"
   },
   "dependencies": {
+    "@ehmpathy/error-fns": "^1.0.2",
     "axios": "^0.21.1",
     "jwk-to-pem": "^2.0.4",
     "parse-domain": "^3.0.2",
     "simple-in-memory-cache": "^0.1.0",
-    "test-fns": "^1.0.3",
     "uuid": "9.0.0"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "13.1.0",
-    "@ehmpathy/error-fns": "^1.0.2",
     "@trivago/prettier-plugin-sort-imports": "2.0.4",
     "@tsconfig/node-lts-strictest": "18.12.1",
     "@types/jest": "29.2.4",
@@ -93,7 +92,8 @@
     "ts-jest": "29.0.3",
     "ts-node": "10.9.1",
     "typescript": "4.9.4",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "test-fns": "^1.0.3"
   },
   "config": {
     "commitizen": {

@@ -1,36 +1,41 @@
 import { castBase64UrlToBase64 } from '../base64Url/castBase64UrlToBase64';
-import { getUnauthedHeaderClaims } from '../getUnauthedHeaderClaims';
 import { castJwtAlgToCryptoAlg } from './castJwtAlgToCryptoAlg';
 import { importCrypto } from './importCrypto';
+import { AsymmetricSigningAlgorithm } from './isAsymmetricSigningAlgorithm';
+import { isEllipticSigningAlgorithm } from './isEllipticSigningAlgorithm';
 
 /**
- * determines whether token's signature is verified
- *
- * i.e.,
- * - does the signature match the claims? (confirm claims)
- * - does the public key for the issuer match the signature? (confirm issuer)
+ * determines whether a signature can be verified for a given payload and public key
  */
 export const isSignatureVerified = ({
-  token,
+  alg,
+  signature,
+  payload,
   publicKey,
 }: {
-  token: string;
+  alg: AsymmetricSigningAlgorithm;
+  signature: string;
+  payload: string;
   publicKey: string;
 }) => {
   const crypto = importCrypto();
 
   // convert the alg the token said it was signed by to an alg name that crypto understands
-  const unauthedHeaderClaims = getUnauthedHeaderClaims({ token });
-  const cryptoAlg = castJwtAlgToCryptoAlg(unauthedHeaderClaims.alg);
+  const cryptoAlg = castJwtAlgToCryptoAlg(alg);
 
   // attempt to verify by using the signature
-  const verificationInput = token.split('.').slice(0, 2).join('.'); // drop the signature
-  const signatureClaim = token.split('.').slice(-1)[0]!; // signature is the last el
-  const unescapedSignatureClaim = castBase64UrlToBase64(signatureClaim); // JWT's are url encoded, so that they are safe to pass in urls (i.e., base64URL format). crypto only supports normal base64, so we decode base64Url into base64 for interop
+  const unescapedSignatureClaim = castBase64UrlToBase64(signature); // JWT's are url encoded, so that they are safe to pass in urls (i.e., base64URL format). crypto only supports normal base64, so we decode base64Url into base64 for interop
   const verified = crypto
     .createVerify(cryptoAlg)
-    .update(verificationInput)
-    .verify(publicKey, unescapedSignatureClaim, 'base64');
+    .update(payload)
+    .verify(
+      {
+        key: publicKey,
+        dsaEncoding: isEllipticSigningAlgorithm(alg) ? 'ieee-p1363' : undefined, // if its an elliptic signing algorithm, we must specify the specific encoding format, since node defaults to DER while jwt's use IEEE; https://stackoverflow.com/questions/39499040/generating-ecdsa-signature-with-node-js-crypto?rq=3
+      },
+      unescapedSignatureClaim,
+      'base64',
+    );
 
   // return the result
   return verified;
