@@ -1,3 +1,5 @@
+import { Buffer } from 'buffer';
+
 import { castBase64ToBase64Url } from './castBase64ToBase64Url';
 
 /**

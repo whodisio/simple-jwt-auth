@@ -10,3 +10,4 @@ ignores:
   - ts-node
   - date-fns
   - husky
+  - buffer
