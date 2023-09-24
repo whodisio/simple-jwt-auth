@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.11.1](https://github.com/whodisio/simple-jwt-auth/compare/v0.11.0...v0.11.1) (2023-09-24)
+
+
+### Bug Fixes
+
+* **cicd:** resolve environment dependent test ([9ebd34f](https://github.com/whodisio/simple-jwt-auth/commit/9ebd34fd09dc3c3d75b352791708ad59f1c1c312))
+* **deps:** use isomorphic buffer lib for cross platform compat ([6974696](https://github.com/whodisio/simple-jwt-auth/commit/697469659c312aacc3d6ad6f1d3e45b547b6f9ad))
+
 ## [0.11.0](https://github.com/whodisio/simple-jwt-auth/compare/v0.10.2...v0.11.0) (2023-09-23)
 
 
