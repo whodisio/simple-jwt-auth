@@ -1,5 +1,6 @@
-import { getUnauthedHeaderClaims } from '../getUnauthedHeaderClaims';
-import { isSignatureVerified } from '../signingAlgorithm/isSignatureVerified';
+import { getUnauthedHeaderClaims } from '@src/getUnauthedHeaderClaims';
+import { isSignatureVerified } from '@src/signingAlgorithm/isSignatureVerified';
+
 import { JwtVerificationError } from './JwtVerificationError';
 
 /**

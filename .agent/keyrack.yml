@@ -1,0 +1,8 @@
+org: whodis
+extends:
+  - .agent/repo=bhrain/role=reviewer/keyrack.yml
+  - .agent/repo=ehmpathy/role=mechanic/keyrack.yml
+env.prod: null
+env.prep:
+  - EHMPATHY_SEATURTLE_GITHUB_TOKEN
+env.test: null

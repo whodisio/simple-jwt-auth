@@ -1,4 +1,5 @@
-import { getUnauthedClaims } from '../getUnauthedClaims';
+import { getUnauthedClaims } from '@src/getUnauthedClaims';
+
 import { JwtVerificationError } from './JwtVerificationError';
 
 /**

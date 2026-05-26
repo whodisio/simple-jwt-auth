@@ -6,7 +6,7 @@ const ASYMMETRIC_SIGNING_ALGORITHMS = [
   'ES384',
 ] as const;
 export type AsymmetricSigningAlgorithm =
-  typeof ASYMMETRIC_SIGNING_ALGORITHMS[number];
+  (typeof ASYMMETRIC_SIGNING_ALGORITHMS)[number];
 export const isAsymmetricSigningAlgorithm = (
   alg: any,
 ): alg is AsymmetricSigningAlgorithm =>

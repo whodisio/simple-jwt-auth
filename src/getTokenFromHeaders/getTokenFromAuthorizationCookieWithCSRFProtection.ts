@@ -1,13 +1,14 @@
-import { isSameSite } from '../domains/isSameSite';
-import { getUnauthedClaims } from '../getUnauthedClaims';
-import { getUnauthedHeaderClaims } from '../getUnauthedHeaderClaims';
-import { redactSignature } from '../redactSignature';
-import { PotentialCSRFAttackError } from './PotentialCSRFAttackError';
-import { PotentialCSRFVulnerabilityError } from './PotentialCSRFVulnerabilityError';
-import { PotentialXSSVulnerabilityError } from './PotentialXSSVulnerabilityError';
+import { isSameSite } from '@src/domains/isSameSite';
+import { getUnauthedClaims } from '@src/getUnauthedClaims';
+import { getUnauthedHeaderClaims } from '@src/getUnauthedHeaderClaims';
+import { redactSignature } from '@src/redactSignature';
+
 import { getTokenFromAuthorizationCookie } from './getTokenFromAuthorizationCookie';
 import { getTokenFromAuthorizationHeader } from './getTokenFromAuthorizationHeader';
 import { isUuid } from './isUuid';
+import { PotentialCSRFAttackError } from './PotentialCSRFAttackError';
+import { PotentialCSRFVulnerabilityError } from './PotentialCSRFVulnerabilityError';
+import { PotentialXSSVulnerabilityError } from './PotentialXSSVulnerabilityError';
 
 /**
  * simple utility used below, makes the code a little easier to read

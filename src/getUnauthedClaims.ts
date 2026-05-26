@@ -1,6 +1,6 @@
-import { SimpleJwtAuthError } from './SimpleJwtAuthError';
 import { base64UrlDecode } from './base64Url/base64UrlDecode';
 import { isJSONWebToken } from './isJSONWebToken';
+import { SimpleJwtAuthError } from './SimpleJwtAuthError';
 
 export interface MinimalTokenClaims {
   jti?: string;

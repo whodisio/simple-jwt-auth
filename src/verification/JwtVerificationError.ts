@@ -1,4 +1,4 @@
-import { SimpleJwtAuthError } from '../SimpleJwtAuthError';
+import { SimpleJwtAuthError } from '@src/SimpleJwtAuthError';
 
 export class JwtVerificationError extends SimpleJwtAuthError {
   constructor({ reason }: { reason: string }) {

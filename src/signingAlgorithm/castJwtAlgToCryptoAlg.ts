@@ -1,5 +1,6 @@
-import { SimpleJwtAuthError } from '../SimpleJwtAuthError';
-import { AsymmetricSigningAlgorithm } from './isAsymmetricSigningAlgorithm';
+import { SimpleJwtAuthError } from '@src/SimpleJwtAuthError';
+
+import type { AsymmetricSigningAlgorithm } from './isAsymmetricSigningAlgorithm';
 
 const JWT_ALG_TO_CRYPTO_ALG_MAP: Record<AsymmetricSigningAlgorithm, string> = {
   RS256: 'RSA-SHA256',

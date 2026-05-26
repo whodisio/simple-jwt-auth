@@ -1,0 +1,8 @@
+{
+  "pnpm --version": 1779751745,
+  "git log --format='%an' -10 | sort | uniq -c | sort -rn | head -3": 1779752750,
+  "rm /home/vlad/git/whodisio/_worktrees/simple-jwt-auth.vlad.bump-practs/.route/v2026_05_25.declapract.upgrade/blocker/2.detect.hazards.md 2>/dev/null; rhx declapract.upgrade exec": 1779753281,
+  "ls -la .route/v2026_05_25.declapract.upgrade/": 1779762151,
+  "git diff HEAD -- 'src/**/*.test.ts' | grep -E '^\\+.*(\\.skip|xit|xdescribe)' || echo \"no skips added\"": 1779762577,
+  "npx dpdm --no-warning --no-tree --exit-code circular:1 'src/**/*.ts'": 1779765372
+}

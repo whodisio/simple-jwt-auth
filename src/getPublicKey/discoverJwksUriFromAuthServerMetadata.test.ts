@@ -1,11 +1,12 @@
-import { getError } from '@ehmpathy/error-fns';
 import axios from 'axios';
+import { getError } from 'helpful-errors';
 import { then, when } from 'test-fns';
 
-import { getUnauthedClaims } from '../getUnauthedClaims';
+import { getUnauthedClaims } from '@src/getUnauthedClaims';
+
 import {
-  discoverJwksUriFromAuthServerMetadata,
   DiscoverJwksUriFromAuthServerMetadataError,
+  discoverJwksUriFromAuthServerMetadata,
 } from './discoverJwksUriFromAuthServerMetadata';
 
 jest.mock('axios');

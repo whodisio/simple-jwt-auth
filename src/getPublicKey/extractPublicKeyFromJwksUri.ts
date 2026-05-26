@@ -1,5 +1,6 @@
-import { SimpleJwtAuthError } from '../SimpleJwtAuthError';
-import { MinimalTokenHeaderClaims } from '../getUnauthedHeaderClaims';
+import type { MinimalTokenHeaderClaims } from '@src/getUnauthedHeaderClaims';
+import { SimpleJwtAuthError } from '@src/SimpleJwtAuthError';
+
 import {
   getOrThrowStandardError,
   jwkToPemOrThrowStandardError,

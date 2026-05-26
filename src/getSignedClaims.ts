@@ -1,4 +1,7 @@
-import { getUnauthedClaims, MinimalTokenClaims } from './getUnauthedClaims';
+import {
+  getUnauthedClaims,
+  type MinimalTokenClaims,
+} from './getUnauthedClaims';
 import { verifyTokenSignature } from './verification/verifyTokenSignature';
 import { verifyTokenSigningAlgo } from './verification/verifyTokenSigningAlgo';
 

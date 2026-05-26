@@ -1,5 +1,5 @@
-import { SimpleJwtAuthError } from './SimpleJwtAuthError';
 import { isJSONWebToken } from './isJSONWebToken';
+import { SimpleJwtAuthError } from './SimpleJwtAuthError';
 
 /**
  * a simple method which redacts the signature from a token to make it unauthenticatable - but still capable of having unauthed claims extracted

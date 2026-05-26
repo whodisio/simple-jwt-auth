@@ -1,7 +1,8 @@
-import { castBase64ToBase64Url } from '../base64Url/castBase64ToBase64Url';
+import { castBase64ToBase64Url } from '@src/base64Url/castBase64ToBase64Url';
+
 import { castJwtAlgToCryptoAlg } from './castJwtAlgToCryptoAlg';
 import { importCrypto } from './importCrypto';
-import { AsymmetricSigningAlgorithm } from './isAsymmetricSigningAlgorithm';
+import type { AsymmetricSigningAlgorithm } from './isAsymmetricSigningAlgorithm';
 import { isEllipticSigningAlgorithm } from './isEllipticSigningAlgorithm';
 
 export const createVerifiableSignature = ({

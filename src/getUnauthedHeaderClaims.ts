@@ -1,7 +1,7 @@
-import { SimpleJwtAuthError } from './SimpleJwtAuthError';
 import { base64UrlDecode } from './base64Url/base64UrlDecode';
 import { isJSONWebToken } from './isJSONWebToken';
-import { AsymmetricSigningAlgorithm } from './signingAlgorithm/isAsymmetricSigningAlgorithm';
+import { SimpleJwtAuthError } from './SimpleJwtAuthError';
+import type { AsymmetricSigningAlgorithm } from './signingAlgorithm/isAsymmetricSigningAlgorithm';
 
 /**
  * Decode the header of the token and return the header claims, without checking anything.

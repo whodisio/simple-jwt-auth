@@ -1,12 +1,13 @@
-import { given, when, then } from 'test-fns';
+import { given, then, when } from 'test-fns';
 
-import { createSigningKeyPair } from './createSigningKeyPair';
-import { createVerifiableSignature } from './createVerifiableSignature';
 import {
   exampleEccKeyPair,
   exampleRsaKeyPair,
-} from './createVerifiableSignature.test';
-import { AsymmetricSigningAlgorithm } from './isAsymmetricSigningAlgorithm';
+} from '@src/.test/assets/exampleKeyPairs';
+
+import { createSigningKeyPair } from './createSigningKeyPair';
+import { createVerifiableSignature } from './createVerifiableSignature';
+import type { AsymmetricSigningAlgorithm } from './isAsymmetricSigningAlgorithm';
 import { isSignatureVerified } from './isSignatureVerified';
 
 describe('isSignatureVerified', () => {

@@ -1,13 +1,14 @@
 import { given } from 'test-fns';
 
-import { createSecureDistributedAuthToken } from './createSecureDistributedAuthToken';
-import { getAuthedClaims } from './getAuthedClaims';
-import { getPublicKey } from './getPublicKey/getPublicKey';
 import {
   exampleEccKeyPair,
   exampleRsaKeyPair,
-} from './signingAlgorithm/createVerifiableSignature.test';
-import { AsymmetricSigningAlgorithm } from './signingAlgorithm/isAsymmetricSigningAlgorithm';
+} from '@src/.test/assets/exampleKeyPairs';
+
+import { createSecureDistributedAuthToken } from './createSecureDistributedAuthToken';
+import { getAuthedClaims } from './getAuthedClaims';
+import { getPublicKey } from './getPublicKey/getPublicKey';
+import type { AsymmetricSigningAlgorithm } from './signingAlgorithm/isAsymmetricSigningAlgorithm';
 
 // mock that we discover the real public key each time
 jest.mock('./getPublicKey/getPublicKey');

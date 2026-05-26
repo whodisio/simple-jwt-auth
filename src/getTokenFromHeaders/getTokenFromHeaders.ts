@@ -1,4 +1,5 @@
-import { SimpleJwtAuthError } from '../SimpleJwtAuthError';
+import { SimpleJwtAuthError } from '@src/SimpleJwtAuthError';
+
 import { getTokenFromAuthorizationCookieWithCSRFProtection } from './getTokenFromAuthorizationCookieWithCSRFProtection';
 import { getTokenFromAuthorizationHeader } from './getTokenFromAuthorizationHeader';
 

@@ -1,7 +1,7 @@
-import { SimpleJwtAuthError } from './SimpleJwtAuthError';
 import { base64UrlEncode } from './base64Url/base64UrlEncode';
-import { MinimalTokenClaims } from './getUnauthedClaims';
-import { MinimalTokenHeaderClaims } from './getUnauthedHeaderClaims';
+import type { MinimalTokenClaims } from './getUnauthedClaims';
+import type { MinimalTokenHeaderClaims } from './getUnauthedHeaderClaims';
+import { SimpleJwtAuthError } from './SimpleJwtAuthError';
 import { createVerifiableSignature } from './signingAlgorithm/createVerifiableSignature';
 import { isAsymmetricSigningAlgorithm } from './signingAlgorithm/isAsymmetricSigningAlgorithm';
 
