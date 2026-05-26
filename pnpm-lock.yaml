@@ -118,26 +118,26 @@ importers:
         specifier: 2.8.1
         version: 2.8.1
       rhachet:
-        specifier: 1.39.9
-        version: 1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)
+        specifier: 1.41.15
+        version: 1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)
       rhachet-brains-anthropic:
-        specifier: 0.4.0
-        version: 0.4.0(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))
+        specifier: 0.4.1
+        version: 0.4.1(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))
       rhachet-brains-xai:
         specifier: 0.3.3
-        version: 0.3.3(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))
+        version: 0.3.3(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))
       rhachet-roles-bhrain:
-        specifier: 0.23.10
-        version: 0.23.10(@types/node@22.15.21)(rhachet-brains-xai@0.3.3(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)))
+        specifier: 0.27.8
+        version: 0.27.8(@types/node@22.15.21)(rhachet-brains-xai@0.3.3(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)))
       rhachet-roles-bhuild:
-        specifier: 0.16.0
-        version: 0.16.0(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(rhachet-brains-xai@0.3.3(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)))(rhachet-roles-bhrain@0.23.10(@types/node@22.15.21)(rhachet-brains-xai@0.3.3(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))))
+        specifier: 0.21.11
+        version: 0.21.11(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(rhachet-brains-xai@0.3.3(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)))(rhachet-roles-bhrain@0.27.8(@types/node@22.15.21)(rhachet-brains-xai@0.3.3(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))))
       rhachet-roles-ehmpathy:
-        specifier: 1.34.22
-        version: 1.34.22(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))
+        specifier: 1.35.8
+        version: 1.35.8(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))
       rhachet-roles-rhachet:
         specifier: ^0.1.7
-        version: 0.1.7(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))
+        version: 0.1.7(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))
       test-fns:
         specifier: 1.15.8
         version: 1.15.8
@@ -211,6 +211,10 @@ packages:
     resolution: {integrity: sha512-/oGxoB6p1Nqs935Blt+v1o+anSCEf2n3RjIrcLz84i4cn2Gr+Z7JpDdUkG5+74r5ctqEPG7k/phTGbJ9fNKnHg==}
     engines: {node: '>=20.0.0'}
 
+  '@aws-sdk/client-sso@3.1041.0':
+    resolution: {integrity: sha512-BJrZksR4qXCQODqsxOa9OPFtktumCJfJp99lpX17+z0tA8cR0EygKgvJs61zX80OHmGDY23tus7gXB36LinQAg==}
+    engines: {node: '>=20.0.0'}
+
   '@aws-sdk/core@3.974.13':
     resolution: {integrity: sha512-+Y5/4tHki0uYgyx8eun146DegRVQBpdKGK5RbV0FTKJPpaKTchvqVxrrRFK6Wk0JksO4iAZKw3eqxGEIwtO98w==}
     engines: {node: '>=20.0.0'}
@@ -263,8 +267,20 @@ packages:
     resolution: {integrity: sha512-alAu9heyiBK/OmRNXVxq8mmPTgeW2AQ6EYjRsI38kPZa1MZvt2Jh+BlGq7/GG9OVXOaEgD7DlGj/Lzfy5OmuEg==}
     engines: {node: '>=20.0.0'}
 
+  '@aws-sdk/middleware-host-header@3.972.14':
+    resolution: {integrity: sha512-Q1wVLhOwOiifMJt12IK/reHZpGERbeom8QirjX4JxfxYYqhSjBR50JSZAXhrheI1pSYkL5wLGXJLUMJLdyS75g==}
+    engines: {node: '>=20.0.0'}
+
   '@aws-sdk/middleware-location-constraint@3.972.11':
     resolution: {integrity: sha512-hkfspNUP4criAH6ton6BGKgnm5dZx+7bUOy1YqlTfejDeUPAM23D81q/IX+hdlS3KUsfwGz5ADTqZWKBEUpf4A==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/middleware-logger@3.972.13':
+    resolution: {integrity: sha512-uvoAP8dpzA2tAYek8fKaP9iGOYmrnZzWPlWAAs74gQdF0YbixpXE1ZOSClKq4PB5VADiVIIB43Vjc5rdOrw10A==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/middleware-recursion-detection@3.972.15':
+    resolution: {integrity: sha512-VDMUHLeQ/yTr658HMm2eWS7e6qIFSxUeVbSA5zh4SNfSQ7ygIkJ0WeBoCnefw00Nsr5wNT8FIiAknJRTt058iw==}
     engines: {node: '>=20.0.0'}
 
   '@aws-sdk/middleware-sdk-s3@3.972.42':
@@ -275,8 +291,16 @@ packages:
     resolution: {integrity: sha512-7PQvGNhtveKlvVqNahqWx5yrwxP7ecwAoB1dYBf8eKwfo2tzzCbNnW+q2nO3N066ktQaB4iBQbDRWtizm+amoQ==}
     engines: {node: '>=20.0.0'}
 
+  '@aws-sdk/middleware-user-agent@3.972.43':
+    resolution: {integrity: sha512-zXD7MSFgaxGi2CeURo9ZWKLNyXtfBUF0ByCHu4fdWa3WMu3YI8L0Mv3JHEDYBbYrUBPWBqSYhaXotxq0ADAGJg==}
+    engines: {node: '>=20.0.0'}
+
   '@aws-sdk/nested-clients@3.997.11':
     resolution: {integrity: sha512-nWXXJ1r/r8N2Gw1pWolRgED38/A9A8DHR2ETWIv220zh4PZHcybbR4hUVWWktmNXTRHzDJwRluapHn0rZxuoqA==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/region-config-resolver@3.972.17':
+    resolution: {integrity: sha512-Jz0mg/eqfChGZm0G4bzm6CpyEEtu9ThG1WHY3uE/hGjIUIXPsyVyTuQOetUsrU9QiYWMknmyIKIEHpZ69BHzrA==}
     engines: {node: '>=20.0.0'}
 
   '@aws-sdk/signature-v4-multi-region@3.996.28':
@@ -291,8 +315,19 @@ packages:
     resolution: {integrity: sha512-kuBfgQVdcz5Bmapc4A13YbpVw/pXkesfhetcFYwbntqas8sF41OHyd4o28+/TG2ZQdHBsv90Lsu5y6oitvYCdg==}
     engines: {node: '>=20.0.0'}
 
+  '@aws-sdk/util-endpoints@3.996.12':
+    resolution: {integrity: sha512-6Y8t0HT3M5GNVyLCnEwfI4maKZ5ATWJlXqemCH56/DMfsWhhSmR26FFE6LPTBYbwlifwAkNxqE0YTyvUfoUhEg==}
+    engines: {node: '>=20.0.0'}
+
   '@aws-sdk/util-locate-window@3.965.5':
     resolution: {integrity: sha512-WhlJNNINQB+9qtLtZJcpQdgZw3SCDCpXdUJP7cToGwHbCWCnRckGlc6Bx/OhWwIYFNAn+FIydY8SZ0QmVu3xTQ==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/util-user-agent-browser@3.972.14':
+    resolution: {integrity: sha512-LiMxdKWw55ZJP4iABqeIuF3RPgWMa2Uc9ZXjZRXZywStvH1IlzU6t+dKzcjS5ZQpHsl2A0G8UXxuy1zDY93YTQ==}
+
+  '@aws-sdk/util-user-agent-node@3.973.29':
+    resolution: {integrity: sha512-sVUv711QtRMT8NYql9elQaAKCz8qopg+Y2Vf5ROLXeOqEWdYZp2g+9HBesTmLn48jDvI0i1khxPFKSwCjWaawA==}
     engines: {node: '>=20.0.0'}
 
   '@aws-sdk/xml-builder@3.972.25':
@@ -1678,6 +1713,10 @@ packages:
   '@sinonjs/fake-timers@13.0.5':
     resolution: {integrity: sha512-36/hTbH2uaWuGVERyC6da9YwGWnzUZXuPro/F2LfsdOsLnCojz/iSH8MxUt/FD2S5XBSVPhmArFUXcpCQ2Hkiw==}
 
+  '@smithy/config-resolver@4.5.4':
+    resolution: {integrity: sha512-jqADOFCkuSqluoEPjxWTFQ/6Xfsmt4Xi3IelA+c+4WdavqCijGGfWi873VqfIZeSFvaBpYeH+PKHC3POE98KlQ==}
+    engines: {node: '>=18.0.0'}
+
   '@smithy/core@3.24.4':
     resolution: {integrity: sha512-3UNRKEyQyAgVgM0LGlerCLm+ChZWZ1GPfde+jBEW6bm6bSBGU1p0EbblaUV3unbhwvidjLA5Zs3sOs7mnZwvAw==}
     engines: {node: '>=18.0.0'}
@@ -1690,29 +1729,109 @@ packages:
     resolution: {integrity: sha512-qM7AUKI4G6d7lNgaZD3lA1tWSolh5r6gcixfTZAPstVURfjIbvreVTPz+994M0yC3HbX4YYhDRgr31Xy3XwWOQ==}
     engines: {node: '>=18.0.0'}
 
+  '@smithy/hash-node@4.3.4':
+    resolution: {integrity: sha512-LfXN/tUjjmUkEaMWto96a3Xetk7u4WMruzFop7mtsIYY2njTvTQm/zsok9KpwztzOL3WSBfv+hikxkJhArv8xQ==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/invalid-dependency@4.3.4':
+    resolution: {integrity: sha512-lByqayJi0EC8wAysIA93QwN4C1ofppNk5YXt8QS4Zo2AVHxGWspkwvYGP/5WLO4jsdHDsEc+KAdmqJBP9eN46g==}
+    engines: {node: '>=18.0.0'}
+
   '@smithy/is-array-buffer@2.2.0':
     resolution: {integrity: sha512-GGP3O9QFD24uGeAXYUjwSTXARoqpZykHadOmA8G5vfJPK0/DC67qa//0qvqrJzL1xc8WQWX7/yc7fwudjPHPhA==}
     engines: {node: '>=14.0.0'}
 
+  '@smithy/middleware-content-length@4.3.4':
+    resolution: {integrity: sha512-dI6ysYleXIHUDVsJ8JKR8m9zUNo29y43D6/evJcfY/JREgBrXpWbBavs1EAJIPA5+d7DBlepqSCIWveWiyO1jw==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/middleware-endpoint@4.5.4':
+    resolution: {integrity: sha512-vfaUGI2plIGPeiYlUwtC2IccLKR5XwPLCPzMwRF/dDlvMtVuy6L7Klx2LThoU3nENR294j/48Tn9alg/3teV1Q==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/middleware-retry@4.6.4':
+    resolution: {integrity: sha512-KOAlkv0/6yYLLXcJNTWq116q+ezv3i0+TQNg13hExZLUBwLvBj9ipP7f1+sAfVUsfYG/BFuF2nX6BRoKHFqt1Q==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/middleware-serde@4.3.4':
+    resolution: {integrity: sha512-J6JfVBmp3Z8ALEnIVJOyuBYr+xl/oIEvDY4qc9vbGXdgPZRYEYOrenXGhH7NnC2SDOWtkg8pIGw/yaTZTYDzrA==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/middleware-stack@4.3.4':
+    resolution: {integrity: sha512-fMuimMAsXCcDjWSNXeVitzQeWYKxvFmBbWVnYf1qLC5PaFbDBF0DcWQKSnqDY+QaaSzLIh+iAU3TaEWdGEeCfA==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/node-config-provider@4.4.4':
+    resolution: {integrity: sha512-mD/K1A5WrTZh6I23x1ScYo3K7/+Ujvp/zvLtaZT+xkDeXksWAQ/fKp60SudeUHUHQe/3Q3rgnfedJDqnxSKdpA==}
+    engines: {node: '>=18.0.0'}
+
   '@smithy/node-http-handler@4.7.4':
     resolution: {integrity: sha512-HIeF+1vrDGzPkkv39Hj2vlHSXHY3p958jd/8ZnePIY6+ZOsQX8coyEUKO5yQu4r0bQIVsbpotVIrXXwyycMStQ==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/protocol-http@5.4.4':
+    resolution: {integrity: sha512-5VdJYIYsVt2GT+i0fp5gvWoJNrdFEFN16TrpNnAZHngYC/xgk5yni6O/qV3WlIpJjeLC8RfwoQiNTljCdbNXgw==}
     engines: {node: '>=18.0.0'}
 
   '@smithy/signature-v4@5.4.4':
     resolution: {integrity: sha512-e5UtkMvsatzBfbeBZjEOt0k0Z3BEsjTFL/n6fdO5vtBLe67tdy0dX7xw2DU7uZ3acwoHyeCqpU2Fzb7pxwHb6Q==}
     engines: {node: '>=18.0.0'}
 
+  '@smithy/smithy-client@4.13.4':
+    resolution: {integrity: sha512-Lg3hCVv8oVYlnQus1x+1hlNoLSrcdOhkg2+Be5YUxkI1LbCEPpcwEdYfz+0j1sQSmEixA/UUbxW41CiN/+aigA==}
+    engines: {node: '>=18.0.0'}
+
   '@smithy/types@4.14.2':
     resolution: {integrity: sha512-P+otAxbV4CqBybp7EkcJCrig63yE2E7PuNVOmilVMRcx/O+QDzGULTrKsq4DV13gSfak9ObPrWaHl/9bL5YcWw==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/url-parser@4.3.4':
+    resolution: {integrity: sha512-Acgxr0W3vdmDNZKafjpDFaG2t32zNYVd7B5D3Y9LQep264+6pP/K/4ZXiAfW+ztMYB0iBG1kZx19EmRBd9zA/g==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/util-base64@4.4.4':
+    resolution: {integrity: sha512-f3zLXiAzY3oYDdubxW//QLk5KEngThcNQhKvcLGGiYNEzYD7B2PXwLjUZO7joB9wfvihflzPJilMest9Q9bj4Q==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/util-body-length-browser@4.3.4':
+    resolution: {integrity: sha512-ddbTlVHnjDflrReo1VlhPpomb0DlgqEhk/I++OS44Y4PEE0QnzOdJemUo439vNYEFjtJvZd1p9CBe/lcxpontg==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/util-body-length-node@4.3.4':
+    resolution: {integrity: sha512-e3pKOHP/UjTV4/2gMdjcgelvX8DGS6Yy3jSLWh47HvsyeD0fc/V4kkSYfhOjEnV4CizPn9gQojj2q9MiZQcJDg==}
     engines: {node: '>=18.0.0'}
 
   '@smithy/util-buffer-from@2.2.0':
     resolution: {integrity: sha512-IJdWBbTcMQ6DA0gdNhh/BwrLkDR+ADW5Kr1aZmd4k3DIF6ezMV4R2NIAmT08wQJ3yUK82thHWmC/TnK/wpMMIA==}
     engines: {node: '>=14.0.0'}
 
+  '@smithy/util-defaults-mode-browser@4.4.4':
+    resolution: {integrity: sha512-/TWNfyCtJHHIS5taeOQ1qcMUCr5xPqdFntDL5+Sp8sjGj29ZaFUUxlCP+6V//J7MhHZZ2PIe2kMh1YdOpaEPnA==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/util-defaults-mode-node@4.3.4':
+    resolution: {integrity: sha512-kFGsCILX13YE8troSVPB6AdEAzjbhJ/XFCaEgFGEBz1I17+wMVMBO1WxKxU27GlxBFQy643Jy42RgT8wf8X++g==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/util-endpoints@3.5.4':
+    resolution: {integrity: sha512-RtzPUniH4R49dG8X2MeOi9UzcNwh8C8lEADOGItnAMifxljQgCbuUOpvciX7EnEEJ5H2T2AXvEdOuXSe0bKdaQ==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/util-middleware@4.3.4':
+    resolution: {integrity: sha512-jzWo5fD5FYdGlfqx+kpp5BoOSG+TYQczYY6Ue2QX4linDq+5q6t2/RtO53nABOZjD+qYSSaVd9RalyMIPbxk9Q==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/util-retry@4.4.4':
+    resolution: {integrity: sha512-4upfJJ+jayyqd523zopC5Ad7XxMp+rpeiqh0QtiZGBvdBB7KBBtHVEtraHNnlzkQuytvkU5yyg6Ckf3ApJ3A5Q==}
+    engines: {node: '>=18.0.0'}
+
   '@smithy/util-utf8@2.3.0':
     resolution: {integrity: sha512-R8Rdn8Hy72KKcebgLiv8jQcQkXoLMOGGv5uI1/k0l+snqkOzQ1R0ChUBCxWMlBsFMekWjq0wRudIweFs7sKT5A==}
     engines: {node: '>=14.0.0'}
+
+  '@smithy/util-utf8@4.3.4':
+    resolution: {integrity: sha512-s8lfXcv+5C2GjBwGUBqFLgNmhyp9/n4TSKbOzKlIqJ/x0L/zwIxjNBC6DN4xUy59NvOrsiZI1t3tWi4ADUDyNw==}
+    engines: {node: '>=18.0.0'}
 
   '@swc/core-darwin-arm64@1.15.3':
     resolution: {integrity: sha512-AXfeQn0CvcQ4cndlIshETx6jrAM45oeUrK8YeEY6oUZU/qzz0Id0CyvlEywxkWVC81Ajpd8TQQ1fW5yx6zQWkQ==}
@@ -4398,8 +4517,8 @@ packages:
     resolution: {integrity: sha512-yzDL+Dv1az5WGpVvrRZT6gLBwDAzxLO/7newlyrfMM+ku91PFR9OvlADoqyulBCCUWnazv3eXl0vzrIyak4hAQ==}
     engines: {node: '>=8.0.0'}
 
-  rhachet-brains-anthropic@0.4.0:
-    resolution: {integrity: sha512-84VilMmja+9qKc4xV+ao/mHoA1wo+H4fIOApN1zIh86E5NfzOwO3Ij2kU+VU6fqdzs0353ZirEFXV3VNkA4epA==}
+  rhachet-brains-anthropic@0.4.1:
+    resolution: {integrity: sha512-SFtO8nsI+M6jjhVW20+S6UpW9yvAZdI1T3dT3uhOV1eM4HKVCHqZwlEuFI0LBbz+1eLRwSQkaK/Rqcf+S6GreQ==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
       rhachet: '>=1.21.4'
@@ -4410,21 +4529,21 @@ packages:
     peerDependencies:
       rhachet: '>=1.21.4'
 
-  rhachet-roles-bhrain@0.23.10:
-    resolution: {integrity: sha512-dfg7A2RBZYLwgWnUhOc6ESh3OH2IUywdQ7EKWNugPMhuV6uY9veGGB16rtOh2XqQ7ziBht60mBftKi4Q8K0Lzw==}
+  rhachet-roles-bhrain@0.27.8:
+    resolution: {integrity: sha512-X1liaO25ZpxH0dYAstGqIOeUwyY/Ns3eiMoPvt8Ey2xaGa/5KFIZG9Dmrvb5bTMlbzImgiwyd8zaawbPgeMJug==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
       rhachet-brains-xai: '>=0.3.0'
 
-  rhachet-roles-bhuild@0.16.0:
-    resolution: {integrity: sha512-C6e9/VmmSlzfvLDsVVUkJPU08Pd3L03Mr7Fw1TfTfvPRe7nwGKSglWEZhHE5TyyOc53qlMU/Lr2bTySqjS708w==}
+  rhachet-roles-bhuild@0.21.11:
+    resolution: {integrity: sha512-KsWcXprOWvRHoxL/mAFMTqlUFVxjpyKDXDyAupknfxbHOrxEHgOsfIyQWvvPPN+36WEh3EvDgUz0yMTUXsqnKw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       rhachet-brains-xai: '>=0.3.3'
       rhachet-roles-bhrain: '>=0.12.1'
 
-  rhachet-roles-ehmpathy@1.34.22:
-    resolution: {integrity: sha512-1kRrlGA+TxYq9YEAv/Y/BYBp8A5yPxKjN1AVFrHLZOCCqOWPRXcxADtFRoL7tlvLenWxdmifVvaBdILYHhsL4w==}
+  rhachet-roles-ehmpathy@1.35.8:
+    resolution: {integrity: sha512-trduOUlmeTKbLNF2FObqGbnWkD5I71mbJwEleb7sic8+vdRu0QSExK0uucsAWcwqQCyosB91nynpQHpijNnHCA==}
     engines: {node: '>=8.0.0'}
 
   rhachet-roles-rhachet@0.1.7:
@@ -4433,8 +4552,8 @@ packages:
     peerDependencies:
       rhachet: '>=1.0.0'
 
-  rhachet@1.39.9:
-    resolution: {integrity: sha512-KJAzGGIMLDXe5qnR9PcWE+zcP7Kl6rHrSalWf2POSIHsuAk8dhW6/VG+RUbi2wtkXUZthpHKWNXxFQeGn5msug==}
+  rhachet@1.41.15:
+    resolution: {integrity: sha512-SjRcS+nUtlVsX8rjK5gLviaLbDTnwuUF6HPP+jHfWWjCw76/nNHCjNd477ZSOWx34Sq40KFLa1mzqVOJ4ijBkQ==}
     engines: {node: '>=22.0.0'}
     hasBin: true
     peerDependencies:
@@ -5187,6 +5306,47 @@ snapshots:
       '@smithy/types': 4.14.2
       tslib: 2.8.1
 
+  '@aws-sdk/client-sso@3.1041.0':
+    dependencies:
+      '@aws-crypto/sha256-browser': 5.2.0
+      '@aws-crypto/sha256-js': 5.2.0
+      '@aws-sdk/core': 3.974.13
+      '@aws-sdk/middleware-host-header': 3.972.14
+      '@aws-sdk/middleware-logger': 3.972.13
+      '@aws-sdk/middleware-recursion-detection': 3.972.15
+      '@aws-sdk/middleware-user-agent': 3.972.43
+      '@aws-sdk/region-config-resolver': 3.972.17
+      '@aws-sdk/types': 3.973.9
+      '@aws-sdk/util-endpoints': 3.996.12
+      '@aws-sdk/util-user-agent-browser': 3.972.14
+      '@aws-sdk/util-user-agent-node': 3.973.29
+      '@smithy/config-resolver': 4.5.4
+      '@smithy/core': 3.24.4
+      '@smithy/fetch-http-handler': 5.4.4
+      '@smithy/hash-node': 4.3.4
+      '@smithy/invalid-dependency': 4.3.4
+      '@smithy/middleware-content-length': 4.3.4
+      '@smithy/middleware-endpoint': 4.5.4
+      '@smithy/middleware-retry': 4.6.4
+      '@smithy/middleware-serde': 4.3.4
+      '@smithy/middleware-stack': 4.3.4
+      '@smithy/node-config-provider': 4.4.4
+      '@smithy/node-http-handler': 4.7.4
+      '@smithy/protocol-http': 5.4.4
+      '@smithy/smithy-client': 4.13.4
+      '@smithy/types': 4.14.2
+      '@smithy/url-parser': 4.3.4
+      '@smithy/util-base64': 4.4.4
+      '@smithy/util-body-length-browser': 4.3.4
+      '@smithy/util-body-length-node': 4.3.4
+      '@smithy/util-defaults-mode-browser': 4.4.4
+      '@smithy/util-defaults-mode-node': 4.3.4
+      '@smithy/util-endpoints': 3.5.4
+      '@smithy/util-middleware': 4.3.4
+      '@smithy/util-retry': 4.4.4
+      '@smithy/util-utf8': 4.3.4
+      tslib: 2.8.1
+
   '@aws-sdk/core@3.974.13':
     dependencies:
       '@aws-sdk/types': 3.973.9
@@ -5314,10 +5474,25 @@ snapshots:
       '@smithy/types': 4.14.2
       tslib: 2.8.1
 
+  '@aws-sdk/middleware-host-header@3.972.14':
+    dependencies:
+      '@aws-sdk/core': 3.974.13
+      tslib: 2.8.1
+
   '@aws-sdk/middleware-location-constraint@3.972.11':
     dependencies:
       '@aws-sdk/types': 3.973.9
       '@smithy/types': 4.14.2
+      tslib: 2.8.1
+
+  '@aws-sdk/middleware-logger@3.972.13':
+    dependencies:
+      '@aws-sdk/core': 3.974.13
+      tslib: 2.8.1
+
+  '@aws-sdk/middleware-recursion-detection@3.972.15':
+    dependencies:
+      '@aws-sdk/core': 3.974.13
       tslib: 2.8.1
 
   '@aws-sdk/middleware-sdk-s3@3.972.42':
@@ -5336,6 +5511,11 @@ snapshots:
       '@smithy/types': 4.14.2
       tslib: 2.8.1
 
+  '@aws-sdk/middleware-user-agent@3.972.43':
+    dependencies:
+      '@aws-sdk/core': 3.974.13
+      tslib: 2.8.1
+
   '@aws-sdk/nested-clients@3.997.11':
     dependencies:
       '@aws-crypto/sha256-browser': 5.2.0
@@ -5347,6 +5527,11 @@ snapshots:
       '@smithy/fetch-http-handler': 5.4.4
       '@smithy/node-http-handler': 4.7.4
       '@smithy/types': 4.14.2
+      tslib: 2.8.1
+
+  '@aws-sdk/region-config-resolver@3.972.17':
+    dependencies:
+      '@aws-sdk/core': 3.974.13
       tslib: 2.8.1
 
   '@aws-sdk/signature-v4-multi-region@3.996.28':
@@ -5371,8 +5556,24 @@ snapshots:
       '@smithy/types': 4.14.2
       tslib: 2.8.1
 
+  '@aws-sdk/util-endpoints@3.996.12':
+    dependencies:
+      '@aws-sdk/core': 3.974.13
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
   '@aws-sdk/util-locate-window@3.965.5':
     dependencies:
+      tslib: 2.8.1
+
+  '@aws-sdk/util-user-agent-browser@3.972.14':
+    dependencies:
+      '@aws-sdk/core': 3.974.13
+      tslib: 2.8.1
+
+  '@aws-sdk/util-user-agent-node@3.973.29':
+    dependencies:
+      '@aws-sdk/core': 3.974.13
       tslib: 2.8.1
 
   '@aws-sdk/xml-builder@3.972.25':
@@ -6868,6 +7069,11 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 3.0.1
 
+  '@smithy/config-resolver@4.5.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
   '@smithy/core@3.24.4':
     dependencies:
       '@aws-crypto/crc32': 5.2.0
@@ -6886,8 +7092,48 @@ snapshots:
       '@smithy/types': 4.14.2
       tslib: 2.8.1
 
+  '@smithy/hash-node@4.3.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
+  '@smithy/invalid-dependency@4.3.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
   '@smithy/is-array-buffer@2.2.0':
     dependencies:
+      tslib: 2.8.1
+
+  '@smithy/middleware-content-length@4.3.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
+  '@smithy/middleware-endpoint@4.5.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
+  '@smithy/middleware-retry@4.6.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
+  '@smithy/middleware-serde@4.3.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
+  '@smithy/middleware-stack@4.3.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
+  '@smithy/node-config-provider@4.4.4':
+    dependencies:
+      '@smithy/core': 3.24.4
       tslib: 2.8.1
 
   '@smithy/node-http-handler@4.7.4':
@@ -6896,7 +7142,18 @@ snapshots:
       '@smithy/types': 4.14.2
       tslib: 2.8.1
 
+  '@smithy/protocol-http@5.4.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
   '@smithy/signature-v4@5.4.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      '@smithy/types': 4.14.2
+      tslib: 2.8.1
+
+  '@smithy/smithy-client@4.13.4':
     dependencies:
       '@smithy/core': 3.24.4
       '@smithy/types': 4.14.2
@@ -6906,14 +7163,64 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
+  '@smithy/url-parser@4.3.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
+  '@smithy/util-base64@4.4.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
+  '@smithy/util-body-length-browser@4.3.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
+  '@smithy/util-body-length-node@4.3.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
   '@smithy/util-buffer-from@2.2.0':
     dependencies:
       '@smithy/is-array-buffer': 2.2.0
       tslib: 2.8.1
 
+  '@smithy/util-defaults-mode-browser@4.4.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
+  '@smithy/util-defaults-mode-node@4.3.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
+  '@smithy/util-endpoints@3.5.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
+  '@smithy/util-middleware@4.3.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
+  '@smithy/util-retry@4.4.4':
+    dependencies:
+      '@smithy/core': 3.24.4
+      tslib: 2.8.1
+
   '@smithy/util-utf8@2.3.0':
     dependencies:
       '@smithy/util-buffer-from': 2.2.0
+      tslib: 2.8.1
+
+  '@smithy/util-utf8@4.3.4':
+    dependencies:
+      '@smithy/core': 3.24.4
       tslib: 2.8.1
 
   '@swc/core-darwin-arm64@1.15.3':
@@ -8086,8 +8393,8 @@ snapshots:
       domain-objects: 0.31.3
       helpful-errors: 1.5.3
       joi: 17.4.0
-      rhachet: 1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)
-      rhachet-roles-ehmpathy: 1.34.22(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))
+      rhachet: 1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)
+      rhachet-roles-ehmpathy: 1.35.8(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))
       type-fns: 1.21.0
       uuid-fns: 1.1.3
     transitivePeerDependencies:
@@ -9986,7 +10293,7 @@ snapshots:
       domain-objects: 0.31.9
       helpful-errors: 1.5.3
 
-  rhachet-brains-anthropic@0.4.0(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)):
+  rhachet-brains-anthropic@0.4.1(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)):
     dependencies:
       '@anthropic-ai/claude-agent-sdk': 0.1.76(zod@4.3.4)
       '@anthropic-ai/sdk': 0.71.2(zod@4.3.4)
@@ -9994,19 +10301,19 @@ snapshots:
       helpful-errors: 1.5.3
       iso-price: 1.1.1(domain-objects@0.31.9)
       iso-time: 1.11.1
-      rhachet: 1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)
+      rhachet: 1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)
       rhachet-artifact: 1.0.1
       rhachet-artifact-git: 1.1.5
       type-fns: 1.21.0
       zod: 4.3.4
 
-  rhachet-brains-xai@0.3.3(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)):
+  rhachet-brains-xai@0.3.3(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)):
     dependencies:
       domain-objects: 0.31.9
       helpful-errors: 1.5.3
       iso-price: 1.1.1(domain-objects@0.31.9)
       openai: 5.8.2(zod@4.3.4)
-      rhachet: 1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)
+      rhachet: 1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)
       rhachet-artifact: 1.0.1
       rhachet-artifact-git: 1.1.5
       type-fns: 1.21.0
@@ -10014,7 +10321,7 @@ snapshots:
     transitivePeerDependencies:
       - ws
 
-  rhachet-roles-bhrain@0.23.10(@types/node@22.15.21)(rhachet-brains-xai@0.3.3(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))):
+  rhachet-roles-bhrain@0.27.8(@types/node@22.15.21)(rhachet-brains-xai@0.3.3(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))):
     dependencies:
       '@ehmpathy/as-command': 1.0.3
       '@ehmpathy/uni-time': 1.8.1
@@ -10026,11 +10333,12 @@ snapshots:
       inquirer: 12.7.0(@types/node@22.15.21)
       iso-price: 1.1.1(domain-objects@0.31.9)
       iso-time: 1.11.1
+      js-yaml: 4.1.1
       npm: 11.7.0
       openai: 5.8.2(zod@4.3.4)
       rhachet-artifact: 1.0.0
       rhachet-artifact-git: 1.1.0
-      rhachet-brains-xai: 0.3.3(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))
+      rhachet-brains-xai: 0.3.3(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))
       serde-fns: 1.2.0
       simple-in-memory-cache: 0.4.0
       type-fns: 1.21.0
@@ -10044,14 +10352,14 @@ snapshots:
       - react-native-b4a
       - ws
 
-  rhachet-roles-bhuild@0.16.0(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(rhachet-brains-xai@0.3.3(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)))(rhachet-roles-bhrain@0.23.10(@types/node@22.15.21)(rhachet-brains-xai@0.3.3(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)))):
+  rhachet-roles-bhuild@0.21.11(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(rhachet-brains-xai@0.3.3(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)))(rhachet-roles-bhrain@0.27.8(@types/node@22.15.21)(rhachet-brains-xai@0.3.3(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)))):
     dependencies:
       domain-objects: 0.31.9
       emoji-space-shim: 0.0.0
-      helpful-errors: 1.5.3
+      helpful-errors: 1.7.3
       iso-time: 1.11.3
-      rhachet-brains-xai: 0.3.3(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))
-      rhachet-roles-bhrain: 0.23.10(@types/node@22.15.21)(rhachet-brains-xai@0.3.3(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)))
+      rhachet-brains-xai: 0.3.3(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))
+      rhachet-roles-bhrain: 0.27.8(@types/node@22.15.21)(rhachet-brains-xai@0.3.3(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)))
       test-fns: 1.15.0(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)
       zod: 4.3.4
     transitivePeerDependencies:
@@ -10060,7 +10368,7 @@ snapshots:
       - '@types/node'
       - ws
 
-  rhachet-roles-ehmpathy@1.34.22(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)):
+  rhachet-roles-ehmpathy@1.35.8(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)):
     dependencies:
       '@atjsh/llmlingua-2': 2.0.3(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(js-tiktoken@1.0.21)
       '@ehmpathy/as-command': 1.0.3
@@ -10074,7 +10382,8 @@ snapshots:
       openai: 5.8.2(zod@4.3.4)
       rhachet-artifact: 1.0.0
       rhachet-artifact-git: 1.1.0
-      rhachet-brains-xai: 0.3.3(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))
+      rhachet-brains-xai: 0.3.3(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))
+      rhachet-roles-rhachet: 0.1.7(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))
       serde-fns: 1.2.0
       simple-in-memory-cache: 0.4.0
       simple-on-disk-cache: 1.7.3
@@ -10090,12 +10399,13 @@ snapshots:
       - rhachet
       - ws
 
-  rhachet-roles-rhachet@0.1.7(rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)):
+  rhachet-roles-rhachet@0.1.7(rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)):
     dependencies:
-      rhachet: 1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)
+      rhachet: 1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4)
 
-  rhachet@1.39.9(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4):
+  rhachet@1.41.15(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4):
     dependencies:
+      '@aws-sdk/client-sso': 3.1041.0
       '@noble/curves': 2.0.1
       '@noble/hashes': 2.0.1
       '@octokit/auth-app': 8.2.0
@@ -10115,6 +10425,7 @@ snapshots:
       iso-price: 1.1.1(domain-objects@0.31.9)
       iso-time: 1.11.4
       js-tiktoken: 1.0.18
+      picomatch: 4.0.4
       rhachet-artifact: 1.0.3
       rhachet-artifact-git: 1.1.5
       serde-fns: 1.3.1
