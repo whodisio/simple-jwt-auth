@@ -35,7 +35,7 @@ export const getProviders = async (): Promise<DeclastructProvider[]> => [
 export const getResources = async (): Promise<DomainEntity<any>[]> => {
   // declare the repo
   const repo = DeclaredGithubRepo.as({
-    owner: 'whodis',
+    owner: 'whodisio',
     name: 'simple-jwt-auth',
     description: pkg.description ?? null,
     visibility: 'public',
