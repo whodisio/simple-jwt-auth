@@ -3,7 +3,7 @@
   "name": "simple-jwt-auth",
   "author": "whodis",
   "description": "A simple, convenient, and safe interface for interacting with JSON Web Tokens (JWTs) for authentication and authorization",
-  "version": "0.11.1",
+  "version": "0.11.2",
   "repository": "whodis/simple-jwt-auth",
   "homepage": "https://github.com/whodis/simple-jwt-auth",
   "keywords": [
