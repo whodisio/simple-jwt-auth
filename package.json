@@ -4,8 +4,8 @@
   "author": "whodis",
   "description": "A simple, convenient, and safe interface for interacting with JSON Web Tokens (JWTs) for authentication and authorization",
   "version": "0.11.2",
-  "repository": "whodis/simple-jwt-auth",
-  "homepage": "https://github.com/whodis/simple-jwt-auth",
+  "repository": "whodisio/simple-jwt-auth",
+  "homepage": "https://github.com/whodisio/simple-jwt-auth",
   "keywords": [
     "jwt",
     "json web token",
@@ -22,7 +22,7 @@
     "oidc",
     "token"
   ],
-  "bugs": "https://github.com/whodis/simple-jwt-auth/issues",
+  "bugs": "https://github.com/whodisio/simple-jwt-auth/issues",
   "files": [
     "/dist"
   ],
