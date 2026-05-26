@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "incremental": false
+  },
+  "include": [
+    "src/**/*.ts",
+    "nontyped_modules/**/*.d.ts"
+  ],
+  "exclude": [
+    "**/*.test.ts", // all explicitly .test files are dev only assets too
+    "**/*.test.js",
+    "**/.test/**/*",
+    "**/.scratch/**/*",
+    "**/__test*__/**/*" // todo: deprecate this pattern in favor of .test
+  ]
+}

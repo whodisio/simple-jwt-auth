@@ -1,5 +1,5 @@
-import { getError } from '@ehmpathy/error-fns';
 import axios from 'axios';
+import { getError } from 'helpful-errors';
 import { given, then, when } from 'test-fns';
 
 import {

@@ -1,9 +1,9 @@
-import { UnexpectedCodePathError } from '@ehmpathy/error-fns';
+import { UnexpectedCodePathError } from 'helpful-errors';
 
 import { importCrypto } from './importCrypto';
-import { AsymmetricSigningAlgorithm } from './isAsymmetricSigningAlgorithm';
+import type { AsymmetricSigningAlgorithm } from './isAsymmetricSigningAlgorithm';
 import {
-  EllipticSigningAlgorithm,
+  type EllipticSigningAlgorithm,
   isEllipticSigningAlgorithm,
 } from './isEllipticSigningAlgorithm';
 

@@ -1,8 +1,9 @@
-import { getUnauthedClaims } from '../getUnauthedClaims';
-import { fromUnixTime, isBefore, isExpiredToken } from '../isExpiredToken';
+import { getUnauthedClaims } from '@src/getUnauthedClaims';
+import { fromUnixTime, isBefore, isExpiredToken } from '@src/isExpiredToken';
+
 import { JwtVerificationError } from './JwtVerificationError';
 
-export const verifyTokenTimestamps = ({ token }: { token: string }) => {
+export const verifyTokenTimestamps = ({ token }: { token: string }): void => {
   const unauthedClaims = getUnauthedClaims({ token });
   const now = new Date();
 

@@ -1,6 +1,7 @@
-import { SimpleJwtAuthError } from '../SimpleJwtAuthError';
-import { getUnauthedClaims } from '../getUnauthedClaims';
-import { getUnauthedHeaderClaims } from '../getUnauthedHeaderClaims';
+import { getUnauthedClaims } from '@src/getUnauthedClaims';
+import { getUnauthedHeaderClaims } from '@src/getUnauthedHeaderClaims';
+import { SimpleJwtAuthError } from '@src/SimpleJwtAuthError';
+
 import { discoverJwksUriFromAuthServerMetadata } from './discoverJwksUriFromAuthServerMetadata';
 import { extractPublicKeyFromJwksUri } from './extractPublicKeyFromJwksUri';
 import { cachePublicKey, getPublicKeyFromCache } from './publicKeyCache';

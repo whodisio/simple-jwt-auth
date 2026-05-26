@@ -1,8 +1,9 @@
-import { redactSignature } from '../redactSignature';
+import { redactSignature } from '@src/redactSignature';
+
+import { getTokenFromAuthorizationCookieWithCSRFProtection } from './getTokenFromAuthorizationCookieWithCSRFProtection';
 import { PotentialCSRFAttackError } from './PotentialCSRFAttackError';
 import { PotentialCSRFVulnerabilityError } from './PotentialCSRFVulnerabilityError';
 import { PotentialXSSVulnerabilityError } from './PotentialXSSVulnerabilityError';
-import { getTokenFromAuthorizationCookieWithCSRFProtection } from './getTokenFromAuthorizationCookieWithCSRFProtection';
 
 const exampleToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmNWY3N2JjMC1iZTkwLTRmNGEtYmUyNS0wMThjYjUwZjBmMGEiLCJzdWIiOiIxMjM0NTY3ODkwIiwiYXVkIjoiaHR0cHM6Ly9hcGkud2hvZGlzLmlvIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.M_-_WjXeURe5M7JplujTq2Bl1V-MTm-Gxy9-DN4Qr8Q`;
 const exampleAntiCSRFToken = redactSignature({ token: exampleToken });

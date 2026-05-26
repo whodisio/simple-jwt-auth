@@ -1,5 +1,6 @@
-import { getUnauthedHeaderClaims } from '../getUnauthedHeaderClaims';
-import { isAsymmetricSigningAlgorithm } from '../signingAlgorithm/isAsymmetricSigningAlgorithm';
+import { getUnauthedHeaderClaims } from '@src/getUnauthedHeaderClaims';
+import { isAsymmetricSigningAlgorithm } from '@src/signingAlgorithm/isAsymmetricSigningAlgorithm';
+
 import { JwtVerificationError } from './JwtVerificationError';
 
 /**

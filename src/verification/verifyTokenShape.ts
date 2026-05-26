@@ -1,4 +1,5 @@
-import { isJSONWebToken } from '../isJSONWebToken';
+import { isJSONWebToken } from '@src/isJSONWebToken';
+
 import { JwtVerificationError } from './JwtVerificationError';
 
 /**

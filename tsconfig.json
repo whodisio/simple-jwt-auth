@@ -1,10 +1,13 @@
 {
-  "extends": "@tsconfig/node-lts-strictest/tsconfig.json",
+  "extends": [
+    "@tsconfig/strictest/tsconfig.json",
+    "@tsconfig/node20/tsconfig.json"
+  ],
   "compilerOptions": {
     "importsNotUsedAsValues": "remove",
     "noPropertyAccessFromIndexSignature": false,
-    "noUnusedLocals": false, // this is something a linter should warn on, not something a compiler should fail on
-    "noUnusedParameters": false, // this is something a linter should warn on, not something a compiler should fail on
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "noImplicitOverride": false,
     "resolveJsonModule": true,
     "useUnknownInCatchVariables": false,
@@ -12,7 +15,19 @@
     "declaration": true,
     "sourceMap": true,
     "outDir": "dist",
-    "target": "es6",
+    "target": "es2020",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "*"
+      ],
+      "@src/*": [
+        "src/*"
+      ]
+    },
+    "incremental": true,
+    "module": "node16",
+    "moduleResolution": "node16"
   },
   "include": [
     "**/*.ts"
@@ -20,6 +35,6 @@
   "exclude": [
     "dist",
     "coverage",
-    "node_modules",
+    "node_modules"
   ]
 }

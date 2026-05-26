@@ -1,4 +1,4 @@
-import { fromUrl, parseDomain, ParseResultType } from 'parse-domain';
+import { fromUrl, ParseResultType, parseDomain } from 'parse-domain';
 
 /**
  * check whether two URI's are from the same "site" (i.e., domain / hostname)
@@ -10,7 +10,7 @@ import { fromUrl, parseDomain, ParseResultType } from 'parse-domain';
  *
  * NOTE: this function is designed to lean false negative - and be conservative with what it says the same sites are
  */
-export const isSameSite = (uriA: string, uriB: string) => {
+export const isSameSite = (uriA: string, uriB: string): boolean => {
   // extract the domains from the two uris (https://nodejs.org/api/url.html#url_the_whatwg_url_api)
   const domainsOfA = parseDomain(fromUrl(uriA));
   if (domainsOfA.type !== ParseResultType.Listed) return false; // if the domain is not listed, we can't get enough info about it to confirm

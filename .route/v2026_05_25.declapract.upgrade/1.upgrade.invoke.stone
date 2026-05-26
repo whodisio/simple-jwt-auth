@@ -1,0 +1,27 @@
+# 1.upgrade.invoke
+
+## purpose
+
+run the declapract upgrade and document any infrastructure defects.
+
+## instructions
+
+run the upgrade via skill:
+
+```sh
+rhx declapract.upgrade exec
+```
+
+## on failure
+
+if the upgrade fails, document the defect in `1.upgrade.invoke.v1.i1.md` with:
+- what failed
+- error message
+- root cause (if identifiable)
+- handoff instructions for infrastructure team
+
+## on success
+
+emit `1.upgrade.invoke.v1.i1.md` with:
+- confirmation that upgrade completed
+- any warnings or notes

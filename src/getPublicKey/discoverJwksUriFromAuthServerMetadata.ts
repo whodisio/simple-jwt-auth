@@ -1,8 +1,9 @@
+import type { AxiosResponse } from 'axios';
 import axios from 'axios';
 import jwkToPem from 'jwk-to-pem';
 
-import { SimpleJwtAuthError } from '../SimpleJwtAuthError';
-import { MinimalTokenClaims } from '../getUnauthedClaims';
+import type { MinimalTokenClaims } from '@src/getUnauthedClaims';
+import { SimpleJwtAuthError } from '@src/SimpleJwtAuthError';
 
 export class DiscoverJwksUriFromAuthServerMetadataError extends SimpleJwtAuthError {
   constructor({ reason }: { reason: string }) {
@@ -15,7 +16,9 @@ Can not discover jwks uri from auth server metadata.
   }
 }
 
-export const getOrThrowStandardError = async (uri: string) => {
+export const getOrThrowStandardError = async (
+  uri: string,
+): Promise<AxiosResponse> => {
   try {
     return await axios.get(uri);
   } catch (error) {
@@ -25,7 +28,7 @@ export const getOrThrowStandardError = async (uri: string) => {
   }
 };
 
-export const jwkToPemOrThrowStandardError = (jwk: any) => {
+export const jwkToPemOrThrowStandardError = (jwk: jwkToPem.JWK): string => {
   try {
     return jwkToPem(jwk);
   } catch (error) {
@@ -39,7 +42,7 @@ export const discoverJwksUriFromAuthServerMetadata = async ({
   claims,
 }: {
   claims: MinimalTokenClaims;
-}) => {
+}): Promise<string> => {
   const issuer = claims.iss;
 
   // check that issuer defines an http(s) host

@@ -1,6 +1,8 @@
 import { createCache } from 'simple-in-memory-cache';
 
-const publicKeyCache = createCache({ defaultSecondsUntilExpiration: 5 * 60 }); // cache public keys for up to 5 min
+const publicKeyCache: ReturnType<typeof createCache> = createCache({
+  defaultSecondsUntilExpiration: 5 * 60,
+}); // cache public keys for up to 5 min
 
 export const cachePublicKey = ({
   issuer,
@@ -12,7 +14,7 @@ export const cachePublicKey = ({
   keyId: string;
   publicKey: string;
   ttlInSeconds?: number;
-}) =>
+}): void =>
   publicKeyCache.set(`${issuer}:${keyId}`, publicKey, {
     secondsUntilExpiration: ttlInSeconds,
   });
@@ -23,4 +25,4 @@ export const getPublicKeyFromCache = ({
 }: {
   issuer: string;
   keyId: string;
-}) => publicKeyCache.get(`${issuer}:${keyId}`);
+}): string | undefined => publicKeyCache.get(`${issuer}:${keyId}`);

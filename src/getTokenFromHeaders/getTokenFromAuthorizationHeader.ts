@@ -1,4 +1,4 @@
-import { isJSONWebToken } from '../isJSONWebToken';
+import { isJSONWebToken } from '@src/isJSONWebToken';
 
 export const getTokenFromAuthorizationHeader = ({
   headers,

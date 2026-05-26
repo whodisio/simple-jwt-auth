@@ -1,0 +1,7 @@
+org: whodisio
+extends:
+  - .agent/repo=bhrain/role=reviewer/keyrack.yml
+  - .agent/repo=ehmpathy/role=mechanic/keyrack.yml
+env.prod: null
+env.prep: null
+env.test: null

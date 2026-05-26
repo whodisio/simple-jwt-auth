@@ -1,7 +1,7 @@
-import { SimpleJwtAuthError } from './SimpleJwtAuthError';
 import { getPublicKey } from './getPublicKey/getPublicKey';
 import { getSignedClaims } from './getSignedClaims';
-import { MinimalTokenClaims } from './getUnauthedClaims';
+import type { MinimalTokenClaims } from './getUnauthedClaims';
+import { SimpleJwtAuthError } from './SimpleJwtAuthError';
 import { verifyTokenIntent } from './verification/verifyTokenIntent';
 import { verifyTokenShape } from './verification/verifyTokenShape';
 import { verifyTokenTimestamps } from './verification/verifyTokenTimestamps';

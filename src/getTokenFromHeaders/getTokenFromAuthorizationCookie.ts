@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { isJSONWebToken } from '../isJSONWebToken';
+import { isJSONWebToken } from '@src/isJSONWebToken';
 
 export const getTokenFromAuthorizationCookie = ({
   headers,

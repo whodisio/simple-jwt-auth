@@ -1,5 +1,5 @@
-import { SimpleJwtAuthError } from './SimpleJwtAuthError';
 import { createSecureDistributedAuthToken } from './createSecureDistributedAuthToken';
+import { SimpleJwtAuthError } from './SimpleJwtAuthError';
 
 describe('createSecureDistributedAuthToken', () => {
   it('should require an asymmetric signing algorithm, since this is for distributed auth systems', async () => {
