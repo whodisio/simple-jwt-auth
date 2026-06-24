@@ -1,13 +1,13 @@
+import { given, then, when } from 'test-fns';
+import { v4 as uuid } from 'uuid';
+
 import { mkdirSync, rmSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { given, then, when } from 'test-fns';
-import { getUuid } from 'uuid-fns';
-
 describe('contract', () => {
   given('[case1] consumer imports from simple-jwt-auth', () => {
-    const tempDir = join(tmpdir(), `simple-jwt-auth-test-${getUuid()}`);
+    const tempDir = join(tmpdir(), `simple-jwt-auth-test-${uuid()}`);
     const nodeModulesDir = join(tempDir, 'node_modules');
     const packageLink = join(nodeModulesDir, 'simple-jwt-auth');
     const gitRoot = join(__dirname, '..');

@@ -1,4 +1,5 @@
 ignores:
+  - simple-jwt-auth # self-link for acceptance test
   - depcheck
   - declapract
   - declapract-typescript-ehmpathy
