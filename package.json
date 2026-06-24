@@ -27,8 +27,7 @@
     "/dist"
   ],
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/index.js",
   "sideEffects": false,
   "engines": {
     "node": ">=8.0.0"
@@ -87,6 +86,7 @@
     "uuid": "9.0.0"
   },
   "devDependencies": {
+    "simple-jwt-auth": "link:.",
     "@biomejs/biome": "2.3.8",
     "@commitlint/cli": "19.5.0",
     "@commitlint/config-conventional": "19.5.0",
@@ -113,12 +113,12 @@
     "husky": "8.0.3",
     "jest": "30.2.0",
     "prettier": "2.8.1",
-    "rhachet": "1.41.15",
+    "rhachet": "1.42.2",
     "rhachet-brains-anthropic": "0.4.1",
     "rhachet-brains-xai": "0.3.3",
-    "rhachet-roles-bhrain": "0.27.8",
-    "rhachet-roles-bhuild": "0.21.11",
-    "rhachet-roles-ehmpathy": "1.35.8",
+    "rhachet-roles-bhrain": "0.29.10",
+    "rhachet-roles-bhuild": "0.21.18",
+    "rhachet-roles-ehmpathy": "1.36.0",
     "rhachet-roles-rhachet": "^0.1.7",
     "test-fns": "1.15.8",
     "ts-jest": "29.0.3",
