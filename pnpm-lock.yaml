@@ -138,6 +138,9 @@ importers:
       rhachet-roles-rhachet:
         specifier: ^0.1.7
         version: 0.1.7(rhachet@1.42.2(@huggingface/transformers@4.2.0)(@tensorflow/tfjs@4.22.0(seedrandom@3.0.5))(@types/node@22.15.21)(zod@4.3.4))
+      simple-jwt-auth:
+        specifier: link:.
+        version: 'link:'
       test-fns:
         specifier: 1.15.8
         version: 1.15.8
