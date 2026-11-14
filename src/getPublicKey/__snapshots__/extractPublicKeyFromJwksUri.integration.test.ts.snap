@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`extractPublicKeyFromJwksUri given: a real google jwks uri when: called with a kid the jwks does not list then: it fails loud, with the error class that marks an absent key id 1`] = `
+"Could not find a JSON Web Key (JWK) with the KeyId specified by the token (\`token.header.kid\`) in the JSON Web Key Set (JWKS) specified by the Auth Server Metadata
+
+Can not extract public key from jwks uri."
+`;

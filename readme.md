@@ -108,6 +108,8 @@ const token = createSecureDistributedAuthToken({
 });
 ```
 
+The private key's type must fit the `alg`: an `RS*` alg needs an rsa key, an `ES*` alg an ec key. A mismatch throws `SimpleJwtAuthError`, since node would otherwise pick the sign mechanism from the key and emit a token whose `alg` header does not match its signature.
+
 # Docs
 
 ### `fn:getAuthedClaims({ token: string, issuer: string, audience: string | string[] })`

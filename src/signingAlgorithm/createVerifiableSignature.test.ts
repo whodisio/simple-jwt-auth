@@ -4,6 +4,7 @@ import {
   exampleEccKeyPair,
   exampleRsaKeyPair,
 } from '@src/.test/assets/exampleKeyPairs';
+import { SimpleJwtAuthError } from '@src/SimpleJwtAuthError';
 
 import { createVerifiableSignature } from './createVerifiableSignature';
 import type { AsymmetricSigningAlgorithm } from './isAsymmetricSigningAlgorithm';
@@ -38,8 +39,7 @@ describe('createVerifiableSignature', () => {
     });
 
     when('provided an ecc key', () => {
-      // TODO: add additional safety by throwing an error if wrong key type is given
-      then.skip('throw an error', async () => {
+      then('throw an error', () => {
         const error = getError(() =>
           createVerifiableSignature({
             alg,
@@ -47,7 +47,11 @@ describe('createVerifiableSignature', () => {
             privateKey: exampleEccKeyPair.privateKey,
           }),
         );
-        expect(error.message).toContain('todo');
+        expect(error).toBeInstanceOf(SimpleJwtAuthError);
+        expect(error.message).toContain(
+          "private key type 'ec' does not fit alg 'RS256'",
+        );
+        expect(error.message).toMatchSnapshot();
       });
     });
   });
@@ -78,8 +82,7 @@ describe('createVerifiableSignature', () => {
     });
 
     when('provided an rsa key', () => {
-      // TODO: add additional safety by throwing an error if wrong key type is given
-      then.skip('throw an error', async () => {
+      then('throw an error', () => {
         const error = getError(() =>
           createVerifiableSignature({
             alg,
@@ -87,7 +90,11 @@ describe('createVerifiableSignature', () => {
             privateKey: exampleRsaKeyPair.privateKey,
           }),
         );
-        expect(error.message).toContain('todo');
+        expect(error).toBeInstanceOf(SimpleJwtAuthError);
+        expect(error.message).toContain(
+          "private key type 'rsa' does not fit alg 'ES256'",
+        );
+        expect(error.message).toMatchSnapshot();
       });
     });
   });
