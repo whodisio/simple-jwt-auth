@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`unauthed given: [case1] the built subpath entry, as \`simple-jwt-auth/unauthed\` finds it when: [t0] its static require graph is walked then: it reaches buffer, via base64 decode only 1`] = `
+[
+  {
+    "chain": [
+      "dist/unauthed.js",
+      "dist/getUnauthedClaims.js",
+      "dist/base64Url/base64UrlDecode.js",
+      "buffer",
+    ],
+    "dep": "buffer",
+    "issuer": "dist/base64Url/base64UrlDecode.js",
+    "request": "buffer",
+  },
+]
+`;
+
+exports[`unauthed given: [case2] a consumer requires simple-jwt-auth/unauthed when: [t0] the subpath and the root are both loaded then: the root still exports every prior name 1`] = `
+[
+  "DiscoverJwksUriFromAuthServerMetadataError",
+  "ExtractPublicKeyFromJwksUriError",
+  "GetPublicKeyOfTokenError",
+  "JwtVerificationError",
+  "PotentialCSRFAttackError",
+  "PotentialCSRFVulnerabilityError",
+  "PotentialXSSVulnerabilityError",
+  "SimpleJwtAuthError",
+  "createSecureDistributedAuthToken",
+  "createSigningKeyPair",
+  "getAuthedClaims",
+  "getPublicKey",
+  "getSignedClaims",
+  "getTokenFromAuthorizationCookie",
+  "getTokenFromHeaders",
+  "getUnauthedClaims",
+  "getUnauthedHeaderClaims",
+  "isExpiredToken",
+  "isJSONWebToken",
+  "isRedactedSignatureToken",
+  "isSameSite",
+  "redactSignature",
+]
+`;
+
+exports[`unauthed given: [case2] a consumer requires simple-jwt-auth/unauthed when: [t0] the subpath and the root are both loaded then: the subpath exposes the five decode-side names 1`] = `
+[
+  "SimpleJwtAuthError",
+  "getUnauthedClaims",
+  "getUnauthedHeaderClaims",
+  "isJSONWebToken",
+  "redactSignature",
+]
+`;
+
+exports[`unauthed given: [case2] a consumer requires simple-jwt-auth/unauthed when: [t1] a wellformed token is decoded then: it returns the body and header claims 1`] = `
+{
+  "claims": {
+    "aud": "b2f2e7a0-0000-4000-8000-000000000000",
+    "exp": 1893456000,
+    "iss": "https://auth.example.com",
+    "sub": "c3a3f8b1-0000-4000-8000-000000000000",
+  },
+  "header": {
+    "alg": "RS256",
+    "typ": "JWT",
+  },
+  "isJSONWebToken": true,
+}
+`;
+
+exports[`unauthed given: [case2] a consumer requires simple-jwt-auth/unauthed when: [t2] a token is redacted twice then: the second redact returns the first result unchanged 1`] = `"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2F1dGguZXhhbXBsZS5jb20iLCJhdWQiOiJiMmYyZTdhMC0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDAwMDAiLCJzdWIiOiJjM2EzZjhiMS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDAwMDAiLCJleHAiOjE4OTM0NTYwMDB9.__REDACTED__"`;
+
+exports[`unauthed given: [case2] a consumer requires simple-jwt-auth/unauthed when: [t3] a wrong-shape or absent token is decoded then: each error names its cause, per op and per token 1`] = `
+[
+  {
+    "getUnauthedClaims": {
+      "message": "token does not match shape of a JWT",
+      "name": "SimpleJwtAuthError",
+    },
+    "getUnauthedHeaderClaims": {
+      "message": "token does not match shape of a JWT",
+      "name": "SimpleJwtAuthError",
+    },
+    "isJSONWebToken": false,
+    "redactSignature": {
+      "message": "token does not match shape of a JWT",
+      "name": "SimpleJwtAuthError",
+    },
+    "token": "not-a-jwt",
+  },
+  {
+    "getUnauthedClaims": {
+      "message": "token does not match shape of a JWT",
+      "name": "SimpleJwtAuthError",
+    },
+    "getUnauthedHeaderClaims": {
+      "message": "token does not match shape of a JWT",
+      "name": "SimpleJwtAuthError",
+    },
+    "isJSONWebToken": false,
+    "redactSignature": {
+      "message": "token does not match shape of a JWT",
+      "name": "SimpleJwtAuthError",
+    },
+    "token": "",
+  },
+  {
+    "getUnauthedClaims": {
+      "message": "token does not match shape of a JWT",
+      "name": "SimpleJwtAuthError",
+    },
+    "getUnauthedHeaderClaims": {
+      "message": "token does not match shape of a JWT",
+      "name": "SimpleJwtAuthError",
+    },
+    "isJSONWebToken": false,
+    "redactSignature": {
+      "message": "token does not match shape of a JWT",
+      "name": "SimpleJwtAuthError",
+    },
+    "token": "(absent)",
+  },
+]
+`;
+
+exports[`unauthed given: [case2] a consumer requires simple-jwt-auth/unauthed when: [t4] a jwt-shaped token whose parts do not parse is decoded then: each decode op throws a raw SyntaxError, as on the root 1`] = `
+{
+  "getUnauthedClaims": {
+    "message": "<engine JSON.parse message>",
+    "name": "SyntaxError",
+  },
+  "getUnauthedHeaderClaims": {
+    "message": "<engine JSON.parse message>",
+    "name": "SyntaxError",
+  },
+  "isJSONWebToken": true,
+  "token": "a.b.c",
+}
+`;
+
+exports[`unauthed given: [case2] a consumer requires simple-jwt-auth/unauthed when: [t4] a jwt-shaped token whose parts do not parse is decoded then: redact does not parse, so it redacts 1`] = `"a.b.__REDACTED__"`;

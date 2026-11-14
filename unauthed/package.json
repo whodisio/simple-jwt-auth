@@ -1,0 +1,4 @@
+{
+  "main": "../dist/unauthed.js",
+  "types": "../dist/unauthed.d.ts"
+}
