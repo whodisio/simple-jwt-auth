@@ -24,7 +24,8 @@
   ],
   "bugs": "https://github.com/whodisio/simple-jwt-auth/issues",
   "files": [
-    "/dist"
+    "/dist",
+    "/unauthed"
   ],
   "license": "MIT",
   "main": "dist/index.js",

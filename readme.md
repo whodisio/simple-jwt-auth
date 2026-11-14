@@ -84,11 +84,34 @@ Alternatively, tokens may also be passed through an `Authorization` cookie, in t
 This simply decodes the body of the token and returns the claims, without checking anything. Useful for insecure environments (e.g., client side) where you cant trust data anyway - and debugging.
 
 ```ts
-import { getUnauthedClaims } from 'simple-jwt-auth';
+import { getUnauthedClaims } from 'simple-jwt-auth'; // in a browser bundle, import from 'simple-jwt-auth/unauthed' (see below)
 const claims = getUnauthedClaims({
   token: 'eyJhbGciOiJSUzI1NiIsInR...', // a jwt
 });
 ```
+
+### In the browser, import from `simple-jwt-auth/unauthed`
+
+The `simple-jwt-auth/unauthed` entry holds only the decode-side api, so a browser bundle ships none of the signature deps (jwk-to-pem, elliptic, asn1.js, axios, parse-domain, crypto).
+
+```ts
+import {
+  getUnauthedClaims,
+  getUnauthedHeaderClaims,
+  redactSignature,
+  isJSONWebToken,
+  SimpleJwtAuthError,
+} from 'simple-jwt-auth/unauthed';
+```
+
+- the root `simple-jwt-auth` still exports every op, these five included; servers need not change
+- both entries share one `SimpleJwtAuthError` class, so `instanceof` holds across them
+- a token that is not jwt-shaped throws `SimpleJwtAuthError`. a jwt-shaped token whose parts do not parse as json (e.g. `a.b.c`) throws the engine's raw `SyntaxError` from `getUnauthedClaims` and `getUnauthedHeaderClaims`, on both entries; catch both, or check `isJSONWebToken` and parse in a try
+- the subpath loads via node `require`, bundles for the browser with no signature-side package, and compiles from cjs-format files under ts `moduleResolution` `node10`, `node16`, `nodenext`, and `bundler`; this package's tests prove each one against the packed tarball
+- it is a plain `unauthed/package.json` stub with a `main` field, the classic directory lookup; node, tsc, and esbuild are proven to follow it
+- node's own esm loader (a `.mjs` file, or a `"type": "module"` package run by node, not by a bundler) cannot import it: node refuses a directory import (`ERR_UNSUPPORTED_DIR_IMPORT`). tsc does not catch this: an esm-format file (`.mts`) under nodenext compiles against the subpath, then fails at runtime. import the root there
+- `isExpiredToken` and `isRedactedSignatureToken` stay on the root only, so the subpath reports `has no exported member` for them; an import of either from `simple-jwt-auth` pulls the full root graph into the bundle
+- import from the subpath, not from `simple-jwt-auth/dist/*`: the `dist` layout is internal and may move
 
 ### Create a secure distributed auth token
 
