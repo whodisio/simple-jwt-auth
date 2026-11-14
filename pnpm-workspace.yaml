@@ -1,0 +1,2 @@
+patchedDependencies:
+  rhachet-roles-ehmpathy@1.41.0: patches/rhachet-roles-ehmpathy@1.41.0.patch

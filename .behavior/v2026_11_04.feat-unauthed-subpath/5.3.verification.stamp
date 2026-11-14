@@ -1,0 +1,92 @@
+🦉 the way speaks for itself
+
+🗿 route.stone.set
+   ├─ stone = 5.3.verification
+   ├─ passage = allowed
+   ├─ guard
+   │  ├─ artifacts
+   │  │   ├─ $route/5.3.verification.yield.md
+   │  │   └─ src/**/*
+   │  ├─ reviews
+   │  │   ├─ r1: repo-rules (l1, 3/3)
+   │  │   │   ├─ approved, cached
+   │  │   │   ├─ 0 blockers ✓
+   │  │   │   ├─ 0 nitpicks ✓
+   │  │   │   ├─ given: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i003.9e2cd1c68c34db3844.r001._.given.by_peer.repo-rules.md
+   │  │   │   └─ taken: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i003.9e2cd1c68c34db3844.r001._.taken.by_self.repo-rules.md
+   │  │   ├─ r2: ergo-contract-snapshots (l1, 3/3)
+   │  │   │   ├─ exhausted 🌙, cached
+   │  │   │   ├─ terminal — does not block higher levels
+   │  │   │   ├─ 1 blocker 🔴
+   │  │   │   ├─ 0 nitpicks ✓
+   │  │   │   ├─ given: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i003.9e2cd1c68c34db3844.r002._.given.by_peer.ergo-contract-snapshots.md
+   │  │   │   └─ taken: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i003.9e2cd1c68c34db3844.r002._.taken.by_self.ergo-contract-snapshots.md
+   │  │   ├─ r3: mech-external-contracts (l1, 3/3)
+   │  │   │   ├─ approved, cached
+   │  │   │   ├─ 0 blockers ✓
+   │  │   │   ├─ 0 nitpicks ✓
+   │  │   │   ├─ given: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i003.9e2cd1c68c34db3844.r003._.given.by_peer.mech-external-contracts.md
+   │  │   │   └─ taken: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i003.9e2cd1c68c34db3844.r003._.taken.by_self.mech-external-contracts.md
+   │  │   ├─ r4: ergo-acceptance-journey-coverage (l1, 3/3)
+   │  │   │   ├─ exhausted 🌙, cached
+   │  │   │   ├─ terminal — does not block higher levels
+   │  │   │   ├─ 1 blocker 🔴
+   │  │   │   ├─ 1 nitpick 🟠
+   │  │   │   ├─ given: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i003.9e2cd1c68c34db3844.r004._.given.by_peer.ergo-acceptance-journey-coverage.md
+   │  │   │   └─ taken: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i003.9e2cd1c68c34db3844.r004._.taken.by_self.ergo-acceptance-journey-coverage.md
+   │  │   ├─ r5: behavior-experience-coverage (l1, 3/3)
+   │  │   │   ├─ approved, cached
+   │  │   │   ├─ 0 blockers ✓
+   │  │   │   ├─ 0 nitpicks ✓
+   │  │   │   ├─ given: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i003.9e2cd1c68c34db3844.r005._.given.by_peer.behavior-experience-coverage.md
+   │  │   │   └─ taken: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i003.9e2cd1c68c34db3844.r005._.taken.by_self.behavior-experience-coverage.md
+   │  │   ├─ r6: ergo-snapshot-visual-blemishes (l1, 3/3)
+   │  │   │   ├─ approved, cached
+   │  │   │   ├─ 0 blockers ✓
+   │  │   │   ├─ 0 nitpicks ✓
+   │  │   │   ├─ given: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i003.9e2cd1c68c34db3844.r006._.given.by_peer.ergo-snapshot-visual-blemishes.md
+   │  │   │   └─ taken: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i003.9e2cd1c68c34db3844.r006._.taken.by_self.ergo-snapshot-visual-blemishes.md
+   │  │   ├─ r7: mech-given-when-then (l1, 3/3)
+   │  │   │   ├─ approved, cached
+   │  │   │   ├─ 0 blockers ✓
+   │  │   │   ├─ 0 nitpicks ✓
+   │  │   │   ├─ given: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i003.9e2cd1c68c34db3844.r007._.given.by_peer.mech-given-when-then.md
+   │  │   │   └─ taken: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i003.9e2cd1c68c34db3844.r007._.taken.by_self.mech-given-when-then.md
+   │  │   ├─ r8: mech-test-intent (l1, 3/3)
+   │  │   │   ├─ approved, cached
+   │  │   │   ├─ 0 blockers ✓
+   │  │   │   ├─ 0 nitpicks ✓
+   │  │   │   ├─ given: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i003.9e2cd1c68c34db3844.r008._.given.by_peer.mech-test-intent.md
+   │  │   │   └─ taken: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i003.9e2cd1c68c34db3844.r008._.taken.by_self.mech-test-intent.md
+   │  │   ├─ r9: mech-test-scope-purity (l1, 3/3)
+   │  │   │   ├─ approved, cached
+   │  │   │   ├─ 0 blockers ✓
+   │  │   │   ├─ 0 nitpicks ✓
+   │  │   │   ├─ given: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i003.9e2cd1c68c34db3844.r009._.given.by_peer.mech-test-scope-purity.md
+   │  │   │   └─ taken: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i003.9e2cd1c68c34db3844.r009._.taken.by_self.mech-test-scope-purity.md
+   │  │   ├─ r10: enroll-verif-snapshot-coverage (l3, 3/3)
+   │  │   │   ├─ approved, cached
+   │  │   │   ├─ 0 blockers ✓
+   │  │   │   ├─ 4 nitpicks 🟠
+   │  │   │   ├─ given: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i006.da04ccb88660d0a96e.r010._.given.by_peer.enroll-verif-snapshot-coverage.md
+   │  │   │   └─ taken: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i006.da04ccb88660d0a96e.r010._.taken.by_self.enroll-verif-snapshot-coverage.md
+   │  │   ├─ r11: enroll-verif-snapshot-blemishes (l3, 3/3)
+   │  │   │   ├─ approved, cached — set aside by dispute
+   │  │   │   ├─ disputed 🌙 — skipped this generation, no round spent
+   │  │   │   ├─ 0 blockers ✓
+   │  │   │   ├─ 5 nitpicks, 3 disputed → 2 tallied 🟠
+   │  │   │   ├─ given: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i006.da04ccb88660d0a96e.r011._.given.by_peer.enroll-verif-snapshot-blemishes.md
+   │  │   │   └─ taken: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i006.da04ccb88660d0a96e.r011._.taken.by_self.enroll-verif-snapshot-blemishes.md
+   │  │   └─ r12: enroll-verif-test-intent (l3, 3/3)
+   │  │       ├─ approved, cached — set aside by dispute
+   │  │       ├─ disputed 🌙 — skipped this generation, no round spent
+   │  │       ├─ 0 blockers ✓
+   │  │       ├─ 1 nitpick, 1 disputed → 0 tallied ✓
+   │  │       ├─ given: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i006.da04ccb88660d0a96e.r012._.given.by_peer.enroll-verif-test-intent.md
+   │  │       └─ taken: .behavior/v2026_11_04.feat-unauthed-subpath/.reviews/peer/5.3.verification._.review.i006.da04ccb88660d0a96e.r012._.taken.by_self.enroll-verif-test-intent.md
+   │  └─ judges
+   │      └─ j1: $rhachet run --repo bhrain --skill route.stone.judge --mechanism reviewed? --stone $stone --route $route --allow-blockers 0 --allow-nitpicks 7
+   │          └─ finished 5.4s ✓
+   │
+   └─ the way continues, run
+      └─ rhx route.drive
