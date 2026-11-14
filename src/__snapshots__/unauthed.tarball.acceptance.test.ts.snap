@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`unauthed.tarball given: [case1] the package, packed and unpacked as a consumer gets it when: [t0] the tarball contents are listed then: the files a subpath consumer meets are the stub, the subpath dist files, and the top-level package files 1`] = `
+[
+  "LICENSE",
+  "dist/unauthed.d.ts",
+  "dist/unauthed.js",
+  "dist/unauthed.js.map",
+  "license.md",
+  "package.json",
+  "readme.md",
+  "unauthed/package.json",
+]
+`;
+
+exports[`unauthed.tarball given: [case1] the package, packed and unpacked as a consumer gets it when: [t1] node requires both entries from the unpacked install then: the load report names each entry file and every module the subpath alone loaded 1`] = `
+{
+  "isOneErrorClass": true,
+  "isRootLoaded": true,
+  "modulesAfterSubpath": [
+    "<consumer>/node_modules/simple-jwt-auth/dist/unauthed.js",
+    "<consumer>/node_modules/simple-jwt-auth/dist/getUnauthedClaims.js",
+    "<consumer>/node_modules/simple-jwt-auth/dist/base64Url/base64UrlDecode.js",
+    "<consumer>/node_modules/simple-jwt-auth/dist/base64Url/castBase64UrlToBase64.js",
+    "<consumer>/node_modules/simple-jwt-auth/dist/isJSONWebToken.js",
+    "<consumer>/node_modules/simple-jwt-auth/dist/SimpleJwtAuthError.js",
+    "<consumer>/node_modules/simple-jwt-auth/dist/getUnauthedHeaderClaims.js",
+    "<consumer>/node_modules/simple-jwt-auth/dist/redactSignature.js",
+  ],
+  "namesOfSubpath": [
+    "SimpleJwtAuthError",
+    "getUnauthedClaims",
+    "getUnauthedHeaderClaims",
+    "isJSONWebToken",
+    "redactSignature",
+  ],
+  "pathOfRoot": "<consumer>/node_modules/simple-jwt-auth/dist/index.js",
+  "pathOfSubpath": "<consumer>/node_modules/simple-jwt-auth/dist/unauthed.js",
+}
+`;
+
+exports[`unauthed.tarball given: [case1] the package, packed and unpacked as a consumer gets it when: [t2] native node esm imports each entry then: the subpath is refused, as the readme states (a directory stub is cjs-only) 1`] = `
+{
+  "lineOfError": "Error [ERR_UNSUPPORTED_DIR_IMPORT]: Directory import '<consumer>/node_modules/simple-jwt-auth/unauthed' is not supported resolving ES modules imported from <consumer>/[eval1]",
+}
+`;
+
+exports[`unauthed.tarball given: [case1] the package, packed and unpacked as a consumer gets it when: [t3] a browser page that imports the subpath is bundled then: the bundle holds simple-jwt-auth and buffer with its own deps, no more 1`] = `
+[
+  "base64-js",
+  "buffer",
+  "ieee754",
+  "simple-jwt-auth",
+]
+`;
+
+exports[`unauthed.tarball given: [case1] the package, packed and unpacked as a consumer gets it when: [t4] the same op is bundled from the root, for contrast, with node builtins left external, so buffer and crypto are not listed then: the bundle holds the signature-side packages, so the subpath check above can bite 1`] = `
+[
+  "asn1.js",
+  "axios",
+  "bn.js",
+  "brorand",
+  "elliptic",
+  "hash.js",
+  "helpful-errors",
+  "hmac-drbg",
+  "inherits",
+  "ip-regex",
+  "is-ip",
+  "jwk-to-pem",
+  "minimalistic-assert",
+  "minimalistic-crypto-utils",
+  "parse-domain",
+  "safe-buffer",
+  "safer-buffer",
+  "simple-in-memory-cache",
+  "simple-jwt-auth",
+  "type-fns",
+]
+`;
+
+exports[`unauthed.tarball given: [case1] the package, packed and unpacked as a consumer gets it when: [t5] a consumer compiles against it on ts node10 then: a verify op, and a decode-adjacent op the root alone holds, are refused at the import 1`] = `
+{
+  "diagnostics": [
+    "consumer.node10.verifyOp.ts(2,10): error TS2724: '"simple-jwt-auth/unauthed"' has no exported member named 'getAuthedClaims'. Did you mean 'getUnauthedClaims'?",
+    "consumer.node10.verifyOp.ts(3,10): error TS2305: Module '"simple-jwt-auth/unauthed"' has no exported member 'isExpiredToken'.",
+  ],
+}
+`;
+
+exports[`unauthed.tarball given: [case1] the package, packed and unpacked as a consumer gets it when: [t5] a consumer compiles against it on ts node10 then: a wrong use of a decoded claim fails the compile 1`] = `
+{
+  "diagnostics": [
+    "consumer.node10.wrongUse.ts(3,14): error TS2322: Type 'string' is not assignable to type 'number'.",
+  ],
+}
+`;
+
+exports[`unauthed.tarball given: [case1] the package, packed and unpacked as a consumer gets it when: [t5] a consumer compiles against it on ts node10 then: a wrong use of a decoded header fails the compile, so its type is not any 1`] = `
+{
+  "diagnostics": [
+    "consumer.node10.wrongUseOfHeader.ts(3,14): error TS2322: Type 'string' is not assignable to type 'number'.",
+  ],
+}
+`;
+
+exports[`unauthed.tarball given: [case1] the package, packed and unpacked as a consumer gets it when: [t6] a consumer compiles against it on ts node16 then: a verify op, and a decode-adjacent op the root alone holds, are refused at the import 1`] = `
+{
+  "diagnostics": [
+    "consumer.node16.verifyOp.ts(2,10): error TS2724: '"simple-jwt-auth/unauthed"' has no exported member named 'getAuthedClaims'. Did you mean 'getUnauthedClaims'?",
+    "consumer.node16.verifyOp.ts(3,10): error TS2305: Module '"simple-jwt-auth/unauthed"' has no exported member 'isExpiredToken'.",
+  ],
+}
+`;
+
+exports[`unauthed.tarball given: [case1] the package, packed and unpacked as a consumer gets it when: [t7] a consumer compiles against it on ts nodenext then: a verify op, and a decode-adjacent op the root alone holds, are refused at the import 1`] = `
+{
+  "diagnostics": [
+    "consumer.nodenext.verifyOp.ts(2,10): error TS2724: '"simple-jwt-auth/unauthed"' has no exported member named 'getAuthedClaims'. Did you mean 'getUnauthedClaims'?",
+    "consumer.nodenext.verifyOp.ts(3,10): error TS2305: Module '"simple-jwt-auth/unauthed"' has no exported member 'isExpiredToken'.",
+  ],
+}
+`;
+
+exports[`unauthed.tarball given: [case1] the package, packed and unpacked as a consumer gets it when: [t8] a consumer compiles against it on ts bundler then: a verify op, and a decode-adjacent op the root alone holds, are refused at the import 1`] = `
+{
+  "diagnostics": [
+    "consumer.bundler.verifyOp.ts(2,10): error TS2724: '"simple-jwt-auth/unauthed"' has no exported member named 'getAuthedClaims'. Did you mean 'getUnauthedClaims'?",
+    "consumer.bundler.verifyOp.ts(3,10): error TS2305: Module '"simple-jwt-auth/unauthed"' has no exported member 'isExpiredToken'.",
+  ],
+}
+`;
+
+exports[`unauthed.tarball given: [case2] a files list that omits /unauthed, packed as above when: [t0] the tarball contents are listed then: the check fails loud, and names the absent path and the fix 1`] = `
+"✋ ConstraintError: published tarball lacks the unauthed subpath
+   ├─ absent: unauthed/package.json
+   └─ fix: add "/unauthed" to package.json files, and confirm \`npm run build\` emits dist/unauthed.*"
+`;
+
+exports[`unauthed.tarball given: [case2] a files list that omits /unauthed, packed as above when: [t1] node requires the subpath from the unpacked install then: it fails to find the module 1`] = `"Error: Cannot find module 'simple-jwt-auth/unauthed'"`;
+
+exports[`unauthed.tarball given: [case2] a files list that omits /unauthed, packed as above when: [t2] a node10 consumer compiles the contract against it then: tsc fails loud on the absent module 1`] = `
+{
+  "diagnostics": [
+    "consumer.node10.contract.ts(10,8): error TS2307: Cannot find module 'simple-jwt-auth/unauthed' or its corresponding type declarations.",
+  ],
+}
+`;
