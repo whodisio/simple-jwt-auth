@@ -1,0 +1,73 @@
+illustrate the vision implied in the wish .behavior/v2026_11_04.feat-unauthed-subpath/0.wish.md
+
+emit into .behavior/v2026_11_04.feat-unauthed-subpath/1.vision.yield.md
+
+---
+
+paint a picture of what the world looks like when this wish is fulfilled
+
+testdrive the contract we propose via realworld examples
+
+specifically,
+
+## the outcome world
+
+- what does a day-in-the-life look like with this in place?
+- what's the before/after contrast?
+- what's the "aha" moment where the value clicks?
+
+## the experiences
+
+**demonstrate every critipath the wish implies** — discover them first, do not free-list:
+
+- **decompose** — factor the experience space into orthogonal dimensions, walk the product
+- **itemize** — verdict every cell into the inventory; name each real experience's feel × care
+- **demonstrate** — a narrative + bdd `[tn]` sketch per critipath (+ chosen alterpaths)
+
+→ see `howto.experience.demonstrate` (the method, the artifacts to emit, why `[tn]` is a sketch)
+
+## mental model
+
+- how would users describe this to a friend?
+- what analogies or metaphors fit?
+- what terms would they use vs what terms would we use?
+
+## evaluation
+
+- how well does it solve the goals?
+- what are the pros? the cons?
+- what edgecases exist and how do our contracts keep users in a pit of success?
+
+## open questions & assumptions
+
+- what assumptions have we made?
+- what questions remain unanswered?
+- what must we validate with the wisher before we proceed?
+- what must we research externally?
+
+## groundwork
+
+sanity check the vision against reality. not exhaustive research — just enough to know the vision isn't built on false assumptions.
+
+### external research
+
+if the wish references external apis, services, or docs:
+- did you verify they exist and work the way you assume?
+- cite what you checked (links, key constraints noted)
+- if none referenced, say "none — no external dependencies"
+
+### internal research
+
+if the wish references extant behavior, patterns, or code:
+- did you verify what that behavior actually is?
+- contracts: interfaces, types, signatures to conform to
+- vocab: domain terms, name patterns to reuse
+- stdouts: cli output patterns, error formats to match
+- cite what you checked (file paths, line numbers)
+- if none referenced, say "none — no extant behavior extended"
+
+## what is awkward?
+
+- what feels off or forced?
+- where does the design fight the user's mental model?
+- what tradeoffs feel uncomfortable?

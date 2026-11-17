@@ -1,0 +1,16 @@
+diff --git a/dist/domain.roles/mechanic/keyrack.yml b/dist/domain.roles/mechanic/keyrack.yml
+index c9f7848e89dca519b8a0d58a1156b91525fab5ff..dcb78330296e16d6f144c2cffbd80ace431c5e0f 100644
+--- a/dist/domain.roles/mechanic/keyrack.yml
++++ b/dist/domain.roles/mechanic/keyrack.yml
+@@ -11,5 +11,10 @@ env.prep:
+   - EHMPATHY_SEATURTLE_GITHUB_TOKEN
+   - OPENROUTER_API_KEY
+ 
++# .note = patched by simple-jwt-auth: 1.41.0 demands OPENROUTER_API_KEY in env.test,
++#         yet no test in this repo calls openrouter; strict keyrack.source then fails ci.
++#         upstream fix: ehmpathy/rhachet-roles-ehmpathy, "fix(mechanic): drop
++#         OPENROUTER_API_KEY from env.test in the mechanic keyrack". drop this patch
++#         when the bump to the release that holds that fix lands.
+ env.test:
+-  - OPENROUTER_API_KEY
++  # - test keys

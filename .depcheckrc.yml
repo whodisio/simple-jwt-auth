@@ -1,3 +1,7 @@
+# actor brain dirs hold plugin sources that belong to no package of this repo
+ignore-patterns:
+  - .agent
+  - .claude
 ignores:
   - simple-jwt-auth # self-link for acceptance test
   - depcheck
@@ -10,6 +14,7 @@ ignores:
   - "@src/.*"
   - rhachet
   - rhachet-brains-anthropic
+  - rhachet-brains-openrouter
   - rhachet-brains-xai
   - rhachet-roles-bhrain
   - rhachet-roles-bhuild

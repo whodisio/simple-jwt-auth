@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`createSecureDistributedAuthToken given: [case1] a consumer signs with simple-jwt-auth, one key pair per family when: [t0] the key fits the alg then: the ES256 token is signed with the ec key, and verifies with its pair 1`] = `"eyJhbGciOiJFUzI1NiIsImtpZCI6ImtpZC5lYyIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2F1dGguZXhhbXBsZS5jb20iLCJhdWQiOiJiMmYyZTdhMC0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDAwMDAiLCJzdWIiOiJjM2EzZjhiMS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDAwMDAiLCJleHAiOjE4OTM0NTYwMDB9.<signature>"`;
+
+exports[`createSecureDistributedAuthToken given: [case1] a consumer signs with simple-jwt-auth, one key pair per family when: [t0] the key fits the alg then: the ES256 token is signed with the ec key, and verifies with its pair 2`] = `
+{
+  "claims": {
+    "aud": "b2f2e7a0-0000-4000-8000-000000000000",
+    "exp": 1893456000,
+    "iss": "https://auth.example.com",
+    "sub": "c3a3f8b1-0000-4000-8000-000000000000",
+  },
+  "header": {
+    "alg": "ES256",
+    "kid": "kid.ec",
+    "typ": "JWT",
+  },
+}
+`;
+
+exports[`createSecureDistributedAuthToken given: [case1] a consumer signs with simple-jwt-auth, one key pair per family when: [t0] the key fits the alg then: the RS256 token is signed with the rsa key, and verifies with its pair 1`] = `"eyJhbGciOiJSUzI1NiIsImtpZCI6ImtpZC5yc2EiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2F1dGguZXhhbXBsZS5jb20iLCJhdWQiOiJiMmYyZTdhMC0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDAwMDAiLCJzdWIiOiJjM2EzZjhiMS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDAwMDAiLCJleHAiOjE4OTM0NTYwMDB9.<signature>"`;
+
+exports[`createSecureDistributedAuthToken given: [case1] a consumer signs with simple-jwt-auth, one key pair per family when: [t0] the key fits the alg then: the RS256 token is signed with the rsa key, and verifies with its pair 2`] = `
+{
+  "claims": {
+    "aud": "b2f2e7a0-0000-4000-8000-000000000000",
+    "exp": 1893456000,
+    "iss": "https://auth.example.com",
+    "sub": "c3a3f8b1-0000-4000-8000-000000000000",
+  },
+  "header": {
+    "alg": "RS256",
+    "kid": "kid.rsa",
+    "typ": "JWT",
+  },
+}
+`;
+
+exports[`createSecureDistributedAuthToken given: [case1] a consumer signs with simple-jwt-auth, one key pair per family when: [t1] an ec key is given for an rsa alg then: it fails loud, and names the key type, the alg, and the fix 1`] = `
+{
+  "message": "private key type 'ec' does not fit alg 'RS256', which needs an 'rsa' key. sign with a key pair made for this alg, e.g., createSigningKeyPair('RS256')",
+  "name": "SimpleJwtAuthError",
+}
+`;
+
+exports[`createSecureDistributedAuthToken given: [case1] a consumer signs with simple-jwt-auth, one key pair per family when: [t2] an rsa key is given for an ec alg then: it fails loud, and names the key type, the alg, and the fix 1`] = `
+{
+  "message": "private key type 'rsa' does not fit alg 'ES256', which needs an 'ec' key. sign with a key pair made for this alg, e.g., createSigningKeyPair('ES256')",
+  "name": "SimpleJwtAuthError",
+}
+`;

@@ -34,6 +34,7 @@ const config: Config = {
     '!**/*.acceptance.test.ts',
     '!**/*.integration.test.ts',
     '!**/.yalc/**',
+    '!**/.agent/**', // actor brain dirs hold plugin tests that belong to no package of this repo
   ],
   setupFilesAfterEnv: ['./jest.unit.env.ts'],
 

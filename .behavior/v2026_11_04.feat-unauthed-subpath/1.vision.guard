@@ -1,0 +1,151 @@
+# provenance = self-referential source template; enables `rhx route.guard.upgrade` idempotency
+provenance:
+  uri: node_modules/rhachet-roles-bhuild/dist/domain.operations/behavior/init/templates/1.vision.guard.light
+
+# brain = the brain the driver runs on for this stone; design stones (prefix 1.–3.) drive on opus
+brain: claude-opus-5-5[1m]
+
+# guard for vision stone
+#
+# requires human approval before stone can be marked as passed
+# because the self-review prompts require human feedback,
+# the process needs to halt here for human review
+
+judges:
+  # peer reviews must clear (0 blockers) before the human approves
+  - $rhachet run --repo bhrain --skill route.stone.judge --mechanism reviewed? --stone $stone --route $route --allow-blockers 0 --allow-nitpicks 7
+  - $rhachet run --repo bhrain --skill route.stone.judge --mechanism approved? --stone $stone --route $route
+
+reviews:
+  self:
+    - slug: has-grounded-in-reality
+      say: |
+        a junior recently modified files in this repo. we need to carefully
+        review the vision due to this.
+
+        did the junior ground the vision in reality, or make things up?
+
+        check the groundwork section:
+
+        for external references (APIs, services, docs):
+        - did they actually verify these exist?
+        - did they cite what they checked?
+        - or did they assume without sanity check?
+
+        for internal references (extant behavior, patterns, code):
+        - did they actually verify what that behavior is?
+        - did they verify extant contracts to conform to? (interfaces, types, signatures)
+        - did they verify extant vocab to reuse? (domain terms, name patterns)
+        - did they verify extant stdouts to match? (cli output patterns, error formats)
+        - did they cite specific files/lines?
+        - or did they assume the code works a certain way without verification?
+
+        this is not about exhaustive research — just sanity checks.
+        the question is: is this vision coherent with reality, or built on assumptions?
+
+    - slug: has-experience-coverage
+      say: |
+        a junior recently modified files in this repo. we need to carefully
+        review the vision due to this.
+
+        did the junior demonstrate the experiences the wish implies, or only narrate them?
+
+        an experience is an actor's lived encounter with the behavior. one behavior has many
+        experiences — different actors encounter it differently. each sits on two axes: feel
+        (happy vs sharp) and care (critipath vs alterpath). read `define.experience`,
+        `define.experience._.metric=boundary-density`, `howto.experience.enumerate`, and the worked
+        `define.experience._.demo.surf-school` before you grade.
+
+        walk the wish through the same three steps the stone asked of the junior:
+
+        1. enumerate — for each actor that matters, walk their happy and sharp paths. list
+           every experience the wish implies, then name each one's feel (happy / sharp)
+           and care (critipath / alterpath). do not enumerate only critipaths — enumerate all,
+           then let the care decide severity.
+        2. demonstrate — is there a `1.vision.experience.case=N.$slug.md` per experience,
+           rendered both as a narrative (actor's pov) and a bdd `[tn]` timeline? does each
+           sharp critipath prove it fails safe (fast, loud, teaches the fix) — not just that
+           the edge exists?
+        3. catalog — does `1.vision.experience.case=_.md` list them all, name each cell's feel and care,
+           and link to its case file? did the junior hunt out and center the densest experiences
+           — the ones that cross the most boundaries in one walk (highest value and highest
+           risk)? a vision of only sterile single-boundary demos is thin.
+
+        an absent critipath is a blocker. a sharp critipath shown unhandled (no fail-safe) is a
+        blocker — write or repair the case now, before you continue. an absent alterpath, or
+        thin bonus coverage, is a nitpick — flag it.
+
+        a wish with no user-visible experience declares "no experiences — internal only".
+
+    - slug: has-questioned-requirements
+      say: |
+        a junior recently modified files in this repo. we need to carefully
+        review the vision due to this.
+
+        are there any requirements that should be questioned?
+
+        for each requirement, ask:
+        - who said this was needed? when? why?
+        - what evidence supports this requirement?
+        - what if we didn't do this — what would happen?
+        - is the scope too large, too small, or misdirected?
+        - could we achieve the goal in a simpler way?
+
+        challenge each requirement and justify why it belongs.
+
+    - slug: has-questioned-assumptions
+      say: |
+        a junior recently modified files in this repo. we need to carefully
+        review the vision due to this.
+
+        are there any hidden assumptions the junior took as requirements?
+
+        for each assumption, ask:
+        - what do we assume here without evidence?
+        - what evidence supports this assumption?
+        - what if the opposite were true?
+        - did the wisher actually say this, or did we infer it?
+        - what exceptions or counterexamples exist?
+
+        surface all hidden assumptions and question each one.
+
+    - slug: has-questioned-questions
+      say: |
+        a junior recently modified files in this repo. we need to carefully
+        review the vision due to this.
+
+        are there any open questions? triage them:
+
+        for each question, ask:
+        - can this be answered via logic now? if so, answer it now.
+        - can this be answered via extant docs or code now? if so, answer it now.
+        - should this be answered via external research later? if so, mark it for research.
+        - does only the wisher know the answer? if so, ask the wisher.
+
+        for each question, ensure it is clearly marked as either:
+        - [answered] — resolved now
+        - [research] — to be answered in the research phase
+        - [wisher] — requires wisher input
+
+        ensure they're enumerated within the vision under "open questions & assumptions"
+
+  peer:
+    # each lane binds two globs. the first reaches the yield. the second reaches the experience
+    # files. bhrain drops route files other than `*.yield.md` unless a glob names them and naught
+    # else — so the experience files need a glob of their own, or the lanes never read them.
+    #
+    # dimensional decomposition — light-enrolled, scoped to one concern:
+    # are the experience dimensions orthogonal + exhaustive, and is the product fully walked?
+    # this is the discovery check — it grades the space, not the demos. it catches the
+    # critipaths a free-list would miss, and closes the self-authored-yardstick gap.
+    - slug: dimensional-decomposition
+      run: $rhx review --repo bhrain --mode hard --rules '.agent/repo=bhuild/role=behaver/briefs/practices/behavior.vision/rule.require.dimensional-decomposition.md' --refs '.agent/repo=bhuild/role=behaver/briefs/practices/behavior.vision/howto.experience.decompose.md' --refs '.agent/repo=bhuild/role=behaver/briefs/practices/behavior.vision/define.experience.md' --refs '.agent/repo=bhuild/role=behaver/briefs/practices/behavior.vision/define.experience._.axis=care.path=criti-vs-alter.md' --refs '.agent/repo=ehmpathy/role=architect/briefs/practices/domain.discovery/howto.dimensional-decomposition.md' --refs '$route/0.wish.md' --diffs since-main --paths-with '$route/1.vision.*.md' --paths-with '$route/1.vision.experience.*.md' --join intersect --conversation $conversation --output "$output"
+      budget: 3
+      level: 1
+
+    # experience coverage — light-enrolled, scoped to one concern:
+    # are the critipaths (happy + sharp) each demonstrated, and do sharp ones fail safe?
+    - slug: experience-coverage
+      run: $rhx review --repo bhrain --mode hard --rules '.agent/repo=bhuild/role=behaver/briefs/practices/behavior.vision/rule.require.experience-coverage.md' --refs '.agent/repo=bhuild/role=behaver/briefs/practices/behavior.vision/define.experience.md' --refs '.agent/repo=bhuild/role=behaver/briefs/practices/behavior.vision/define.experience._.axis=feel.path=happy-vs-sharp.md' --refs '.agent/repo=bhuild/role=behaver/briefs/practices/behavior.vision/define.experience._.axis=care.path=criti-vs-alter.md' --refs '.agent/repo=bhuild/role=behaver/briefs/practices/behavior.vision/define.experience._.metric=boundary-density.md' --refs '.agent/repo=bhuild/role=behaver/briefs/practices/behavior.vision/howto.experience.enumerate.md' --refs '.agent/repo=bhuild/role=behaver/briefs/practices/behavior.vision/define.experience._.demo.surf-school.md' --refs '$route/0.wish.md' --diffs since-main --paths-with '$route/1.vision.*.md' --paths-with '$route/1.vision.experience.*.md' --join intersect --conversation $conversation --output "$output"
+      budget: 3
+      level: 1
